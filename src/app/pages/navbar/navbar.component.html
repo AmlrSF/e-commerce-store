@@ -1,0 +1,29 @@
+<div class="border-b">
+    <div class="mx-auto flex items-center max-w-7xl">
+        <div class="relative h-16 flex items-center  px-4 sm:px-6 lg:px-8">
+            <a href="/" class="ml-4 flex lg:ml-0 gap-x-2">
+                <p class="font-bold text-xl">Store</p>
+             </a>
+        </div>
+        <nav 
+            class="mx-6" 
+        >
+            <ul 
+                class=" flex justify-center items-center space-x-4 lg:space-x-6" 
+            >
+                <li *ngFor="let route of routes">
+                    <a
+                        class="text-sm font-medium transition-colors hover:text-black"
+                        [class]="{
+                            'text-black': route.active == true,
+                            'text-neutral-500': route.active == false
+                        }"
+                        [href]="route.href"
+                        >
+                        {{ route.label }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
