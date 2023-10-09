@@ -1,7 +1,15 @@
 <app-navbar></app-navbar>
 
 <div class="mx-auto max-w-7xl">
-
+  <ng-container *ngIf="shouldDisplayCategories(); else noCategories">
+  
+    <router-outlet></router-outlet>
+  </ng-container>
+  <ng-template #noCategories>
+    categories
+    <router-outlet></router-outlet>
+  </ng-template>
+  
 </div>
 
 <app-footer></app-footer>

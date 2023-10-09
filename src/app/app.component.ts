@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(private router:Router){};
+
+  public shouldDisplayCategories(): boolean {
+    // Get the current route's path
+    const currentRoute = this.router.url;
+  
+    // Check if the current route's path is '/home'
+    return currentRoute == '/';
+  }
+
 }

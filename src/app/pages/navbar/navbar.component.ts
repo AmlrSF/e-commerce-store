@@ -9,23 +9,23 @@ import { Inavs } from 'src/app/interfaces/page-interfaces';
 export class NavbarComponent {
   public routes:Inavs[] = [
     {
-      href:"products",
+      href:"/products",
       label:"Products",
       active:false
     },{
-      href:"new-arrivals",
+      href:"/new-arrivals",
       label:"New Arrivals",
       active:false
     },{
-      href:"best-sellers",
+      href:"/best-sellers",
       label:"Best Sellers",
       active:false
     },{
-      href:"featured",
+      href:"/featured",
       label:"Features",
       active:false
     },{
-      href:"special-offer",
+      href:"/special-offer",
       label:"Special Offers",
       active:false
     },

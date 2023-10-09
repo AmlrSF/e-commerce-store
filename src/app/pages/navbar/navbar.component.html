@@ -1,7 +1,7 @@
 <div class="border-b">
     <div class="mx-auto flex items-center max-w-7xl">
         <div class="relative h-16 flex items-center  px-4 sm:px-6 lg:px-8">
-            <a href="/" class="ml-4 flex lg:ml-0 gap-x-2">
+            <a routerLink="" class="ml-4 flex lg:ml-0 gap-x-2">
                 <p class="font-bold text-xl">Store</p>
              </a>
         </div>
@@ -18,7 +18,7 @@
                             'text-black': route.active == true,
                             'text-neutral-500': route.active == false
                         }"
-                        [href]="route.href"
+                        [routerLink]="route.href"
                         >
                         {{ route.label }}
                     </a>
