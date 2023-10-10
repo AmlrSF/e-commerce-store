@@ -14,8 +14,9 @@ export class AppComponent {
     // Get the current route's path
     const currentRoute = this.router.url;
   
-    // Check if the current route's path is '/home'
-    return currentRoute == '/';
+  
+    
+    return currentRoute === '/';
   }
 
 }

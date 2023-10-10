@@ -1,29 +1,41 @@
 <div class="border-b">
     <div class="mx-auto flex items-center max-w-7xl">
-        <div class="relative h-16 flex items-center  px-4 sm:px-6 lg:px-8">
-            <a routerLink="" class="ml-4 flex lg:ml-0 gap-x-2">
-                <p class="font-bold text-xl">Store</p>
-             </a>
+        <div class="relative h-16 w-[100%] flex items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div class="flex gap-4 items-center">
+                <a routerLink="/">
+                    <p class="font-bold text-xl">Store</p>
+                </a>
+
+                <nav class="mx-6">
+                    <ul class="flex justify-center items-center space-x-4 lg:space-x-6">
+                        <li *ngFor="let route of routes">
+                            <a class="text-sm font-medium transition-colors hover:text-black"
+                                [class]="{
+                                'text-black': route.active == true,
+                                'text-neutral-500': route.active == false
+                                }"
+                                [routerLink]="route.href">
+                                {{ route.label }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="flex items-center gap-x-2">
+                <button 
+                    class=" flex items-center rounded-full
+                            bg-black px-5 py-3 disabled:cursor-not-allowed
+                            disabled:opacity-50 text-white font-semibold
+                            hover:opacity-75 transition
+                     "
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="ml-2 text-sm text-white">
+                        0
+                    </span>
+                </button>
+            </div>
         </div>
-        <nav 
-            class="mx-6" 
-        >
-            <ul 
-                class=" flex justify-center items-center space-x-4 lg:space-x-6" 
-            >
-                <li *ngFor="let route of routes">
-                    <a
-                        class="text-sm font-medium transition-colors hover:text-black"
-                        [class]="{
-                            'text-black': route.active == true,
-                            'text-neutral-500': route.active == false
-                        }"
-                        [routerLink]="route.href"
-                        >
-                        {{ route.label }}
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </div>

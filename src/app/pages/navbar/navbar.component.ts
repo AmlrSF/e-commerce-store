@@ -21,10 +21,6 @@ export class NavbarComponent {
       label:"Best Sellers",
       active:false
     },{
-      href:"/featured",
-      label:"Features",
-      active:false
-    },{
       href:"/special-offer",
       label:"Special Offers",
       active:false

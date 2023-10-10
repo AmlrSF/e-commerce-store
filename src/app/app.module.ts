@@ -9,7 +9,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { BestSellersComponent } from './pages/best-sellers/best-sellers.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
-import { FeaturesComponent } from './pages/features/features.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { SpecialOffersComponent } from './pages/special-offers/special-offers.co
     BestSellersComponent,
     ProductsComponent,
     NewArrivalsComponent,
-    FeaturesComponent,
     SpecialOffersComponent,
 
   ],
