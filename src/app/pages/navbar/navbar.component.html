@@ -6,7 +6,7 @@
                     <p class="font-bold text-xl">Store</p>
                 </a>
 
-                <nav class="mx-6">
+                <nav class="mx-6 hidden sm:block">
                     <ul class="flex justify-center items-center space-x-4 lg:space-x-6">
                         <li *ngFor="let route of routes">
                             <a class="text-sm font-medium transition-colors hover:text-black"
@@ -35,7 +35,15 @@
                         0
                     </span>
                 </button>
+                <button  class="sm:hidden  flex items-center rounded-full
+                    bg-black px-5 py-3 disabled:cursor-not-allowed
+                    disabled:opacity-50 text-white font-semibold
+                    hover:opacity-75 transition
+                     ">
+                    <i class="fa-solid text-sm fa-bars"></i>
+                </button>
             </div>
         </div>
+
     </div>
 </div>
