@@ -1,0 +1,21 @@
+.sidebar{
+    box-shadow: 0 0 10px #ddd;
+    z-index: 222;
+}
+
+
+.sidebar.active{
+    left: 0;
+}
+
+.shadows.active::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(2px);
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.3); /* Darker background with some transparency */
+}

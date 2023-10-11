@@ -7,6 +7,7 @@ import { Inavs } from 'src/app/interfaces/page-interfaces';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  public isOpen:boolean = false;
   public routes:Inavs[] = [
     {
       href:"/products",
@@ -27,4 +28,13 @@ export class NavbarComponent {
     },
     
   ]
+
+  public closeNavbar(){
+    this.isOpen = false;
+  }
+
+  public openNavbar(){
+    this.isOpen = true;
+  }
+
 }

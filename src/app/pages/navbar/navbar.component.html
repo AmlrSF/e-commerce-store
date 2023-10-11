@@ -35,7 +35,7 @@
                         0
                     </span>
                 </button>
-                <button  class="sm:hidden  flex items-center rounded-full
+                <button (click)="openNavbar()"  class="sm:hidden  flex items-center rounded-full
                     bg-black px-5 py-3 disabled:cursor-not-allowed
                     disabled:opacity-50 text-white font-semibold
                     hover:opacity-75 transition
@@ -44,6 +44,57 @@
                 </button>
             </div>
         </div>
-
     </div>
+</div>
+
+<div class="shadows transition" [ngClass]="{'active':isOpen}">
+    
+    <div [ngClass]="{'active':isOpen}" class="absolute sidebar transition   top-0 left-[-250px] h-[100vh] w-[250px] overflow-hidden  z-10 bg-white">
+        <div class=" w-[100%] flex items-start flex-col justify-between ">
+            
+            <div class="w-full flex p-[8.80px] justify-between items-center  border-b">
+                <a routerLink="/">
+                    <p class="font-bold text-xl">Store</p>
+                </a>
+                <button (click)="closeNavbar()" class="sm:hidden  flex items-center rounded-full
+                bg-black px-5 py-3 disabled:cursor-not-allowed
+                disabled:opacity-50 text-white font-semibold
+                hover:opacity-75 transition
+                    ">
+                    <i class="fa-solid text-sm fa-xmark"></i>
+            </button>
+            </div>
+    
+            <div class="w-full p-3 mt-5">
+                <nav class="w-full">
+                    <ul class="flex justify-center flex-col items-start">
+                        <li (click)="closeNavbar()" *ngFor="let route of routes" class="w-full p-3 rounded-sm text-black hover:bg-[#f6f6f6] ">
+                            <a class="text-md font-medium text-black transition-colors"
+                                [routerLink]="route.href">
+                                {{ route.label }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>  
+                <div class="flex items-center gap-x-2">
+                    <button 
+                        class=" flex items-center rounded-full
+                                bg-black px-5 py-3 disabled:cursor-not-allowed
+                                disabled:opacity-50 text-white font-semibold
+                                hover:opacity-75 transition
+                        "
+                    >
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="ml-2 text-sm text-white">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+
+
 </div>
