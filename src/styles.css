@@ -9,7 +9,11 @@ body,
   
 }
 
-
+.conatiner{
+  max-width: 128 0px;
+  width: 95vw;
+  margin: 0 auto;
+}
  
 @layer base {
   :root {
@@ -43,6 +47,16 @@ body,
     --ring: 215 20.2% 65.1%;
  
     --radius: 0.5rem;
+
+    --primary-clr:#ff6b6b;
+    --secondary-clr:#794afa;
+    --secondary-dark:#453c5c;
+
+    --white-clr:#fff;
+    --light-bg-clr:#f2f3f5;
+    --light-txt-clr:#7c899a;
+    --border-clr:#e5e8ec;
+    --dark-clr:#0a021c;
   }
  
   .dark {
