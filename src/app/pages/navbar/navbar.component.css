@@ -1,186 +1,44 @@
 
-.primary-btn {
-    font-size: 14px;
-    padding: 0.9em 2em;
-    width: fit-content;
-    border-radius: 2em;
-    background-color: #ff6b6b;
-    color: #fff;
-}
-
-.right-nav ul li a{
-    padding: 0.25em 1em;
-}
-
-header ul li a{
+.responsive-nav {
     transition: 0.3s ease-in-out;
+    z-index: 1111;
+    box-shadow: 0 0px 5px 5px rgba(0, 0, 0, 0.2); /* Adjust the blur value (5px) to your preference */
 }
 
-.right-nav ul {
-    display: none;
-}
-
-.right-nav ul li.current a{
-    background-color: var(--border-clr);
-}
-
- .right-nav li.items:hover ul {
-    display: block;
- }
-
-  .fly_item{
+.shadows.active::after {
+    content: "";
     position: absolute;
-    height: 16px;
-    font-size: 9px;padding: 3px;
-    text-align: center;
-    line-height: 10px;
-    color: #fff;
- }
-
- .middle-nav ul .fly_item{
-    top: 50%;
-    margin-top: -20px;
-    border-radius: 3px;
-    width: 30px;
-    right: -32px;
-    background-color: #ff6b6b;
- }
-
- .middle-nav ul li a{
-    font-weight: 500;
- }
-
- .middle-nav-right span.fly-item {
-    position: absolute;
-    height:15px;
-    display: grid;
-    place-content: center;
-    font-size: 12px;
-    width:15px;
-    color:#fff;
-    top: 0px;
-    right: -7px;
-    padding: 5px;
-    
-    background-color: #453c5c;
-    border-radius: 50%;
- }
-
- .main-links li a{
-    transition: 0.2s ease;
- }
- 
- .main-links li a:hover{
-    color: #794afa;
- }
-
- .mega .flexCol{
-    flex: 1;
-    min-width: 100px;
-    padding: 2.5em;
-    margin-bottom: 1.5em;
-    z-index: 1;
- }
-
- .object-img img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    display: block;
-
- }
-
- .products .media {
-    position: relative;
-    flex-shrink: 0;
-    overflow: hidden;
- }
-
-
-
-
-@media screen and (min-width:640px) {
-    
- .main-links .mega {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    top: auto;
+    top: 0;
     left: 0;
     right: 0;
-    padding: 2.5em;
-    line-height: 2em;
-    background-color: #f2f3f5;
-    box-shadow: rgb(0 0 0/20%) 0 30px 20px -30px;
-    z-index: 100;
-    display: none;
- }
-
- .main-links li.has-child:hover .mega {
-    display: block;
- }
- .main-links .mega  .wrapper{
-    display: flex;
-    flex-wrap: wrap;
- }
-
- .main-links .mega h4 {
-    font-size: 1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-
- }
- 
- .main-links .mega ul {
-    font-size: 0.8em;
-    text-transform: uppercase;
-    font-size: 11px;
- }
-
- .main-links .mega  .woman-brands{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 180px;
-
- }
- .main-links .mega  .woman-brnads li{
-   min-width: 80px;
-    
- }
-
- 
- .main-links .mega .view-All{
-    margin-top: 1em;
- }
-
- .main-links .mega .products{
-   flex: 2;
-    padding: center;
-    align-items: center;
- }
- .main-links .mega .products .row {
+    z-index: 10;
     width: 100%;
- }
-
- .main-links .mega .text-content{
-    line-height: initial;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-    margin-top: 0.5em;
-    position: absolute;
-    bottom: 4em;
-    width: 100%;
- }
-
- .main-links .mega .text-content h4 {
-    font-size: 2em;
-    font-weight: 800;
-    text-align: center;
-    color: #453c5c;
- }
-
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the opacity (0.7) to your preference */
+    backdrop-filter: blur(2px); /* Adjust the blur value (2px) to your preference */
 }
+
+.active {
+    left: 0;
+}
+
+
+.fly-item {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    background-color: #000;
+    height: 17px;
+    width: 17px;
+    font-size: 10px;
+    border-radius: 50%;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+.allApartmentLinks:nth-child(1) {
+    display: block;
+}
+

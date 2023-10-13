@@ -1,172 +1,151 @@
-<header class="border-b border-[#e5e8ec]">
+<div>
+    <div class="flex items-center container">
+        <div class="relative h-16 w-[100%] flex items-center justify-between ">
+            <div class="flex gap-4 items-center">
+                <button (click)="openNavbar()"  class="sm:hidden  flex items-center rounded-full
+                    bg-black px-3 py-1 disabled:cursor-not-allowed
+                    disabled:opacity-50 text-white font-semibold
+                    hover:opacity-75 transition
+                    ">
+                    <i class="text-2xl ri-menu-2-line"></i>
+                </button>
+                <a routerLink="/">
+                    <p class="font-bold text-2xl">Store</p>
+                </a>
 
-   <div class="top-nav sm:block hidden">
-    <div class="container">
-        <div class="flex py-2 justify-between items-center">
-            <ul class="flex gap-2">
-                <li><a class="text-[15px] hover:text-[#794afa]" href="#">Blog</a></li>
-                <li><a class="text-[15px] hover:text-[#794afa]" href="#">Featured</a></li>
-                <li><a class="text-[15px] hover:text-[#794afa]" href="#">WhiteList</a></li>
-            </ul>
-            <ul class="right-nav flex gap-2 sm:gap-3 md:gap-4 lg:gap-5">
-                <li><a class= "text-[12px] hover:text-[#7c899a]" href="#">Sign Up</a></li>
-                <li><a class= "text-[12px] hover:text-[#7c899a]" href="#">My Account</a></li>
-                <li><a class= "text-[12px] hover:text-[#7c899a]" href="#">Orders Tracking</a></li>
-                <li class="relative items"><a class= "hover:text-[#7c899a]" href="#">USD <i class=" text-md ri-arrow-down-s-line"></i> </a>
-                    <ul class="absolute  text-center z-10 left-0 border border-[#e5e8ec] bg-white  leading-[2em]">
-                        <li class="current"><a  href="#">USD</a></li>
-                        <li><a href="#">EUR</a></li>
-                        <li><a href="#">GRP</a></li> 
-                        <li><a href="#">DTN</a></li>
+                <nav class="mx-6 hidden sm:block">
+                    <ul class="flex justify-center items-center space-x-4 lg:space-x-6">
+                        <li *ngFor="let route of routes">
+                            <a class="text-sm font-medium transition-colors hover:text-black"
+                                [class]="{
+                                'text-black': route.active == true,
+                                'text-neutral-500': route.active == false
+                                }"
+                                [routerLink]="route.href">
+                                {{ route.label }}
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                <li class="relative items"><a class= "hover:text-[#7c899a]" href="#">English <i class="text-md ri-arrow-down-s-line"></i></a>
-                   <ul class="absolute  text-center z-10 left-0 border border-[#e5e8ec] bg-white leading-[2em] ">
-                        <li class="current"><a href="#">English</a></li>
-                        <li><a href="#">German</a></li>
-                        <li><a href="#">Spanich</a></li>
-                        <li><a href="#">Tunisian</a></li>
-                   </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-   </div>
+                </nav>
+            </div>
 
-   <div class="middle-nav ">
-    <div class="container">
-        <div class="flex items-center ">
-            <a class="sm:hidden block cursor-pointer">
-                <span class="text-[20px] mr-2 font-bold p-1"><i class=" ri-menu-2-line"></i></span>
-            </a>
-            <div class="flex items-center gap-6">
-                <div class="logo">
-                    <a href="" class="text-[24px] font-bold ">
-                        .Store
-                    </a>
+            <div class="flex items-center gap-x-3">
+                
+                <div class="relative hidden sm:block">
+                    <i class="text-[25px] font-semibold  ri-heart-line"></i>
+                    <span class="fly-item">0</span>
                 </div>
-                <ul class="main-links sm:flex hidden leading-[50px] gap-8">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li class="has-child">
-                        <a href="#">Woman <i class="ri-arrow-down-s-line"></i> </a>
-                        <div class="mega " >
-                           <div class="container">
-                            <div class="wrapper">
-                                <div class="flexCol">
-                                    <div class="row">
-                                        <h4>Woman's Clothing</h4>
-                                        <ul>
-                                            <li><a href="">Dresses</a></li>
-                                            <li><a href="">Tops & tees</a></li>
-                                            <li><a href="">jackets</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexCol">
-                                    <div class="row">
-                                        <h4>Woman's Clothing</h4>
-                                        <ul>
-                                            <li><a href="">Dresses</a></li>
-                                            <li><a href="">Tops & tees</a></li>
-                                            <li><a href="">jackets</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexCol">
-                                    <div class="row">
-                                        <h4>Woman's Clothing</h4>
-                                        <ul>
-                                            <li><a href="">Dresses</a></li>
-                                            <li><a href="">Tops & tees</a></li>
-                                            <li><a href="">jackets</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="flexCol">
-                                    <div class="row">
-                                        <h4>Woman's Clothing</h4>
-                                        <ul class="woman-brands">
-                                            <li><a href="">Dresses</a></li>
-                                            <li><a href="">Tops & tees</a></li>
-                                            <li><a href="">jackets</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Dresses</a></li>
-                                            <li><a href="">Tops & tees</a></li>
-                                            <li><a href="">jackets</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                            <li><a href="">Pants</a></li>
-                                            <li><a href="">Sweaters</a></li>
-                                        </ul>
-                                        <a href="#" class="view-All">View All Brands</a>
-                                    </div>
-                                </div>
-                                <div class="flexcol products relative">
-                                    <div class="row">
-                                        <div class="media">
-                                            <div class="thumnail object-img ">
-                                               <a href="#">
-                                                <img  src="../../../assets/products/apparel4.jpg" alt="bg 4">
-                                               </a>
-                                            </div>
-                                        </div>
-                                        <div class="text-content">
-                                            <h4>Most Wanted!</h4>
-                                            <a href="#" class="primary-btn">Order Now!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           </div>
-                        </div>
-                    </li>
-                    <li><a href="#">Men</a></li>
-                    <li class="relative"><a href="#">Sports</a>
-                        <span class="fly_item">New !</span>
-                    </li>
-                </ul>
+                <div class="relative"> 
+                    <i class="text-[25px] font-semibold   ri-shopping-cart-line"></i>
+                    <span class="fly-item">0</span>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-xs text-gray-500 ">Total</p>
+                    <span class="font-bold mt-[-4px]">$0.00</span>
+                </div>
             </div>
-
-            <div class="middle-nav-right ml-auto">
-                <ul class="flex gap-5 items-center">
-                    <li class="sm:block hidden">
-                        <a href="#">
-                            <div class="relative"> 
-                                <i class="text-[25px]  ri-heart-line"></i>
-                                <span class="fly-item">0</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <div class="relative"> 
-                            <i class="text-[25px] ri-shopping-cart-line"></i>
-                            <span class="fly-item">0</span>
-                        </div>
-                        <div class="flex flex-col ">
-                            <p class="text-sm font-normal  text-gray-500">Total</p>
-                            <p class="text-[16px] font-medium">0.00$</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
         </div>
     </div>
-   </div>
-</header>
+</div>
+
+<div class="shadows flex sm:hidden " [ngClass]="{'active':isOpen}">
+    
+    <div [ngClass]="{'active':isOpen}" class="responsive-nav absolute sidebar transition   top-0 left-[-250px]  h-[100vh] w-[250px] overflow-hidden  z-10 bg-white">
+        <div class=" w-[100%] flex items-start flex-col justify-between ">
+            
+            <div class="w-full flex p-[8.80px] justify-between items-center  border-b">
+                <a routerLink="/">
+                    <p class="font-bold text-xl">Store</p>
+                </a>
+                <button (click)="closeNavbar()" class="sm:hidden  flex items-center rounded-full
+                bg-black px-3 py-1 disabled:cursor-not-allowed
+                disabled:opacity-50 text-white font-semibold
+                hover:opacity-75 transition
+                    ">
+                    <i class="text-2xl fa-solid  fa-xmark"></i>
+            </button>
+            </div>
+    
+            <div class="w-full p-3 mt-5">
+                <nav class="w-full">
+                    <ul class="flex justify-center flex-col items-start">
+                        <li (click)="closeNavbar()" *ngFor="let route of routes" class="w-full p-3 rounded-sm text-black hover:bg-[#f6f6f6] ">
+                            <a class="text-md font-medium text-black transition-colors"
+                                [routerLink]="route.href">
+                                {{ route.label }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>  
+                <div class="flex items-center gap-x-2">
+                    <button 
+                        class=" flex items-center rounded-full
+                                bg-black px-5 py-3 disabled:cursor-not-allowed
+                                disabled:opacity-50 text-white font-semibold
+                                hover:opacity-75 transition
+                        "
+                    >
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="ml-2 text-sm text-white">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div class="bg-[#453c5c] py-5 mb-8">
+    <div class="container">
+        <div class="flex justify-between items-center">
+            <div class="left ">
+                <div class="relative z-10 ">
+                    <div class="relative w-[300px] mb-[-1.25em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
+                        <div class="">All Department</div>
+                        <div class="text-xs text-[#f2f3f5]">Total 1059 products</div>
+             
+                        <a href="#" class="absolute right-0 h-[60px] w-[60px] top-0 p-[1.3em]">
+                            <i class="text-3xl  ri-menu-3-line "></i>
+                        </a>
+                    </div>
+                    <div class="absolute top-[100%] w-[300px] bg-[#fff] border">
+                        <ul>
+                          <li class="border-t relative" *ngFor="let maincategory of categoriesWithSubcategories">
+                            <a href="#" class="font-medium  h-[46px] flex items-center gap-3 text-xl px-[1.5em]">
+                              <i class="ri-bear-smile-line"></i>
+                              <span class="text-gray-500">{{ maincategory.mainCategory }}</span>
+                              <div class="ml-auto" *ngIf="maincategory.subcategories">
+                                <i class="ml-auto ri-arrow-right-line"></i>
+                              </div>
+                            </a>
+                            
+                            <ul class="absolute  border min-h-[328.22px] bg-white  border-t-0 w-[100%] top-0 left-[100%] h-auto  leading-[2.5em] p-3 text-xl" *ngIf="maincategory.subcategories">
+                              <li *ngFor="let subCategory of maincategory.subcategories">
+                                <a href="#">{{ subCategory }}</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                    </div>          
+                </div>
+            </div>
+            <div class="right flex-1 w-full xs:max-w-[250px] sm:max-w-[340px] md:max-w-[450px] lg:max-w-[600px]">
+                <div class="relative overflow-hidde">
+                    <span class=" absolute  
+                          top-[5px] text-[#ff6b6b] left-3 text-[20px]   h-full"><i class="ri-search-line"></i></span>
+                    <input class="border-0 text-2xl overflow-hidden rounded-[10px] text-[0.9em] font-light w-full outline-none pr-[7em] pl-[3em] leading-[3.25em]" type="text" placeholder="Search for products">
+                    <button  class="rounded-r-lg  absolute
+                     top-0 px-[1.5em] py-[0.55em] bg-[#ff6b6b] 
+                      text-[#f2f3f5] h-full right-0 border-0
+                       outline-none text-[1em] font-semibold">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

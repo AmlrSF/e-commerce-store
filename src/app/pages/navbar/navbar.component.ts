@@ -29,6 +29,46 @@ export class NavbarComponent {
     
   ]
 
+  public categoriesWithSubcategories: { mainCategory: string; subcategories?: string[] }[] = [
+    {
+      mainCategory: "Food & Dining",
+      subcategories: ["Restaurants", "Fast Food", "Cafes", "Groceries"],
+    },
+    {
+      mainCategory: "Travel",
+      subcategories: ["Air Travel", "Hotels", "Car Rentals", "Cruises"],
+    },
+    {
+      mainCategory: "Entertainment",
+      subcategories: ["Movies", "Music", "Events", "Gaming"],
+    },
+    {
+      mainCategory: "Health & Fitness",
+      subcategories: ["Gym", "Yoga", "Nutrition", "Sports"],
+    },
+    {
+      mainCategory: "Technology",
+    },
+    {
+      mainCategory: "Fashion",
+    },
+    {
+      mainCategory: "Home & Garden",
+    },
+    {
+      mainCategory: "Education",
+    },
+    {
+      mainCategory: "Sports",
+    },
+    {
+      mainCategory: "Books & Literature",
+    },
+  ];
+  
+
+  
+
   public closeNavbar(){
     this.isOpen = false;
   }
