@@ -183,13 +183,13 @@
 
 <div>
     <div class="container h-[550px]">
-        <c-carousel [dark]="true" [wrap]="false" class="w-[100%] md:w-[calc(100%-(300px))] h-[100%] z-20 ml-auto  sm:pl-6 pt-6">
+        <c-carousel [dark]="true" [wrap]="false" class="w-[100%]  md:w-[calc(100%-(300px))] h-[100%] z-20 ml-auto  sm:pl-6 pt-6">
             <c-carousel-inner class="h-[100%] w-[100%] ">
-                <c-carousel-item relative class="w-[100%] h-[100%] relative" *ngFor="let slide of slides; index as i;">
+                <c-carousel-item relative class="w-[100%]  h-[100%] relative" *ngFor="let slide of slides; index as i;">
                   <img
                     [src]="slide.src"
                     alt="{{slide.title}}"
-                    class="w-[100%] object-cover h-[520px]"
+                    class="w-[100%] object-cover h-[520px] border"
                     loading="lazy"
                   />
                   <c-carousel-caption class="absolute top-[50%] bg-[black] text-center opacity-50 p-5 rounded-md left-[50%] translate-x-[-50%] translate-y-[-50%]">
@@ -197,19 +197,11 @@
                     <p class="text-1xl font-medium text-gray-400">{{slide.subtitle}}</p>
                   </c-carousel-caption>
                   <c-carousel-control class="absolute top-[50%] translate-y-[-50%] text-red-700 left-[15px]" [routerLink]  direction="prev">
-                    <i class="text-7xl text-white font-bold ri-arrow-drop-left-line"></i>
+                    <i class="text-7xl text-[#ff6b6b] font-bold ri-arrow-drop-left-line"></i>
                   </c-carousel-control>
                   <c-carousel-control class="absolute top-[50%] translate-y-[-50%] text-red-700 right-[15px]" [routerLink]  direction="next">
-                    <i class="text-7xl text-white font-bold ri-arrow-drop-right-line"></i>
-                  </c-carousel-control>
-                  <c-carousel-indicators class="absolute bottom-[15px] flex items-center gap-3 left-[50%] translate-x-[-50%]">
-                    <button *ngFor="let slide of slides; let i = index" type="button" class="rounded-full w-6 h-6 ml-2 focus:outline-none focus:ring focus:ring-red-500" 
-                    >
-                      <span>Slide {{i + 1}}</span> <!-- Accessible label for screen readers -->
-                    </button>
-                    hell
-                  </c-carousel-indicators>
-                  
+                    <i class="text-7xl text-[#ff6b6b] font-bold ri-arrow-drop-right-line"></i>
+                  </c-carousel-control>           
                 </c-carousel-item>
             </c-carousel-inner>
         </c-carousel>
