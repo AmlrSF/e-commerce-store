@@ -2,12 +2,8 @@
     <div class="flex items-center container">
         <div class="relative h-16 w-[100%] flex items-center justify-between ">
             <div class="flex gap-4 items-center">
-                <button (click)="openNavbar()"  class="sm:hidden  flex items-center rounded-full
-                    bg-black px-3 py-1 disabled:cursor-not-allowed
-                    disabled:opacity-50 text-white font-semibold
-                    hover:opacity-75 transition
-                    ">
-                    <i class="text-2xl ri-menu-2-line"></i>
+                <button (click)="openNavbar()"  class="sm:hidden   flex">
+                    <i class="text-3xl font-bold ri-menu-2-line"></i>
                 </button>
                 <a routerLink="/">
                     <p class="font-bold text-2xl">Store</p>
@@ -50,23 +46,51 @@
 
 <div class="shadows flex sm:hidden " [ngClass]="{'active':isOpen}">
     
-    <div [ngClass]="{'active':isOpen}" class="responsive-nav absolute sidebar transition   top-0 left-[-250px]  h-[100vh] w-[250px] overflow-hidden  z-10 bg-white">
+    <div [ngClass]="{'active':isOpen}" class="responsive-nav absolute sidebar transition  
+     top-0 left-[-300px]  h-[100vh] w-[300px] overflow-hidden  z-10 bg-white overflow-y-auto">
         <div class=" w-[100%] flex items-start flex-col justify-between ">
             
-            <div class="w-full flex p-[8.80px] justify-between items-center  border-b">
+            <div class="w-full responsive-nav-border-radius flex text-[#fff] p-[1.5em] pb-[3em] bg-[#453c5c] justify-between items-center bg-">
                 <a routerLink="/">
-                    <p class="font-bold text-xl">Store</p>
+                    <p class="font-bold text-3xl">Store</p>
                 </a>
-                <button (click)="closeNavbar()" class="sm:hidden  flex items-center rounded-full
-                bg-black px-3 py-1 disabled:cursor-not-allowed
-                disabled:opacity-50 text-white font-semibold
-                hover:opacity-75 transition
+                <button (click)="closeNavbar()" class="sm:hidden close-btn flex
                     ">
-                    <i class="text-2xl fa-solid  fa-xmark"></i>
+                    <i class="text-3xl font-bold fa-solid  fa-xmark"></i>
             </button>
             </div>
     
-            <div class="w-full p-3 mt-5">
+            <div class="w-full p-3 mt-3">
+                <div>
+                    <h1 class="text-2xl p-4 bg-[#f2f3f5] mb-4 text-center rounded">All department</h1>
+                    <ul>
+                      <li class=" relative" *ngFor="let maincategory of categoriesWithSubcategories">
+                        <a
+                          href="#"
+                          class="font-medium h-[46px] flex items-center gap-1  text-xl "
+                          (click)="toggleSubcategories(maincategory.mainCategory)"
+                        >
+                            <i class="ri-bear-smile-line"></i>
+                            <span class="text-gray-500 text-xl font-medium ">{{ maincategory.mainCategory }}</span>
+                            <div class="ml-auto">
+                                <i
+                                class="ri-arrow-right-s-line"
+                                *ngIf="maincategory.subcategories"
+                                ></i>
+                            </div>
+                        </a>
+                            <ul
+                            *ngIf="maincategory.subcategories"
+                            [hidden]="maincategory.showSubcategories"
+                            >
+                            <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
+                                <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>
+                            </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+
                 <nav class="w-full">
                     <ul class="flex justify-center flex-col items-start">
                         <li (click)="closeNavbar()" *ngFor="let route of routes" class="w-full p-3 rounded-sm text-black hover:bg-[#f6f6f6] ">
@@ -77,20 +101,9 @@
                         </li>
                     </ul>
                 </nav>  
-                <div class="flex items-center gap-x-2">
-                    <button 
-                        class=" flex items-center rounded-full
-                                bg-black px-5 py-3 disabled:cursor-not-allowed
-                                disabled:opacity-50 text-white font-semibold
-                                hover:opacity-75 transition
-                        "
-                    >
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="ml-2 text-sm text-white">
-                            0
-                        </span>
-                    </button>
-                </div>
+                
+              
+                  
             </div>
     
         </div>
@@ -104,9 +117,9 @@
 <div class="bg-[#453c5c] py-5 mb-8">
     <div class="container">
         <div class="flex justify-between items-center">
-            <div class="left ">
+            <div class="left md:block hidden">
                 <div class="relative z-10 ">
-                    <div class="relative w-[300px] mb-[-1.25em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
+                    <div class="relative w-[300px] mb-[-1.2em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
                         <div class="">All Department</div>
                         <div class="text-xs text-[#f2f3f5]">Total 1059 products</div>
              
@@ -117,25 +130,43 @@
                     <div class="absolute top-[100%] w-[300px] bg-[#fff] border">
                         <ul>
                           <li class="border-t relative" *ngFor="let maincategory of categoriesWithSubcategories">
-                            <a href="#" class="font-medium  h-[46px] flex items-center gap-3 text-xl px-[1.5em]">
+                            <a
+                              href="#"
+                              class="category font-medium h-[46px] flex items-center gap-3 text-xl px-[1.5em]"
+                              (click)="toggleSubcategories(maincategory.mainCategory)"
+                            >
                               <i class="ri-bear-smile-line"></i>
                               <span class="text-gray-500">{{ maincategory.mainCategory }}</span>
-                              <div class="ml-auto" *ngIf="maincategory.subcategories">
-                                <i class="ml-auto ri-arrow-right-line"></i>
+                              <div class="ml-auto">
+                                <i
+                                  class="ri-arrow-right-s-line"
+                                  *ngIf="maincategory.subcategories"
+                                ></i>
+                                
                               </div>
-                            </a>
-                            
-                            <ul class="absolute  border min-h-[328.22px] bg-white  border-t-0 w-[100%] top-0 left-[100%] h-auto  leading-[2.5em] p-3 text-xl" *ngIf="maincategory.subcategories">
-                              <li *ngFor="let subCategory of maincategory.subcategories">
+                              <ul
+                              class="subcategories absolute border-t
+                               border-t-[#e5e8ec]  h-[100%] left-[110%] w-[200px] top-0 transition-all duration-300 ease-in-out"
+                              *ngIf="maincategory.subcategories"
+                              [hidden]="maincategory.showSubcategories"
+                            >
+                              <li class="bg-white border-r border-r-[#e5e8ec] 
+                                border-b border-b-[#e5e8ec] border-l border-l-[#e5e8ec] 
+                                flex items-center h-[46px]  text-xl px-3" 
+                                *ngFor="let subCategory of maincategory.subcategories">
                                 <a href="#">{{ subCategory }}</a>
                               </li>
                             </ul>
+                            </a>
+                            
+                            
                           </li>
                         </ul>
-                    </div>          
+                      </div>
+                      
                 </div>
             </div>
-            <div class="right flex-1 w-full xs:max-w-[250px] sm:max-w-[340px] md:max-w-[450px] lg:max-w-[600px]">
+            <div class="right flex-1 w-full  md:max-w-[400px] lg:max-w-[600px]">
                 <div class="relative overflow-hidde">
                     <span class=" absolute  
                           top-[5px] text-[#ff6b6b] left-3 text-[20px]   h-full"><i class="ri-search-line"></i></span>
