@@ -8,6 +8,7 @@ import { Inavs } from 'src/app/interfaces/page-interfaces';
 })
 export class NavbarComponent {
   public isOpen:boolean = false;
+
   public routes:Inavs[] = [
     {
       href:"/products",
@@ -28,7 +29,6 @@ export class NavbarComponent {
     },
     
   ]
-
   public categoriesWithSubcategories: { mainCategory: string; subcategories?: string[], showSubcategories?: boolean }[] = [
     {
       mainCategory: "Food & Dining",
@@ -69,25 +69,50 @@ export class NavbarComponent {
       mainCategory: "Books & Literature",
     },
   ];
+  public slides = [
+    {
+      src: '../../../assets/slider/slider0.jpg',
+      title: 'Spring Fashion Extravaganza',
+      subtitle: 'Get Ready for the Season\'s Hottest Styles',
+    },
+    {
+      src: '../../../assets/slider/slider1.jpg',
+      title: 'Exclusive Discounts Inside',
+      subtitle: 'Shop Now for Unbeatable Savings',
+    },
+    {
+      src: '../../../assets/slider/slider2.jpg',
+      title: 'Elevate Your Style',
+      subtitle: 'Discover Premium Fashion Choices',
+    },
+    {
+      src: '../../../assets/slider/slider3.jpg',
+      title: 'New Arrivals Every Week',
+      subtitle: 'Stay Ahead of the Fashion Curve',
+    },
+  ];
   
   
 
   public toggleSubcategories(category: string): void {
     // Set all categories' showSubcategories to false
-    this.categoriesWithSubcategories.forEach((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
+    this.categoriesWithSubcategories.map((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
       item.showSubcategories = true;
     });
+    
   
     // Find the selected category and toggle its showSubcategories
     const foundCategory = this.categoriesWithSubcategories.find((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
       return item.mainCategory === category;
     });
+    console.log(foundCategory);
   
     if (foundCategory) {
       foundCategory.showSubcategories = !foundCategory.showSubcategories;
     }
+
+    console.log(foundCategory);
   }
-  
   
   public closeNavbar(){
     this.isOpen = false;
@@ -97,4 +122,11 @@ export class NavbarComponent {
     this.isOpen = true;
   }
 
+    // A property to track the currently selected slide
+  public activeSlide = 0;
+
+  // Function to select a slide
+  public selectSlide(index: number): void {
+    this.activeSlide = index;
+  }
 }
