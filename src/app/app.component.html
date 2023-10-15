@@ -1,16 +1,16 @@
 <app-navbar></app-navbar>
 
-<!-- <div class="mx-auto max-w-7xl">
-  <div class="p-4 sm:p-6 lg:p-8">
-    <div *ngIf="shouldDisplayCategories(); then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-      <router-outlet></router-outlet>
-    </ng-template>
-    <ng-template #elseBlock>
-      Categories
-      <router-outlet></router-outlet>
-    </ng-template>
+<div *ngIf="shouldDisplayCategories(); then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
-</div> -->
-
-<!-- <app-footer></app-footer> -->
+</ng-template>
+<ng-template #elseBlock>
+  <div class="container">
+    Categories
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+  
+ <app-footer></app-footer>

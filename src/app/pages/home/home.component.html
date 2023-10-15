@@ -1,36 +1,59 @@
-<div class="space-y-10 pb-5">
-    <div class="rounded-xl overflow-hidden">
-        <div [ngStyle]="{'background-image': 'url(../../../assets/banner.avif)', 'background-size': 'cover'}" class="rounded-xl relative h-[250px] overflow-hidden bg-cover">
-            <div class="h-full w-full flex flex-col justify-center items-center text-center gap-y-8">
-                <div class="font-bold text-white text-3xl sm:text-5xl lg:text-6xl sm:max-w-xl max-w-xs">
-                    Explore The New Collections!
-                </div>
+<div class="h-[550px]">
+    <c-carousel [dark]="true" [wrap]="false" class="w-[100%]  md:w-[calc(100%-(300px))] h-[100%] z-20 ml-auto  md:pl-6 pt-6">
+        <c-carousel-inner class="h-[100%] w-[100%] ">
+            <c-carousel-item relative class="w-[100%]  h-[100%] relative" *ngFor="let slide of slides; index as i;">
+              <img
+                [src]="slide.src"
+                alt="{{slide.title}}"
+                class="w-[100%] object-cover h-[520px] border"
+                loading="lazy"
+              />
+              <c-carousel-caption class="absolute top-[50%] bg-[black] text-center opacity-50 p-5 rounded-md left-[50%] translate-x-[-50%] translate-y-[-50%]">
+                <h3 class="text-4xl mb-4 text-white leading-10 text-center font-bold">{{slide.title}}</h3>
+                <p class="text-1xl font-medium text-gray-400">{{slide.subtitle}}</p>
+              </c-carousel-caption>
+              <c-carousel-control class="absolute top-[50%] translate-y-[-50%] text-red-700 left-[15px]" [routerLink]  direction="prev">
+                <i class="text-7xl text-[#ff6b6b] font-bold ri-arrow-drop-left-line"></i>
+              </c-carousel-control>
+              <c-carousel-control class="absolute top-[50%] translate-y-[-50%] text-red-700 right-[15px]" [routerLink]  direction="next">
+                <i class="text-7xl text-[#ff6b6b] font-bold ri-arrow-drop-right-line"></i>
+              </c-carousel-control>           
+            </c-carousel-item>
+        </c-carousel-inner>
+    </c-carousel>
+</div>
+
+<div class="py-5">
+    <div class="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-1 text-center">
+        <div class="flex w-full sm:flex-col sm:items-center sm:justify-between justify-center gap- text-center">
+            <i class=" text-3xl fa-solid fa-truck"></i>
+           <div>
+            <span class="text-md w-full font-semibold">Free Shipping</span>
+            <p class="text-xs text-gray-500">Order Taday - Receive Tomorrow</p>
+           </div>
+        </div>
+        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+            <i class=" text-3xl fa-solid fa-tag"></i>
+           <div>
+            <span class="text-md w-full font-semibold">Price-match guarante</span>
+            <p class="text-xs text-gray-500">safe money when ordering with us</p>
+           </div>
+        </div>
+        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+            <i class=" text-3xl fa-solid fa-arrow-rotate-left"></i>
+            <div>
+                <span class="text-md w-full font-semibold">Hassle-free Exchange</span>
+            <p class="text-xs text-gray-500">Receive a slip for exchanging</p>
             </div>
+            
+        </div>
+        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+            <i class="text-3xl fa-solid fa-star"></i>
+           <div>
+            <span class="text-md w-full font-semibold">5.0 Google Reviews</span>
+            <p class="text-xs text-gray-500">Customer statisfaction #1priorty</p>
+           </div>
         </div>
     </div>
 </div>
-<div class="grid grid-cols-4">
-    <div class="flex flex-col items-center justify-center gap-1 text-center">
-        <i class=" text-3xl fa-solid fa-truck"></i>
-        <span class="text-md font-semibold">Free Shipping</span>
-        <p class="text-xs text-gray-500">Order Taday - Receive Tomorrow</p>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-1 text-center">
-        <i class=" text-3xl fa-solid fa-tag"></i>
-        <span class="text-md font-semibold">Price-match guarante</span>
-        <p class="text-xs text-gray-500">safe money when ordering with us</p>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-1 text-center">
-        <i class=" text-3xl fa-solid fa-arrow-rotate-left"></i>
-        <span class="text-md font-semibold">Hassle-free Exchange</span>
-        <p class="text-xs text-gray-500">Receive a slip for exchanging</p>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-1 text-center">
-        <i class="text-3xl fa-solid fa-star"></i>
-        <span class="text-md font-semibold">5.0 Google Reviews</span>
-        <p class="text-xs text-gray-500">Customer statisfaction #1priorty</p>
-    </div>
-</div>
-<div class="py-5">
-    hell
-</div>
+
