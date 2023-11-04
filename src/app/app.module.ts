@@ -7,12 +7,13 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BestSellersComponent } from './pages/best-sellers/best-sellers.component';
-import { ProductsComponent } from './pages/products/products.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
 import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductsComponent } from './pages/products/products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +21,10 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     HomeComponent,
     BestSellersComponent,
-    ProductsComponent,
     NewArrivalsComponent,
     SpecialOffersComponent,
-
+    ProductDetailComponent,
+    ProductsComponent
   ],
   imports: [
     CarouselModule,
