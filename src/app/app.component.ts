@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,18 @@ export class AppComponent {
   
     
     return currentRoute === '/';
+  }
+
+  public isHeaderFixed: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isHeaderFixed = window.scrollY > 600;
+  }
+  
+
+  scrollToTop(): void {
+    window.scroll({ top: 0, behavior: 'smooth' });
   }
 
 }

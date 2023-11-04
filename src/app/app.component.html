@@ -14,3 +14,7 @@
 </ng-template>
   
  <app-footer></app-footer>
+
+<div *ngIf="isHeaderFixed ===true" (click)="scrollToTop()" class="fixed cursor-pointer right-[15px] bottom-[15px] rounded-full bg-[#ff6b6b] h-[45px] w-[45px] flex items-center justify-center">
+  <i class= "box text-white font-bold text-xl fa-solid fa-arrow-up-long "></i>
+</div>

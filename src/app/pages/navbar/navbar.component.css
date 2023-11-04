@@ -55,10 +55,12 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: -29px;
+    left: -14px;
 }
 
-
+.transition{
+    transform: 0.3 ease-in;
+}
 .category:hover .subcategories{
     display: block;
 }

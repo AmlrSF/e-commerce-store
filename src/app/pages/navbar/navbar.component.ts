@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Inavs } from 'src/app/interfaces/page-interfaces';
 import { ProductService } from 'src/app/product.service';
 
@@ -150,6 +150,12 @@ export class NavbarComponent {
     this.productS.setopencats(this.isopencats);
     console.log(this.productS.getcatsStatus());
     
+  }
+  public isHeaderFixed: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isHeaderFixed = window.scrollY > 350;
   }
   
 }
