@@ -9,6 +9,14 @@ export class ProductService {
 
   private apiUrl = 'http://localhost:3000/api/v1/products';
 
+  public isopencats:boolean = false;
+  setopencats(state:boolean){
+    this.isopencats = state;
+  }
+  getcatsStatus(){
+    return this.isopencats;
+  }
+
   constructor(private http: HttpClient) { }
 
     //get all products

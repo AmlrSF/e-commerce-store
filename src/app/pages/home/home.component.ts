@@ -32,10 +32,15 @@ export class HomeComponent implements OnInit {
     },
   ];
   
+
+
+
+ 
  
   public products: any[] = [];
 
   constructor (private productS:ProductService){}
+
 
   ngOnInit(): void {
     this.productS.getProducts().subscribe(
@@ -46,6 +51,9 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     )
+
+    
+    
   }
 
   public formatPrice(price:any) {

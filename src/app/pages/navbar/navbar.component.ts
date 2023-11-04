@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/product.service';
 export class NavbarComponent {
   public isOpen:boolean = false;
 
+  public isopencats:boolean = true;
+
   public routes:Inavs[] = [
     {
       href:"/products",
@@ -141,6 +143,13 @@ export class NavbarComponent {
 
   calculateCartTotal(): number {
     return this.productS.calculateCartTotal();
+  }
+
+  togglecats(){
+    this.isopencats = !this.isopencats;
+    this.productS.setopencats(this.isopencats);
+    console.log(this.productS.getcatsStatus());
+    
   }
   
 }

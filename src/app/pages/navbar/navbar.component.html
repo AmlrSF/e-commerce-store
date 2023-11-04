@@ -120,15 +120,17 @@
         <div class="flex justify-between items-center">
             <div class="left md:block hidden">
                 <div class="relative z-10 ">
-                    <div class="relative w-[300px] mb-[-1.2em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
+                    <div (click)="togglecats()" class="relative w-[300px] mb-[-1.2em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
                         <div class="">All Department</div>
                         <div class="text-xs text-[#f2f3f5]">Total 1059 products</div>
              
-                        <a href="#" class="absolute right-0 h-[60px] w-[60px] top-0 p-[1.3em]">
-                            <i class="text-3xl  ri-menu-3-line "></i>
-                        </a>
+                        <div  class="absolute right-0 h-[60px] w-[60px] top-0 p-[1.3em]">
+                            <div *ngIf="isopencats; then thenBlock else elseBlock"></div>
+                            <ng-template #elseBlock><i class="text-3xl fa-solid fa-xmark"></i></ng-template>
+                            <ng-template #thenBlock><i class="text-3xl  ri-menu-3-line "></i></ng-template>   
+                        </div>
                     </div>
-                    <div class="absolute top-[100%] w-[300px] bg-[#fff] border">
+                    <div [ngClass]="{'h-[0px] invisible': isopencats}"  class="departments absolute top-[100%]   w-[300px] bg-[#fff] border">
                         <ul>
                           <li class="border-t relative" *ngFor="let maincategory of categoriesWithSubcategories">
                             <a

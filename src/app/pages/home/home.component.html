@@ -1,7 +1,9 @@
 <div class="h-[550px]">
-    <c-carousel [dark]="true" [wrap]="false" class="w-[100%]  md:w-[calc(100%-(300px))] h-[100%] z-20 ml-auto  md:pl-6 pt-6">
+    <c-carousel [dark]="true" [wrap]="false" class="w-[100%]   h-[100%] z-20 ml-auto md:w-[calc(100%-(300px))]  md:pl-6 pt-6">
         <c-carousel-inner class="h-[100%] w-[100%] ">
-            <c-carousel-item relative class="w-[100%]  h-[100%] relative" *ngFor="let slide of slides; index as i;">
+            <c-carousel-item relative 
+            class="w-[100%]  h-[100%] relative" 
+            *ngFor="let slide of slides; index as i;">
               <img
                 [src]="slide.src"
                 alt="{{slide.title}}"
@@ -106,7 +108,7 @@
 
       
         <!-- Cart Icon -->
-        <div class="flex items-center justify-center bg-[rgba(0,0,0,0.07)] h-[35px] w-[35px] rounded-full"
+        <div class="flex items-center justify-center h-[35px] w-[35px] rounded-full"
             (click)="toggleCartIcon(product)"
           >
         <i   [ngClass]="{ 'bg-blue-icon': isInCart(product) }" class="fa-solid fa-cart-shopping"></i>
