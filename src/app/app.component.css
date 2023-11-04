@@ -1,0 +1,15 @@
+@keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-20px);
+    }
+  }
+
+.box {
+animation:
+    bounce 300ms
+    alternate infinite
+    cubic-bezier(.2, .65, .6, 1);
+}
