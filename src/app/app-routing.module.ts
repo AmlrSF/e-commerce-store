@@ -16,12 +16,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
-    children: [
-      {
-        path: ':id', // Route parameter for product ID (single product detail)
-        component: ProductDetailComponent,
-      },
-    ],
+  },
+  {
+    path: 'products/:id',
+    component: ProductDetailComponent,
   },
 ];
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Inavs } from 'src/app/interfaces/page-interfaces';
+import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -92,7 +93,7 @@ export class NavbarComponent {
     },
   ];
   
-  
+  constructor (private productS:ProductService){};
 
   public toggleSubcategories(category: string): void {
     // Set all categories' showSubcategories to false
@@ -129,4 +130,17 @@ export class NavbarComponent {
   public selectSlide(index: number): void {
     this.activeSlide = index;
   }
+
+  getFavoriteItemCount(): number {
+    return this.productS.getFavoriteItemCount();
+  }
+
+  getCartItemCount(): number {
+    return this.productS.getCartItemCount();
+  }
+
+  calculateCartTotal(): number {
+    return this.productS.calculateCartTotal();
+  }
+  
 }

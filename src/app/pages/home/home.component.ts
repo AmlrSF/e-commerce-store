@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     },
   ];
   
-  //all products
+ 
   public products: any[] = [];
 
   constructor (private productS:ProductService){}
@@ -72,5 +72,35 @@ export class HomeComponent implements OnInit {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', options);
   }
+
+    // Function to handle clicking the heart icon
+    toggleFavoriteIcon(product: any) {
+      if (this.productS.isFavorite(product)) {
+        this.productS.removeFromFavorites(product);
+      } else {
+        this.productS.addToFavorites(product);
+      }
+    }
+  
+    // Function to check if a product is a favorite
+    isFavorite(product: any): boolean {
+      return this.productS.isFavorite(product);
+    }
+  
+    // Function to handle clicking the cart icon
+    toggleCartIcon(product: any) {
+      if (this.productS.isInCart(product)) {
+        this.productS.removeFromCart(product);
+      } else {
+        this.productS.addToCart(product);
+      }
+    }
+  
+    // Function to check if a product is in the cart
+    isInCart(product: any): boolean {
+      return this.productS.isInCart(product);
+    }
+  
+ 
 
 }

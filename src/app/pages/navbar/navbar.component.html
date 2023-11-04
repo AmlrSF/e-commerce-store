@@ -29,15 +29,15 @@
                 
                 <div class="relative hidden sm:block">
                     <i class="text-[25px] font-semibold  ri-heart-line"></i>
-                    <span class="fly-item">0</span>
+                    <span class="fly-item">{{getFavoriteItemCount()}}</span>
                 </div>
                 <div class="relative"> 
                     <i class="text-[25px] font-semibold   ri-shopping-cart-line"></i>
-                    <span class="fly-item">0</span>
+                    <span class="fly-item">{{getCartItemCount()}}</span>
                 </div>
                 <div class="flex flex-col">
                     <p class="text-xs text-gray-500 ">Total</p>
-                    <span class="font-bold mt-[-4px]">$0.00</span>
+                    <span class="font-bold mt-[-4px]">${{calculateCartTotal()}}</span>
                 </div>
             </div>
         </div>
