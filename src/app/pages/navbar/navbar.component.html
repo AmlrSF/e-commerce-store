@@ -46,8 +46,8 @@
 
 <div class="shadows flex sm:hidden " [ngClass]="{'active':isOpen}">
     
-    <div [ngClass]="{'active':isOpen}" class="responsive-nav absolute sidebar transition  
-     top-0 left-[-300px]  h-[100vh] w-[300px] overflow-hidden  z-10 bg-white overflow-y-auto">
+    <div [ngClass]="{'active':isOpen}" class="responsive-nav  sidebar transition  
+     top-0 left-[-300px] fixed h-[100vh] w-[300px] overflow-hidden  z-10 bg-white overflow-y-auto">
         <div class=" w-[100%] flex items-start flex-col justify-between ">
             
             <div class="w-full responsive-nav-border-radius flex text-[#fff] p-[1.5em] pb-[3em] bg-[#453c5c] justify-between items-center bg-">
@@ -80,8 +80,9 @@
                             </div>
                         </a>
                             <ul
-                            *ngIf="maincategory.subcategories"
-                            [hidden]="maincategory.showSubcategories"
+                                *ngIf="maincategory.subcategories"
+                                [hidden]="maincategory.showSubcategories"
+                                
                             >
                             <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
                                 <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>

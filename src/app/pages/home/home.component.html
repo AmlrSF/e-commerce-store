@@ -5,7 +5,7 @@
               <img
                 [src]="slide.src"
                 alt="{{slide.title}}"
-                class="w-[100%] object-cover h-[520px] border"
+                class="w-[100%] object-cover h-[550px] border"
                 loading="lazy"
               />
               <c-carousel-caption class="absolute top-[50%] bg-[black] text-center opacity-50 p-5 rounded-md left-[50%] translate-x-[-50%] translate-y-[-50%]">
@@ -23,23 +23,23 @@
     </c-carousel>
 </div>
 
-<div class="py-5">
-    <div class="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4  gap-1 text-center">
-        <div class="flex w-full sm:flex-col sm:items-center sm:justify-between justify-center gap- text-center">
+<div class="py-5 sm:mt-5 mt-8">
+    <div class="grid  grid-cols-1 :grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-5 text-center">
+        <div class="flex w-full sm:flex-col sm:items-center justify-evenly sm:justify-center  text-center">
             <i class=" text-3xl fa-solid fa-truck"></i>
            <div>
             <span class="text-md w-full font-semibold">Free Shipping</span>
             <p class="text-xs text-gray-500">Order Taday - Receive Tomorrow</p>
            </div>
         </div>
-        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+        <div class="flex w-full sm:flex-col sm:items-center justify-evenly sm:justify-between gap-1 text-center">
             <i class=" text-3xl fa-solid fa-tag"></i>
            <div>
             <span class="text-md w-full font-semibold">Price-match guarante</span>
             <p class="text-xs text-gray-500">safe money when ordering with us</p>
            </div>
         </div>
-        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+        <div class="flex w-full sm:flex-col sm:items-center justify-evenly sm:justify-between gap-1 text-center">
             <i class=" text-3xl fa-solid fa-arrow-rotate-left"></i>
             <div>
                 <span class="text-md w-full font-semibold">Hassle-free Exchange</span>
@@ -47,7 +47,7 @@
             </div>
             
         </div>
-        <div class="flex w-full sm:flex-col sm:items-center justify-center sm:justify-between gap-1 text-center">
+        <div class="flex w-full sm:flex-col sm:items-center justify-evenly sm:justify-between gap-1 text-center">
             <i class="text-3xl fa-solid fa-star"></i>
            <div>
             <span class="text-md w-full font-semibold">5.0 Google Reviews</span>
@@ -57,3 +57,27 @@
     </div>
 </div>
 
+<div class="mt-10">
+  <h2 class="text-3xl font-bold flex items-center gap-3">
+    <i class="text-yellow-500 fa-solid fa-star"></i>
+    Featured Products
+  </h2>
+  <div class="grid-container mt-8">
+    <div class="p-2 border flex sm:flex-col  border-[#ff6b6b] "  *ngFor="let product of products">
+      <div class="image h-[250px] w-full">
+        <img src="{{product.image}}" class="h-full object-cover w-full" alt="">
+      </div>
+      <div>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description.length > 25 ? product.description.slice(0, 22) + '...' : product.description }}</p>
+        <div class="flex gap-2">
+          <i class="text-yellow-500 fa-solid fa-star"></i>
+          <i class="text-yellow-500 fa-solid fa-star"></i>
+          <i class="text-yellow-500 fa-solid fa-star"></i>
+          <i class="text-yellow-500 fa-solid fa-star"></i>
+          <i class="text-yellow-500 fa-regular fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

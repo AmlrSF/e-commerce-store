@@ -11,7 +11,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
 import { CarouselModule } from '@coreui/angular';
-
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,9 @@ import { CarouselModule } from '@coreui/angular';
   imports: [
     CarouselModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

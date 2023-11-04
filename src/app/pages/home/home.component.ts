@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+  //all sildes 
   public slides = [
     {
       src: '../../../assets/slider/slider0.jpg',
@@ -30,6 +32,20 @@ export class HomeComponent {
     },
   ];
   
+  //all products
+  public products: any[] = [];
 
-  
+  constructor (private productS:ProductService){}
+
+  ngOnInit(): void {
+    this.productS.getProducts().subscribe(
+      (res:any)=>{
+        this.products = res.data;
+        console.log(this.products);
+      },(err)=>{
+        console.log(err);
+      }
+    )
+  }
+
 }
