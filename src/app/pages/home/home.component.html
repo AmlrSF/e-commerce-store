@@ -111,7 +111,15 @@
         <div class="flex items-center justify-center h-[35px] w-[35px] rounded-full"
             (click)="toggleCartIcon(product)"
           >
-        <i   [ngClass]="{ 'bg-blue-icon': isInCart(product) }" class="fa-solid fa-cart-shopping"></i>
+
+          <div *ngIf="isInCart(product); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            
+            <i class="fa-solid fa-check text-xl text-green-500 font-bold"></i>
+          </ng-template>
+          <ng-template #elseBlock>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </ng-template>
       </div>
       </div>
     </div>
