@@ -68,14 +68,17 @@
         <img src="{{product.image}}" class="h-full object-cover w-full" alt="">
       </div>
       <div>
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.description.length > 25 ? product.description.slice(0, 22) + '...' : product.description }}</p>
-        <div class="flex gap-2">
+        <h1 class="text-2xl font-medium">{{ product.name }}</h1>
+        <p class="text-slate-600 text-sm">{{ product.description.length > 25 ? product.description.slice(0, 22) + '...' : product.description }}</p>
+        <div class="flex gap-2 mt-3">
           <i class="text-yellow-500 fa-solid fa-star"></i>
           <i class="text-yellow-500 fa-solid fa-star"></i>
           <i class="text-yellow-500 fa-solid fa-star"></i>
           <i class="text-yellow-500 fa-solid fa-star"></i>
           <i class="text-yellow-500 fa-regular fa-star"></i>
+          <span class="me-3">
+            (2561)
+          </span>
         </div>
       </div>
     </div>
