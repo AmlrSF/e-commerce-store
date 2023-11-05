@@ -27,18 +27,18 @@
 
             <div class="flex items-center gap-x-3">
                 
-                <div class="relative hidden sm:block">
+                <a class="relative cursor-pointer " routerLink="/whitelist">
                     <i class="text-[25px] font-semibold  ri-heart-line"></i>
                     <span class="fly-item">{{getFavoriteItemCount()}}</span>
-                </div>
-                <div class="relative"> 
+                </a>
+                <a class="relative cursor-pointer" routerLink="/checkout"> 
                     <i class="text-[25px] font-semibold   ri-shopping-cart-line"></i>
                     <span class="fly-item">{{getCartItemCount()}}</span>
-                </div>
-                <div class="flex flex-col">
+                </a>
+                <a class="flex  flex-col" >
                     <p class="text-xs text-gray-500 ">Total</p>
                     <span class="font-bold mt-[-4px]">${{calculateCartTotal()}}</span>
-                </div>
+                </a>
             </div>
         </div>
     </div>

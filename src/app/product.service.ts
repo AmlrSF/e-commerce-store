@@ -73,6 +73,8 @@ export class ProductService {
     return favorites.some((favProduct) => favProduct.id === product._id);
   }
 
+  //cart logic
+
   // Get cart items from local storage
   getCartItems(): any[] {
     const cartItemsJSON = localStorage.getItem('cart');
@@ -84,24 +86,13 @@ export class ProductService {
     const cartItems = this.getCartItems();
     const productId = product._id;
 
-    const currentDate = new Date();
-    const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    
-    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(currentDate);
-    
     const item = {
-      id:product._id,
-      name: product.name,
-      qte:product.quantity,
-      image: product.image,
-      description: product.description,
-      price: product.price,
-      discount: product.discount,
-      itemDate: formattedDate, 
-      count:1
+      ...product,
+      count:1,
+      subTotal:product.price
     };
 
-    if (!cartItems.some((cartProduct) => cartProduct.id === productId)) {
+    if (!cartItems.some((cartProduct) => cartProduct._id === productId)) {
       cartItems.push(item);
       localStorage.setItem('cart', JSON.stringify(cartItems));
     }
@@ -112,14 +103,14 @@ export class ProductService {
     const cartItems = this.getCartItems();
     const productId = product._id;
 
-    const updatedCart = cartItems.filter((cartProduct) => cartProduct.id !== productId);
+    const updatedCart = cartItems.filter((cartProduct) => cartProduct._id !== productId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
   // Check if a product is in the cart
   isInCart(product: any): boolean {
     const cartItems = this.getCartItems();
-    return cartItems.some((cartProduct) => cartProduct.id === product._id);
+    return cartItems.some((cartProduct) => cartProduct._id === product._id);
   }
   // Function to return the number of favorite items
   getFavoriteItemCount(): number {
@@ -154,13 +145,14 @@ incrementItemCount(product: any): void {
   
 
 
-  const itemIndex = cartItems.findIndex((cartProduct) => cartProduct.id === productId);
+  const itemIndex = cartItems.findIndex((cartProduct) => cartProduct._id === productId);
 
   if(this.getItemCountInCart(product)===0)this.addToCart(product);
 
   if (itemIndex !== -1) {
     if (cartItems[itemIndex].count < product.quantity) {
       cartItems[itemIndex].count++;
+      cartItems[itemIndex].subTotal = cartItems[itemIndex].count * cartItems[itemIndex].price;
       localStorage.setItem('cart', JSON.stringify(cartItems));
     }
   }
@@ -172,21 +164,27 @@ incrementItemCount(product: any): void {
     const cartItems = this.getCartItems();
     const productId = product._id;
     
-    const itemIndex = cartItems.findIndex((cartProduct) => cartProduct.id === productId);
+    const itemIndex = cartItems.findIndex((cartProduct) => cartProduct._id === productId);
 
     if(this.getItemCountInCart(product)===0)this.removeFromCart(product);
 
     if (itemIndex !== -1 && cartItems[itemIndex].count > 0) {
       cartItems[itemIndex].count--;
+      cartItems[itemIndex].subTotal = cartItems[itemIndex].count * cartItems[itemIndex].price;
       localStorage.setItem('cart', JSON.stringify(cartItems));
     }
   }
-  // Get the count of a specific item in the cart
-getItemCountInCart(product: any): number {
-  const cartItems = this.getCartItems();
-  const item = cartItems.find((cartProduct) => cartProduct.id === product._id);
-  return item ? item.count : 0;
-}
+    // Get the count of a specific item in the cart
+  getItemCountInCart(product: any): number {
+    const cartItems = this.getCartItems();
+    const item = cartItems.find((cartProduct) => cartProduct._id === product._id);
+    return item ? item.count : 0;
+  }
 
+  getSubTotalInCart(product:any){
+    const cartItems = this.getCartItems();
+    const item = cartItems.find((cartProduct) => cartProduct._id === product._id);
+    return item ? item.subTotal : 0;
+  }
 
 }

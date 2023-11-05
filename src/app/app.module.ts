@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

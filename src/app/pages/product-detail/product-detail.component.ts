@@ -18,6 +18,29 @@ export class ProductDetailComponent implements OnInit{
 
   ){}
 
+  isCopied: boolean = false;
+
+  copyLink() {
+    // Define the URL to copy
+    const urlToCopy = 'http://localhost:4200/products/' + this.product._id;
+
+    // Use the Clipboard API to copy the URL to the clipboard
+    const el = document.createElement('textarea');
+    el.value = urlToCopy;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+
+    // Set isCopied to true
+    this.isCopied = true;
+
+    // Reset isCopied after 5 seconds
+    setTimeout(() => {
+      this.isCopied = false;
+    }, 5000);
+  }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
