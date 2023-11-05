@@ -1,52 +1,66 @@
 <div class="py-5">
     <p class="text-xl">Home /<span class="text-muted-foreground">Cart</span></p>
 
- 
+    <div *ngIf="statusOrder">
+        <h1>All shipping items</h1>
+        <div class="flex gap-3">
+            <div *ngFor="let order of orders.orders">
+                {{order.FullName}} ||
+            </div>
+        </div>
+    </div>
+
     <div class="h-full" *ngIf="addedItems.length > 0; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-        <h1 class="orders  mt-2 text-3xl font-bold">Shopping Cart </h1>
-        <div class="flex mt-10 pb-5 justify-between flex-wrap gap-10 sm:gap-60 md:gap-80">
-            <div class="w-[600px] overflow-x-auto">
-                <table>
-                    <thead>
-                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Item</th>
-                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Price</th>
-                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-center">Quantity</th>
-                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">SubTotal</th>
-                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left"></th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of addedItems" >
-                            <td class="py-4 flex items-center gap-2 border-b">
-                                <img class="h-full flex items-center w-[75px]"  [src]="item.image" alt="">
-                                <div class="w-[250px]">
-                                    <strong>{{item.name}}</strong>
-                                    <p>{{item.description.length > 30 ? item.description.slice(1,30)+"...": item.description}}</p>
-                                </div>
-                            </td>
-                            <td class="py-4 min-w-[100px] text-center text-lg font-medium border-b">
-                                {{formatPrice(item.price)}}
-                            </td>
-                            <td class="py-4 min-w-[100px] text-center border-b">            
-                               <div class="flex ">
-                                    <button (click)="decrementItem(item)" class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
-                                        <i class="text-md fa-solid fa-minus text-[#ff6b6b]"></i>
-                                    </button>
-                                    <span class="mx-2 text-xl">{{getCount(item)}}</span>
-                                    <button (click)="incrementItem(item)"  
-                                    class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
-                                        <i class="text-md fa-solid fa-plus text-[#ff6b6b]"></i>
-                                    </button>  
-                               </div>           
-                            </td>
-                            <td class="py-4 text-center border-b text-lg font-medium">{{getSubTotalInCart(item)}}$</td>
-                            <td class="py-4 border-b"><i (click)="deleteItemFromCart(item)" class="cursor-pointer  text-[#ff6b6b] text-2xl fa-solid fa-trash"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button (click)="clearAll()" class="h-12 my-5 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium">Clear All</button>
         
+        <div class="flex mt-10 pb-5 justify-between flex-wrap gap-10 sm:gap-60 md:gap-80">
+            <div>
+                <h1 class="orders mb-5 flex justify-between items-center mt-2 text-3xl font-bold"><p>Total Shopping Cart :</p> 
+                    <span class="text-5xl font-bold">${{getProductTotal()}}</span>
+                </h1>
+                <div class="w-[600px] overflow-x-auto">
+                    <table>
+                        <thead>
+                            <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Item</th>
+                            <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Price</th>
+                            <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-center">Quantity</th>
+                            <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">SubTotal</th>
+                            <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left"></th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of addedItems" >
+                                <td class="py-4 flex items-center gap-2 border-b">
+                                    <img class="h-full flex items-center w-[75px]"  [src]="item.image" alt="">
+                                    <div class="w-[250px]">
+                                        <strong>{{item.name}}</strong>
+                                        <p>{{item.description.length > 30 ? item.description.slice(1,30)+"...": item.description}}</p>
+                                    </div>
+                                </td>
+                                <td class="py-4 min-w-[100px] text-center text-lg font-medium border-b">
+                                    {{formatPrice(item.price)}}
+                                </td>
+                                <td class="py-4 min-w-[100px] text-center border-b">            
+                                   <div class="flex ">
+                                        <button (click)="decrementItem(item)" class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
+                                            <i class="text-md fa-solid fa-minus text-[#ff6b6b]"></i>
+                                        </button>
+                                        <span class="mx-2 text-xl">{{getCount(item)}}</span>
+                                        <button (click)="incrementItem(item)"  
+                                        class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
+                                            <i class="text-md fa-solid fa-plus text-[#ff6b6b]"></i>
+                                        </button>  
+                                   </div>           
+                                </td>
+                                <td class="py-4 text-center border-b text-lg font-medium">{{getSubTotalInCart(item)}}$</td>
+                                <td class="py-4 border-b"><i (click)="deleteItemFromCart(item)" class="cursor-pointer  text-[#ff6b6b] text-2xl fa-solid fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="clearAll()" class="h-12 my-5 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium">Clear All</button>
+            
+                </div>
             </div>
+        
             <div class="flex-1">
                 <form  [formGroup]="productForm" (ngSubmit)="onSubmit()">
                     <h1 class="text-3xl font-bold mb-5">Order Details</h1>
@@ -84,7 +98,26 @@
                         </select>
                        
                       </div>
+
+
                      
+                      <div class="flex mb-3 gap-5 items-center">
+                        <h3 class="text-xl font-medium">SubTotal</h3>
+                        <span class="text-md font-bold">${{getProductTotal()}}</span>
+                      </div>
+                      <div class="flex mb-3 gap-5 items-center">
+                        <h3 class="text-xl font-medium">Discount</h3>
+                        <span class="text-md text-green-600 font-bold">$10.00</span>
+                      </div>
+                      <div class="flex mb-3 gap-5 items-center">
+                        <h3 class="text-xl font-medium">Shipping</h3>
+                        <span class="text-md text-green-600 font-bold">$7.99</span>
+                      </div>
+                      <div class="flex mb-3 gap-5 items-center">
+                        <h3 class="text-xl font-medium">SubTotal</h3>
+                        <span class="text-md text-green-600 font-bold">${{getProductTotal(10,7.99)}}</span>
+                      </div>
+
                     <div class="w-full">
                       <button type="submit" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium">Check out</button>
                     </div>
