@@ -102,7 +102,10 @@ body,
 
 ::-webkit-scrollbar {
   width: 6px;
-  height: 350px;
+}
+
+.orders ::-webkit-scrollbar{
+  height: 3px;
 }
 
 ::-webkit-scrollbar-track {

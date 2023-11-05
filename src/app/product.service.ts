@@ -187,4 +187,8 @@ incrementItemCount(product: any): void {
     return item ? item.subTotal : 0;
   }
 
+  clearCartLocalStorage(): void {
+    localStorage.removeItem('cart');
+  }
+
 }

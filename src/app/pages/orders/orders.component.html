@@ -1,33 +1,106 @@
 <div class="py-5">
     <p class="text-xl">Home /<span class="text-muted-foreground">Cart</span></p>
 
-    <h1 class=" mt-2 text-3xl font-bold">Shopping cart </h1>
-
-    <table>
-        <thead>
-            <th class="text-left">Item</th>
-            <th class="text-left">Price</th>
-            <th class="text-left">Quantity</th>
-            <th class="text-left">SubTotal</th>
-        </thead>
-        <tbody>
-            <tr class="text-left" *ngFor="let item of addedItems">
-                <td class="h-full"><img class="h-full  w-[75px]"  [src]="item.image" alt=""></td>
-                <td class="h-full ">{{formatPrice(item.price)}}</td>
-                <td class="h-full flex items-center justify-center  w-[120px]">
-                    <div class="flex h-full gap-1 my-3 items-center flex-1">
-                        <button (click)="decrementItem(item)" class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
-                            <i class="text-md fa-solid fa-minus text-[#ff6b6b]"></i>
-                        </button>
-                        <span class="mx-2 text-xl">{{getCount(item)}}</span>
-                        <button (click)="incrementItem(item)"  
-                        class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
-                            <i class="text-md fa-solid fa-plus text-[#ff6b6b]"></i>
-                        </button>
+ 
+    <div class="h-full" *ngIf="addedItems.length > 0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <h1 class="orders  mt-2 text-3xl font-bold">Shopping Cart </h1>
+        <div class="flex mt-10 pb-5 justify-between flex-wrap gap-10 sm:gap-60 md:gap-80">
+            <div class="w-[600px] overflow-x-auto">
+                <table>
+                    <thead>
+                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Item</th>
+                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">Price</th>
+                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-center">Quantity</th>
+                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left">SubTotal</th>
+                        <th class="text-xl capitalize bg-[#f2f3f5] py-8 px-4 text-left"></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of addedItems" >
+                            <td class="py-4 flex items-center gap-2 border-b">
+                                <img class="h-full flex items-center w-[75px]"  [src]="item.image" alt="">
+                                <div class="w-[250px]">
+                                    <strong>{{item.name}}</strong>
+                                    <p>{{item.description.length > 30 ? item.description.slice(1,30)+"...": item.description}}</p>
+                                </div>
+                            </td>
+                            <td class="py-4 min-w-[100px] text-center text-lg font-medium border-b">
+                                {{formatPrice(item.price)}}
+                            </td>
+                            <td class="py-4 min-w-[100px] text-center border-b">            
+                               <div class="flex ">
+                                    <button (click)="decrementItem(item)" class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
+                                        <i class="text-md fa-solid fa-minus text-[#ff6b6b]"></i>
+                                    </button>
+                                    <span class="mx-2 text-xl">{{getCount(item)}}</span>
+                                    <button (click)="incrementItem(item)"  
+                                    class="flex items-center justify-center h-[25px] w-[25px] rounded-full border-[1px] border-[#ff6b6b]">
+                                        <i class="text-md fa-solid fa-plus text-[#ff6b6b]"></i>
+                                    </button>  
+                               </div>           
+                            </td>
+                            <td class="py-4 text-center border-b text-lg font-medium">{{getSubTotalInCart(item)}}$</td>
+                            <td class="py-4 border-b"><i (click)="deleteItemFromCart(item)" class="cursor-pointer  text-[#ff6b6b] text-2xl fa-solid fa-trash"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="clearAll()" class="h-12 my-5 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium">Clear All</button>
+        
+            </div>
+            <div class="flex-1">
+                <form  [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                    <h1 class="text-3xl font-bold mb-5">Order Details</h1>
+                    <div class="form-group mb-3">
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
+                        <input type="text" id="email" formControlName="email" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3" />
+                      </div>
+                      <div class="form-group mb-3">
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="FullName">Full Name</label>
+                        <input type="text" id="FullName" formControlName="FullName" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3" />
+                        
+                      </div>
+                      <div class="form-group mb-3">
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="price">Zip code</label>
+                        <input type="text" id="ZipCode" formControlName="ZipCode" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3" />
+                        
+                      </div>
+                      <div class="form-group mb-3">
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="country">Country</label>
+                        <select id="country" formControlName="country" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3">
+                          <option value="">Select a City</option>
+                          <option value="coutry1">coutry 1</option>
+                          <option value="coutry2">coutry 2</option>
+                          <option value="coutry3">coutry 3</option>
+                        </select>
+                    
+                      </div>
+                      <div class="form-group mb-3">
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="city">Province/City</label>
+                        <select id="city" formControlName="city" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3">
+                          <option selected value="">Select a Province</option>
+                          <option value="city1">city 1</option>
+                          <option value="city2">city 2</option>
+                          <option value="city3">city 3</option>
+                        </select>
+                       
+                      </div>
+                     
+                    <div class="w-full">
+                      <button type="submit" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium">Check out</button>
                     </div>
-                </td>
-                <td>{{getSubTotalInCart(item)}}</td>
-            </tr>
-        </tbody>
-    </table>
+                </form>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template #elseBlock>
+        <div class="flex flex-col gap-4 justify-center items-center">
+            <h1>Empty cart</h1>
+            <a routerLink="" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium" >
+                Continue Shopping 
+            </a>
+        </div>
+    </ng-template>
+
+  
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -9,8 +10,29 @@ import { ProductService } from 'src/app/product.service';
 export class OrdersComponent implements OnInit {
 
   public addedItems:any;
+  productForm: FormGroup;
+  
 
-  constructor(private productS: ProductService){};
+  constructor(private formBuilder: FormBuilder,private productS:ProductService) {
+    this.productForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      FullName: ['', Validators.required],
+      ZipCode: ['', Validators.required],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    
+    
+    if (this.productForm.valid) {
+      console.log('Form submitted with values:', this.productForm.value);
+      // You can implement further logic here, such as sending the data to a server.
+    } else {
+      console.log('Form is not valid. Please check the input values.');
+    }
+  }
   
   ngOnInit(): void {
     this.addedItems =  this.productS.getCartItems();
@@ -51,4 +73,17 @@ export class OrdersComponent implements OnInit {
     return this.productS.getSubTotalInCart(product);
   }
   
+  deleteItemFromCart(product:any){
+    this.productS.removeFromCart(product);
+    this.addedItems =  this.productS.getCartItems();
+  }
+
+  clearAll(){
+    this.productS.clearCartLocalStorage();
+    this.addedItems =  this.productS.getCartItems();
+  }
+
+
+
+
 }

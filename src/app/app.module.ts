@@ -9,13 +9,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { BestSellersComponent } from './pages/best-sellers/best-sellers.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
-import { CarouselModule } from '@coreui/angular';
+import { CarouselModule, FormModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,10 @@ import { ClipboardModule } from 'ngx-clipboard';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    ClipboardModule
+    ClipboardModule,
+    FormModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
