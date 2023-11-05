@@ -140,11 +140,53 @@ export class ProductService {
 
     cartItems.forEach(element => {
       const price = parseFloat(element.price.replace('$', ''));
-      total += price;
+      total += (price*element.count);
     });
   
 
     return total;
   }
+
+ // Increment the count of items in the cart, limited by product.quantity
+incrementItemCount(product: any): void {
+  const cartItems = this.getCartItems();
+  const productId = product._id;
+  
+
+
+  const itemIndex = cartItems.findIndex((cartProduct) => cartProduct.id === productId);
+
+  if(this.getItemCountInCart(product)===0)this.addToCart(product);
+
+  if (itemIndex !== -1) {
+    if (cartItems[itemIndex].count < product.quantity) {
+      cartItems[itemIndex].count++;
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+  }
+}
+
+
+  // Decrement the count of items in the cart
+  decrementItemCount(product: any): void {
+    const cartItems = this.getCartItems();
+    const productId = product._id;
+    
+    const itemIndex = cartItems.findIndex((cartProduct) => cartProduct.id === productId);
+
+    if(this.getItemCountInCart(product)===0)this.removeFromCart(product);
+
+    if (itemIndex !== -1 && cartItems[itemIndex].count > 0) {
+      cartItems[itemIndex].count--;
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+  }
+  // Get the count of a specific item in the cart
+getItemCountInCart(product: any): number {
+  const cartItems = this.getCartItems();
+  const item = cartItems.find((cartProduct) => cartProduct.id === product._id);
+  return item ? item.count : 0;
+}
+
 
 }
