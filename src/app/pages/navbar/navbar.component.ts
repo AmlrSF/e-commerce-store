@@ -1,13 +1,14 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Inavs } from 'src/app/interfaces/page-interfaces';
 import { ProductService } from 'src/app/product.service';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   public isOpen:boolean = false;
 
   public isopencats:boolean = true;
@@ -95,7 +96,14 @@ export class NavbarComponent {
     },
   ];
   
-  constructor (private productS:ProductService){};
+  constructor (private productS:ProductService,private router: Router){}
+  currentRouteURL = this.router.url.substring(1);
+
+  ngOnInit(): void {
+     
+    console.log('Current Route URL:', this.currentRouteURL);
+  }
+;
 
   public toggleSubcategories(category: string): void {
     // Set all categories' showSubcategories to false
@@ -147,9 +155,6 @@ export class NavbarComponent {
 
   togglecats(){
     this.isopencats = !this.isopencats;
-    this.productS.setopencats(this.isopencats);
-    console.log(this.productS.getcatsStatus());
-    
   }
   public isHeaderFixed: boolean = false;
 

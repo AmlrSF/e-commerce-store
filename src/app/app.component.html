@@ -2,9 +2,7 @@
 
 <div *ngIf="shouldDisplayCategories(); then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </ng-template>
 <ng-template #elseBlock>
   <div class="container">

@@ -1,5 +1,19 @@
-<div class="h-[550px]">
-    <c-carousel [dark]="true" [wrap]="false" class="w-[100%]   h-[100%] z-20 ml-auto md:w-[calc(100%-(300px))]  md:pl-6 pt-6">
+
+<div class="container">
+  <div class="h-[550px] flex items-center justify-between gap-10">
+    <div class="sm:block hidden w-[450px]">
+      <h1 class="text-4xl font-semibold">Discover a World of Possibilities</h1>
+      <p class="mt-3 text-muted-foreground">
+        Welcome to our online emporium, where your shopping dreams come to life. Explore a diverse array of top-tier products, meticulously curated just for you. From fashion-forward trends to cutting-edge technology, your next must-have item awaits.
+      </p>
+      <button  class="rounded-lg mt-10 px-[1.5em] py-[0.55em] bg-[#ff6b6b] 
+                  text-[#f2f3f5] h-full right-0 border-0
+                   outline-none text-[1em] font-semibold">
+                   Shop Now!
+        </button>
+    </div>
+    
+    <c-carousel [dark]="true" [wrap]="false" class="w-[100%] h-[100%] z-20  pt-6">
         <c-carousel-inner class="h-[100%] w-[100%] ">
             <c-carousel-item relative 
             class="w-[100%]  h-[100%] relative" 
@@ -25,7 +39,8 @@
     </c-carousel>
 </div>
 
-<div class="py-5 sm:mt-5 mt-8">
+<!-- trust badge -->
+<div class="py-5 my-8">
     <div class="grid  grid-cols-1 :grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-5 text-center">
         <div class="flex w-full sm:flex-col sm:items-center justify-evenly sm:justify-center  text-center">
             <i class=" text-3xl fa-solid fa-truck"></i>
@@ -59,16 +74,17 @@
     </div>
 </div>
 
+<!-- fetching Featured product -->
 <div class="mt-10">
   <h2 class="text-3xl font-bold flex items-center gap-3">
     <i class="text-yellow-500 fa-solid fa-star"></i>
     Featured Products
   </h2>
   <div class="grid-container mt-8">
-    <div class="p-2 relative cursor-pointer border flex sm:flex-col  border-[#ff6b6b] "    
+    <div class="p-2 relative cursor-pointer border gap-4 flex flex-col  border-[#ff6b6b] "    
         *ngFor="let product of products">
       <div class="image h-[250px] w-full">
-        <img src="{{product.image}}" class="h-full object-cover w-full" alt="">
+        <img src="{{product.image}}" class="h-full  object-cover w-full" alt="">
       </div>
       <div>
         <h1 class="text-2xl font-medium underline" routerLink="/products/{{ product._id }}">{{ product.name }}</h1>
@@ -108,7 +124,7 @@
 
       
         <!-- Cart Icon -->
-        <div class="flex items-center justify-center h-[35px] w-[35px] rounded-full"
+        <div class="flex items-center bg-[rgba(0,0,0,0.07)] justify-center h-[35px] w-[35px] rounded-full"
             (click)="toggleCartIcon(product)"
           >
 
@@ -124,4 +140,30 @@
       </div>
     </div>
   </div>
+</div>
+
+</div>
+
+ <!-- newsletter -->
+<div class="bg-[#453c5c] py-10 mt-10">
+  <div class="container">
+      <div class="flex flex-col gap-5 sm:flex-row 
+       justify-between items-start">
+          <div>
+            <h1 class="text-3xl font-bold text-white leading-6">Join Our Newsletter</h1>
+            <p class="text-white">Get e-mail updates about our latest sop and special offers</p>
+          </div>
+          <div class="right flex-1 w-full  md:max-w-[400px] lg:max-w-[600px]">
+            <div class="relative overflow-hidde">
+                <input class="border-0 text-2xl overflow-hidden rounded-[10px] 
+                text-[0.9em] font-light w-full outline-none pr-[7em] pl-2 
+                leading-[3.25em]" type="text" placeholder="Enter Your Email here.">
+                <button  class="rounded-r-lg  absolute
+                 top-0 px-[1.5em] py-[0.55em] bg-[#ff6b6b] 
+                  text-[#f2f3f5] h-full right-0 border-0
+                   outline-none text-[1em] font-semibold">Sign Up</button>
+            </div>
+        </div>
+      </div>
+  </div>    
 </div>
