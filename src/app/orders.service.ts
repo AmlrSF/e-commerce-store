@@ -24,4 +24,14 @@ export class OrdersService {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
+    // Delete a specific order by ID
+    public deleteOrderById(id: string): Observable<any> {
+      return this.http.delete(`${this.apiUrl}/${id}`);
+    }
+  
+    // Delete all orders
+    public deleteAllOrders(): Observable<any> {
+      return this.http.delete(this.apiUrl);
+    }
+
 }

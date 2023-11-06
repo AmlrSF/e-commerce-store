@@ -23,7 +23,7 @@ export class OrdersComponent implements OnInit {
     private http: HttpClient,
     ) {
     this.productForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      Address: ['', [Validators.required]],
       FullName: ['', Validators.required],
       ZipCode: ['', Validators.required],
       country: ['', Validators.required],
@@ -43,11 +43,12 @@ export class OrdersComponent implements OnInit {
         ZipCode:this.productForm.value.ZipCode,
         City:this.productForm.value.city,
         Country:this.productForm.value.country,
-        emailTo:this.productForm.value.email,
+        emailTo:this.productForm.value.Address,
         products:this.addedItems.map((item:any)=>{
           return {product:item._id,quantity:item.count}
         }),
-        totalAmount:this.getProductTotal(10,7.99)
+        totalAmount:this.getProductTotal(10,7.99),
+        status: false
       }
 
       console.log(order);
@@ -57,6 +58,7 @@ export class OrdersComponent implements OnInit {
           console.log(res);
           this.productForm.reset();
           this.statusOrder = true;
+          this.clearAll();
         },err=>{
           console.log(err)
         })
@@ -69,19 +71,9 @@ export class OrdersComponent implements OnInit {
     
   }
   
-  orders: any;
+  
 
   ngOnInit(): void {
-    this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
-      (res) => {
-        this.orders = res;
-        console.log(this.orders);
-        this.statusOrder = true;
-      },
-      (error) => {
-        console.error('Error fetching orders:', error);
-      }
-    );
     this.addedItems =  this.productS.getCartItems();
   }
 

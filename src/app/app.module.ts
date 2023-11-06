@@ -17,6 +17,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SpecialOffersComponent,
     ProductDetailComponent,
     ProductsComponent,
-    OrdersComponent
+    OrdersComponent,
+    MangeOrdersComponent
   ],
   imports: [
     CarouselModule,

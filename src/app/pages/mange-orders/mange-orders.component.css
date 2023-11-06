@@ -1,0 +1,12 @@
+.close-btn:hover {
+    animation: spin-icon 0.5s linear;
+}
+
+@keyframes spin-icon {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(500deg);
+    }
+  }

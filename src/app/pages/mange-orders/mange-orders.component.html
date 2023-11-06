@@ -1,0 +1,114 @@
+
+
+<div class="py-5">
+    <p class="text-xl">Home /<span class="text-muted-foreground">Orders</span></p>
+
+    <div *ngIf="orders.orders.length > 0 ; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <h1 class="mb-5 flex justify-between items-center mt-2 text-3xl font-bold">All Pending Orders</h1>
+  
+        <div class="w-[780px] overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                <tr>
+                    
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left"></th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">#ID</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Customer Name</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Address</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Zip Code</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">City</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Country</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Status</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left">Total Amount</th>
+                    <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-4 px-2 text-left"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let order of orders.orders; let i = index">
+                    <tr (click)="showProductDetails(i)">
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t"><i class="cursor-pointer  text-[#ff6b6b] text-xl fa-solid fa-caret-down"></i></td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ i + 1 }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ order.FullName }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ order.emailTo }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ order.ZipCode }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ order.City }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">{{ order.Country }}</td>
+                    <td class="text-center text-black font-normal text-lg py-4 border-b border-t">
+                        <div class="flex gap-2 items-center">
+                            {{ order.status ? "Verified" : "Pending" }}
+                            <span [ngClass]="{'bg-slate-500': !order.status, 'bg-green-500': order.status}" class="h-[10px] w-[10px] rounded-full"></span>
+                        </div>
+                    </td>
+                    
+                    <td class="text-center py-4 border-b border-t text-black font-normal text-lg">${{ order.totalAmount | number: '1.2-2' }}</td>
+                    <td class="text-center w-[100px] text-black font-normal text-lg py-4 border-b border-t">
+                        <i (click)="deleteOrderById(order._id)" class="cursor-pointer  text-[#ff6b6b] text-2xl fa-solid fa-trash fa-solid fa-trash"></i>
+                    </td>
+                    </tr>
+                    <tr *ngIf="selectedOrder === order">
+                    <td colspan="8">
+                        <div class="modal pl-20">
+                            <div class="modal-content mb-5">
+                                <div class="my-4 flex items-center  gap-[15rem] ">
+                                    <h1 class="text-lg font-medium">ordered In <span class="text-md text-muted-foreground">{{formatReadableDate(order.orderDate)}} </span></h1>
+                                    <span class="close cursor-pointer close-btn" (click)="closeProductModal()">
+                                        <i class="text-3xl close-btn text-[#ff6b6b] fa-solid fa-xmark"></i>
+                                    </span>
+                                </div>
+                                
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-2 px-1 text-left">#ID</th>
+                                            <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-2 px-1 text-left">Item</th>
+                                            <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-2 px-1 text-center">Price</th>
+                                            <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-2 px-1 text-center">Quantity</th>
+                                            <th class="text-md capitalize whitespace-nowrap bg-[#f2f3f5] py-2 px-1 text-center">All Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let product of order.products; let j = index">
+                                            <td class="text-center text-black font-normal text-sm py-2 border-b border-t ">{{j+1}}</td>
+                                            <td class="text-center text-black font-normal text-sm py-2 border-b border-t ">
+                                                <div class="flex items-center gap-3">
+                                                    <img class="h-[25px]" [src]="product.product.image" alt="">
+                                                    <p>{{ product.product.name }}</p>
+                                                </div>
+                                            </td>
+                                            <td class="text-center min-w-[100px] text-black font-normal text-sm py-2 border-b border-t ">{{ product.product.price | number: '1.2-2' }}</td>
+                                            <td class="text-center min-w-[100px] text-black font-normal text-sm py-2 border-b border-t ">{{ product.quantity }}</td>
+                                            <td class="text-center min-w-[100px] text-black font-normal text-sm py-2 border-b border-t ">{{ product.product.quantity }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+            
+            <div class="flex gap-3 my-5 ">
+                <button (click)="deleteAllOrders()" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium">Cancel All</button>
+                <a routerLink="" class="h-12 sm:w-[180px] text-center w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium" >
+                    Continue Shopping 
+                </a>
+            </div>
+        </div> 
+                   
+    </ng-template>
+    <ng-template #elseBlock>
+        <div class="flex flex-col gap-4 justify-center items-center">
+            <h1>Empty Orders </h1>
+            <div class="flex flex-col sm:flex-row gap-3 ">
+              <a routerLink="" class="h-12 sm:w-[180px] text-center w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium" >
+                Continue Shopping 
+            </a>
+            </div>
+        </div>
+    </ng-template>
+
+    
+</div>

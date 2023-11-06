@@ -8,6 +8,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { WhitelistComponent } from './pages/whitelist/whitelist.component';
+import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 
 const routes: Routes = [
   {path : ''            ,component:HomeComponent},
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path:'whitelist',
     component:WhitelistComponent
+  },
+  {
+    path:'orders',
+    component:MangeOrdersComponent
   }
 ];
 

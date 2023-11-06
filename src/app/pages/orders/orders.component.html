@@ -1,14 +1,6 @@
 <div class="py-5">
     <p class="text-xl">Home /<span class="text-muted-foreground">Cart</span></p>
 
-    <div *ngIf="statusOrder">
-        <h1>All shipping items</h1>
-        <div class="flex gap-3">
-            <div *ngFor="let order of orders.orders">
-                {{order.FullName}} ||
-            </div>
-        </div>
-    </div>
 
     <div class="h-full" *ngIf="addedItems.length > 0; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
@@ -32,7 +24,7 @@
                                 <td class="py-4 flex items-center gap-2 border-b">
                                     <img class="h-full flex items-center w-[75px]"  [src]="item.image" alt="">
                                     <div class="w-[250px]">
-                                        <strong>{{item.name}}</strong>
+                                        <a routerLink="/products/{{ item._id }}" class="font-bold underline ">{{item.name}}</a>
                                         <p>{{item.description.length > 30 ? item.description.slice(1,30)+"...": item.description}}</p>
                                     </div>
                                 </td>
@@ -65,8 +57,8 @@
                 <form  [formGroup]="productForm" (ngSubmit)="onSubmit()">
                     <h1 class="text-3xl font-bold mb-5">Order Details</h1>
                     <div class="form-group mb-3">
-                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
-                        <input type="text" id="email" formControlName="email" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3" />
+                        <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="Address">Address</label>
+                        <input type="text" id="Address" formControlName="Address" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3" />
                       </div>
                       <div class="form-group mb-3">
                         <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="FullName">Full Name</label>
@@ -129,9 +121,14 @@
     <ng-template #elseBlock>
         <div class="flex flex-col gap-4 justify-center items-center">
             <h1>Empty cart</h1>
-            <a routerLink="" class="h-12 sm:w-[180px] w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center gap-3 font-medium" >
+            <div class="flex flex-col sm:flex-row gap-3 ">
+              <a routerLink="" class="h-12 sm:w-[180px] text-center w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium" >
                 Continue Shopping 
             </a>
+            <a routerLink="/orders" class="h-12 sm:w-[180px] text-center w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium" >
+              Check orders 
+            </a>
+            </div>
         </div>
     </ng-template>
 
