@@ -52,7 +52,6 @@ export class MangeOrdersComponent implements OnInit {
       }
     );
   }
-  
 
   public deleteOrderById(id: string) {
     this.orderS.deleteOrderById(id).subscribe(
