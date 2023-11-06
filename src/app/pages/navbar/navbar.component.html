@@ -82,7 +82,7 @@
                             <ul
                                 *ngIf="maincategory.subcategories"
                                 [hidden]="maincategory.showSubcategories"
-                                
+                                class="z-99"
                             >
                             <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
                                 <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>
@@ -130,7 +130,7 @@
                             <ng-template #thenBlock><i class="text-3xl  ri-menu-3-line "></i></ng-template>   
                         </div>
                     </div>
-                    <div [ngClass]="{'h-[0px] invisible': isopencats}"  class="departments absolute top-[100%]   w-[300px] bg-[#fff] border">
+                    <div [ngClass]="{'h-[0px] invisible': isopencats}"  class="departments z-50 absolute top-[100%]   w-[300px] bg-[#fff] border">
                         <ul>
                           <li class="border-t relative" *ngFor="let maincategory of categoriesWithSubcategories">
                             <a

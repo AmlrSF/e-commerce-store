@@ -32,27 +32,23 @@ export class HomeComponent implements OnInit {
     },
   ];
   
-
-
-
- 
  
   public products: any[] = [];
+  public featuredProduct:any[] = [];
 
   constructor (private productS:ProductService){}
-
 
   ngOnInit(): void {
     this.productS.getProducts().subscribe(
       (res:any)=>{
         this.products = res.data;
+        
+        this.featuredProduct = this.products.filter((item:any)=>item.featured===true);
         console.log(this.products);
       },(err)=>{
         console.log(err);
       }
     )
-
-    
     
   }
 
