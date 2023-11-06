@@ -104,7 +104,7 @@ export class OrdersComponent implements OnInit {
         );
     }
   }
-
+  
   ngOnInit(): void {
     this.addedItems =  this.productS.getCartItems();
   }
