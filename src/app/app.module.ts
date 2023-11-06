@@ -18,6 +18,9 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +43,8 @@ import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.componen
     RouterModule,
     ClipboardModule,
     FormModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

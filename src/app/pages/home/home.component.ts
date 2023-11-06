@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     },
   ];
   
+  
  
   public products: any[] = [];
   public featuredProduct:any[] = [];
@@ -108,3 +109,7 @@ export class HomeComponent implements OnInit {
  
 
 }
+function slideAnimation(target: HomeComponent, propertyKey: 'products'): void {
+  throw new Error('Function not implemented.');
+}
+
