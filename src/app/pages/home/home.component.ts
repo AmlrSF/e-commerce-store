@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         this.products = res.data;
         
         this.featuredProduct = this.products.filter((item:any)=>item.featured===true);
-        console.log(this.products);
+        
       },(err)=>{
         console.log(err);
       }
@@ -106,10 +106,8 @@ export class HomeComponent implements OnInit {
       return this.productS.isInCart(product);
     }
   
- 
+    
 
 }
-function slideAnimation(target: HomeComponent, propertyKey: 'products'): void {
-  throw new Error('Function not implemented.');
-}
+
 

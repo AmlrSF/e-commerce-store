@@ -10,9 +10,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit{
   public isOpen:boolean = false;
-
   public isopencats:boolean = true;
-
   public routes:Inavs[] = [
     {
       href:"/products",
@@ -99,9 +97,8 @@ export class NavbarComponent implements OnInit{
   constructor (private productS:ProductService,private router: Router){}
   currentRouteURL = this.router.url.substring(1);
 
-  ngOnInit(): void {
-     
-    console.log('Current Route URL:', this.currentRouteURL);
+  ngOnInit(): void {   
+  
   }
 ;
 

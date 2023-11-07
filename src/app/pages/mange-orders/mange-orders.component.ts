@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/orders.service';
 
@@ -9,7 +10,7 @@ import { OrdersService } from 'src/app/orders.service';
 export class MangeOrdersComponent implements OnInit {
   orders: any;
   statusOrder:boolean = false;
-  constructor(private orderS:OrdersService){};
+  constructor(private orderS:OrdersService,private http: HttpClient){};
 
   ngOnInit(): void {
       this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
@@ -59,14 +60,47 @@ export class MangeOrdersComponent implements OnInit {
         console.log(res);
         
         this.orders.orders = this.orders.orders.filter((order: any) => order._id !== id);
+        this.updateProductQuantities(res,false)
       },
       (err) => {
         console.log(err);
       }
     );
   }
+  //it works fine
+  private updateProductQuantities(result: any, status?:boolean) {
+    for (const updatedProduct of result.order.products) {
+      const productId = updatedProduct.product._id;
+      const allQuantity = parseInt(updatedProduct.product.quantity, 10);
+      const subQuantity = parseInt(updatedProduct.quantity, 10);
+      
+     
+
+      const newQuantity = status ? allQuantity - subQuantity : allQuantity + subQuantity;
+      const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
+
+      console.log(updatedProduct);
+      console.log("*************************");
+      console.log(newQuantity);
+      
+      
+      
+      
+      this.http.put(updateUrl, { quantity: newQuantity })
+        .subscribe(
+          (response:any) => {
+            console.log(response);
+          },
+          (error:any) => {
+            if (error.status === 404) {
+              console.log('Product not found.');
+            } else {
+              console.error(error);
+            }
+          }
+        );
+    }
+  }
   
-
-
 
 }

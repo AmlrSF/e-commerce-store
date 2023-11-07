@@ -34,9 +34,7 @@ export class OrdersComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      try {
-        console.log(this.getProductTotal());
-        
+      try {      
         var order = {
           customer:"6547ee2d542e6d53e008cef5",
           FullName:this.productForm.value.FullName,
@@ -49,12 +47,12 @@ export class OrdersComponent implements OnInit {
           products:this.productS.getCartItems().map((item:any)=>{return {product:item._id,quantity:item.count,allQuantity:item.quantity}})
         }
   
-        console.log(order);
-        
+            
         this.http.post(this.apiUrl, order)
           .subscribe((res) =>{
             this.productForm.reset();
             this.statusOrder = true;
+            
             this.updateProductQuantities(order, true);
             this.clearAll();
             
@@ -86,8 +84,7 @@ export class OrdersComponent implements OnInit {
 
       const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
 
-      console.log(updateUrl);
-      
+     
       
       this.http.put(updateUrl, { quantity: newQuantity })
         .subscribe(

@@ -34,4 +34,10 @@ export class OrdersService {
       return this.http.delete(this.apiUrl);
     }
 
+    
+    public updateProductById(productId: string, productData: any): Observable<any> {
+      const updateUrl = `${this.apiUrl}/product/${productId}`;
+      return this.http.patch(updateUrl, productData);
+    }
+
 }
