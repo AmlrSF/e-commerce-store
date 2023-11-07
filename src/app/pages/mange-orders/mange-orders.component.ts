@@ -41,19 +41,8 @@ export class MangeOrdersComponent implements OnInit {
     return date.toLocaleString('en-US', options);
   }
 
-  public deleteAllOrders() {
-    this.orderS.deleteAllOrders().subscribe(
-      (res) => {
-        console.log(res);
-        
-        this.orders.orders = [];
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
 
+  //=============
   public deleteOrderById(id: string) {
     this.orderS.deleteOrderById(id).subscribe(
       (res) => {
@@ -101,6 +90,59 @@ export class MangeOrdersComponent implements OnInit {
         );
     }
   }
-  
+
+
+  //===============
+  public deleteAllOrders() {
+    this.orderS.deleteAllOrders().subscribe(
+      (res) => {
+        console.log(res);
+        
+        
+        this.updateProductQuantitiesV2(res.deletedOrders, false); 
+        
+        this.orders.orders = [];
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  private updateProductQuantitiesV2(orders: any[], status?: boolean) {
+    orders.forEach((order: any) => {
+      order.products.forEach((updatedProduct: any) => {
+        const productId = updatedProduct.product._id;
+        const allQuantity = parseInt(updatedProduct.product.quantity, 10);
+        const subQuantity = parseInt(updatedProduct.quantity, 10);
+        
+      
+
+        const newQuantity = status ? allQuantity - subQuantity : allQuantity + subQuantity;
+        const updateUrl = `http://localhost:3000/api/v1/products/product/${productId}`;
+
+        console.log(updatedProduct);
+        console.log("*************************");
+        console.log(newQuantity);
+      
+      
+      
+      
+        this.http.put(updateUrl, { quantity: newQuantity })
+          .subscribe(
+            (response:any) => {
+              console.log(response);
+            },
+            (error:any) => {
+              if (error.status === 404) {
+                console.log('Product not found.');
+              } else {
+                console.error(error);
+              }
+            }
+          );
+      });
+    });
+  }
 
 }
