@@ -7,7 +7,7 @@ import { ProductService } from 'src/app/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  public isLoading:boolean = false;
   //all sildes 
   public slides = [
     {
@@ -40,12 +40,14 @@ export class HomeComponent implements OnInit {
   constructor (private productS:ProductService){}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.productS.getProducts().subscribe(
       (res:any)=>{
         this.products = res.data;
+       
         
         this.featuredProduct = this.products.filter((item:any)=>item.featured===true);
-        
+        this.isLoading = false;
       },(err)=>{
         console.log(err);
       }
