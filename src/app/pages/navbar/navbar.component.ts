@@ -16,19 +16,19 @@ export class NavbarComponent implements OnInit{
       href:"/products",
       label:"Products",
       active:false
-    },{
-      href:"/new-arrivals",
-      label:"New Arrivals",
-      active:false
-    },{
-      href:"/best-sellers",
-      label:"Best Sellers",
-      active:false
-    },{
-      href:"/special-offer",
-      label:"Special Offers",
-      active:false
-    },
+    }//,{
+    //   href:"/new-arrivals",
+    //   label:"New Arrivals",
+    //   active:false
+    // },{
+    //   href:"/best-sellers",
+    //   label:"Best Sellers",
+    //   active:false
+    // },{
+    //   href:"/special-offer",
+    //   label:"Special Offers",
+    //   active:false
+    // },
     
   ]
   public categoriesWithSubcategories: { mainCategory: string; subcategories?: string[], showSubcategories?: boolean }[] = [
