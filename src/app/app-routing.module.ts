@@ -9,12 +9,14 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { OrdersComponent } from './pages/orders/orders.component';
 import { WhitelistComponent } from './pages/whitelist/whitelist.component';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
+import { DeveloperComponent } from './pages/developer/developer.component';
 
 const routes: Routes = [
   {path : ''            ,component:HomeComponent},
   {path:'new-arrivals'  ,component:NewArrivalsComponent},
   {path:'best-sellers'  ,component:BestSellersComponent},
   {path:'special-offer' ,component:SpecialOffersComponent},
+  {path:'developer',    component:DeveloperComponent},
   {path:'new-arrivals'  ,component:NewArrivalsComponent},
   {
     path: 'products',

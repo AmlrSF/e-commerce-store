@@ -1,0 +1,184 @@
+<div class="py-10">
+    
+<div>
+    <h1 class="relative font-bold text-2xl sm:text-3xl md:text-5xl w-fit ">
+        E-commerce Api
+        <span class="absolute top-0 
+        right-[-50px] bg-gray-700 text-white px-2 text-lg rounded-md">
+            1.0
+        </span>
+    </h1>
+    <p class="text-muted-foreground font-thin mt-5 leading-5 text-lg mb-10">
+        This e-commerce API streamlines online store management by efficiently organizing orders, handling customer information, and managing the entire order lifecycle. It also supports product comments and reviews for enhanced customer interaction. With user-friendly endpoints, it simplifies online store management for a seamless shopping experience.
+    </p>
+      
+</div>
+
+<div class="flex flex-col gap-10">
+
+    <div class="flex flex-col">
+        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>orders Api</h1>
+        <div class="px-8">
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize ">Get All orders</p>
+                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#61affe] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a product</p>
+                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#49cc90] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete all products</p>
+                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#f93e3e] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#f93e3e] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Update a single product by Id</p>
+                <div class="bg-[rgba(252,161,48,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#fca130] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#fca130]">PUT</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#fca130] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Get a single product by Id</p>
+                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#61affe] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete a single product by id</p>
+                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#f93e3e] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col">
+        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>Orders Api</h1>
+        <div class="px-8">
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize ">Get All orders</p>
+                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#61affe] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a oders</p>
+                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#49cc90] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete all orders</p>
+                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#f93e3e] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#f93e3e] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Update a single order by Id</p>
+                <div class="bg-[rgba(252,161,48,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#fca130] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#fca130]">PUT</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#fca130] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Get a single order by Id</p>
+                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#61affe] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete a single order by id</p>
+                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#f93e3e] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-col">
+        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>Costumers Api</h1>
+        <div class="px-8">
+            <div class="flex flex-col mb-4">
+                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a oders</p>
+                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
+                    <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p class="text-[20px] font-medium">http://localhost:3000/api/v1/customers</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-copy text-[#49cc90] text-xl font-bold"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+background: ;
+    border-color: #fca130;

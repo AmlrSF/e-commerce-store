@@ -26,14 +26,16 @@
             </div>
 
             <div class="flex items-center gap-x-3">
-                
+                <a class="relative cursor-pointer " routerLink="/developer">
+                    <i class="fa-solid text-[25px] text-green-700 fa-code"></i>
+                </a>
                 <a class="relative cursor-pointer " routerLink="/whitelist">
-                    <i class="text-[25px] font-semibold  ri-heart-line"></i>
-                    <span class="fly-item">{{getFavoriteItemCount()}}</span>
+                    <i class="text-[25px] font-semibold text-pink-600 ri-heart-line"></i>
+                    <span class="fly-item bg-pink-600">{{getFavoriteItemCount()}}</span>
                 </a>
                 <a class="relative cursor-pointer" routerLink="/checkout"> 
-                    <i class="text-[25px] font-semibold   ri-shopping-cart-line"></i>
-                    <span class="fly-item">{{getCartItemCount()}}</span>
+                    <i class="text-[25px] font-semibold text-blue-600  ri-shopping-cart-line"></i>
+                    <span class="fly-item bg-blue-600">{{getCartItemCount()}}</span>
                 </a>
                 <a class="flex  flex-col" >
                     <p class="text-xs text-gray-500 ">Total</p>

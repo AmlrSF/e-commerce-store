@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DeveloperComponent } from './pages/developer/developer.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ProductDetailComponent,
     ProductsComponent,
     OrdersComponent,
-    MangeOrdersComponent
+    MangeOrdersComponent,
+    DeveloperComponent
   ],
   imports: [
     CarouselModule,

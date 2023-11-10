@@ -7,9 +7,9 @@
 
         
             <!-- your-component.component.html -->
-        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex-col flex gap-5">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex-col flex ">
 
-            <div  class="flex flex-col gap-2 py-1 border-b">
+            <div  class="flex flex-col gap-2 py-2 border-b">
                 <div class="flex items-center justify-between" (click)="toggleSection('category')">
                     <span class="text-xl font-medium py-2">Categories</span>
                     <i *ngIf="!showCategory" class="text-xl fa-solid fa-plus"></i>
@@ -29,7 +29,7 @@
             </div>
 
            
-            <div class="flex flex-col py-1 border-b gap-2">
+            <div class="flex flex-col py-2 border-b gap-2">
                 <div class="flex items-center justify-between" (click)="toggleSection('tags')">
                     <span class="text-xl  font-medium py-2">Tags</span>
                     <i *ngIf="!showTags" class="text-xl fa-solid fa-plus"></i>
@@ -47,7 +47,7 @@
             </div>
 
             <!-- Price Section -->
-            <div  class="flex flex-col py-1 border-b gap-2">
+            <div  class="flex flex-col py-2 border-b gap-2">
                 <div class="flex items-center justify-between" (click)="toggleSection('price')">
                     <span class="text-xl font-medium py-2">Price</span>
                     <i *ngIf="!showPrice" class="text-xl fa-solid fa-plus"></i>
@@ -67,7 +67,7 @@
             </div>
 
             
-            <div  class="flex flex-col py-1 border-b gap-2">
+            <div  class="flex flex-col py-2 border-b gap-2">
                 <div class="flex items-center justify-between" (click)="toggleSection('date')">
                     <span class="text-xl font-medium py-2">Date</span>
                     <i *ngIf="!showDate" class="text-xl fa-solid fa-plus"></i>
@@ -83,6 +83,7 @@
                             <option value="oldest">Oldest</option>
                           </select>
                     </div>
+                    
                 </div>
             </div>
            
