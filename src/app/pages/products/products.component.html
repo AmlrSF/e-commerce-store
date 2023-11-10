@@ -1,6 +1,45 @@
-<div class="flex flex-col sm:flex-row gap-10 items-start">
-    <div class="filteration ">
-        <h1 class="text-3xl mt-8 font-bold mb-5">Product Filter</h1>
+<p class="text-2xl my-5">Home /<span class="text-muted-foreground"> Products</span></p>
+
+<div class="flex flex-col sm:flex-row gap-5 items-start">
+    <div class="filteration flex-shrink sm:w-[300px] w-full">
+        <h1 class="text-3xl mt-8 font-bold mb-5">Filter By</h1>
+        
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex-col flex gap-5">
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productName">Product Name:</label>
+                <input class="input-style" type="text" id="productName" formControlName="name" required>
+            </div>
+        
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productCategory">Product Category:</label>
+                <input class="input-style" type="text" id="productCategory" formControlName="category" required>
+            </div>
+        
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productPrice">Product Price:</label>
+                <input class="input-style" type="number" id="productPrice" formControlName="price" required>
+            </div>
+        
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productProgress">Product Progress:</label>
+                <input class="input-style" type="range" id="productProgress" formControlName="progress" min="0" max="100">
+            </div>
+        
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productTags">Product Tags:</label>
+                <input class="input-style" type="text" id="productTags" formControlName="tags">
+            </div>
+        
+            <div class="flex flex-col gap-2">
+                <label class="label-style" for="productAddedDate">Added Date:</label>
+                <input class="input-style" type="date" id="productAddedDate" formControlName="addedDate" required>
+            </div>
+        
+            <!-- Add more fields based on your product object -->
+        
+            <button class="button-style" type="submit" [disabled]="productForm.invalid">Submit</button>
+        </form>
+        
     </div>
     
     <div *ngIf="isLoading; then thenBlock else elseBlock"></div>
@@ -16,7 +55,7 @@
         </div>
     </ng-template>
     <ng-template #elseBlock>
-        <div class="grid-container w-[100%]  mt-8 flex-1">
+        <div class="grid-container w-[100%]  mt-10 flex-1">
             <div class="p-2 relative cursor-pointer border gap-4 flex flex-col  border-[#ff6b6b] "    
                 *ngFor="let product of filteredProducts">
         

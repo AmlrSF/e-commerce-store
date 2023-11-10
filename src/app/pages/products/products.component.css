@@ -14,3 +14,12 @@
 color: #fe8181;
 /* Add other styling as needed */
 }
+
+/* Add these styles to your external CSS file or style tag */
+.label-style {
+  @apply text-lg text-[#000] font-medium leading-none;
+}
+
+.input-style {
+  @apply bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#ff6b6b] focus:border-[#ff6b6b] outline-none block w-full p-3;
+}

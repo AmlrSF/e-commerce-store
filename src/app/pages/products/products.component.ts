@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -12,26 +12,43 @@ export class ProductsComponent implements OnInit {
   public filteredProducts: any[] = [];
   public productFilterForm: FormGroup | undefined;
   public isLoading: boolean = false;
+  public productForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private productS: ProductService) {}
+  constructor(private fb: FormBuilder, private productS: ProductService) {}
+
+  
 
   ngOnInit(): void {
+    this.productForm = this.fb.group({
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]],
+
+    });
     this.isLoading = true;
     this.productS.getProducts().subscribe(
       (res: any) => {
         this.products = res.data;
-        this.filteredProducts = this.products; // Initialize with all products
+        this.filteredProducts = this.products;
+        console.log(this.filteredProducts);
+        
         this.isLoading = false;
       },
       (err) => {
         console.log(err);
       }
     );
- 
   }
 
   
-
+  onSubmit() {
+    // Handle form submission here
+    if (this.productForm.valid) {
+      const formData = this.productForm.value;
+      // Perform actions with the form data, e.g., send it to a service
+      console.log(formData);
+    }
+  }
 
 
   public formatPrice(price:any) {
