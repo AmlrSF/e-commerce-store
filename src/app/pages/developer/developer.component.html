@@ -1,182 +1,102 @@
-<div class="py-10">
-    
-<div>
-    <h1 class="relative font-bold text-2xl sm:text-3xl md:text-5xl w-fit ">
-        E-commerce Api
-        <span class="absolute top-0 
-        right-[-50px] bg-gray-700 text-white px-2 text-lg rounded-md">
-            1.0
-        </span>
-    </h1>
-    <p class="text-muted-foreground font-thin mt-5 leading-5 text-lg mb-10">
-        This e-commerce API streamlines online store management by efficiently organizing orders, handling customer information, and managing the entire order lifecycle. It also supports product comments and reviews for enhanced customer interaction. With user-friendly endpoints, it simplifies online store management for a seamless shopping experience.
-    </p>
-      
-</div>
-
-<div class="flex flex-col gap-10">
-
-    <div class="flex flex-col">
-        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>Products Api</h1>
-        <div class="px-8">
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize ">Get All orders</p>
-                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#61affe] text-xl font-bold"></i>    
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a product</p>
-                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#49cc90] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete all products</p>
-                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#f93e3e] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#f93e3e] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Update a single product by Id</p>
-                <div class="bg-[rgba(252,161,48,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#fca130] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#fca130]">PUT</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#fca130] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Get a single product by Id</p>
-                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#61affe] text-xl font-bold"></i>    
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete a single product by id</p>
-                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/products/product/:id </p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#f93e3e] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="py-10">  
+    <div>
+        <h1 class="relative font-bold text-2xl sm:text-3xl md:text-5xl w-fit ">
+            E-commerce Api
+            <span class="absolute top-0 
+            right-[-50px] bg-gray-700 text-white px-2 text-lg rounded-md">
+                1.0
+            </span>
+        </h1>
+        <p class="text-muted-foreground font-thin mt-5 leading-5 text-lg mb-10">
+            This e-commerce API streamlines online store management by efficiently organizing orders, handling customer information, and managing the entire order lifecycle. It also supports product comments and reviews for enhanced customer interaction. With user-friendly endpoints, it simplifies online store management for a seamless shopping experience.
+        </p>
+        
     </div>
 
-    <div class="flex flex-col">
-        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>Orders Api</h1>
-        <div class="px-8">
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize ">Get All orders</p>
-                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#61affe] text-xl font-bold"></i>    
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a oders</p>
-                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#49cc90] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete all orders</p>
-                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#f93e3e] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#f93e3e] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Update a single order by Id</p>
-                <div class="bg-[rgba(252,161,48,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#fca130] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#fca130]">PUT</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#fca130] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Get a single order by Id</p>
-                <div class="bg-[rgba(97,175,254,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#61affe]">GET</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#61affe] text-xl font-bold"></i>    
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Delete a single order by id</p>
-                <div class="bg-[rgba(249,62,62,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#61affe] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#f93e3e]">DELETE</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/orders/:id </p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#f93e3e] text-xl font-bold"></i>   
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="flex flex-col">
-        <h1 class=" text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold"><i class=" mr-2 fa-solid fa-hashtag"></i>Costumers Api</h1>
-        <div class="px-8">
-            <div class="flex flex-col mb-4">
-                <p class="text-lg text-black   leading-5 mb-1 font-medium capitalize">Post a oders</p>
-                <div class="bg-[rgba(73,204,144,.1)]  flex gap-3 items-center justify-between rounded-sm border border-[#49cc90] p-2">
-                    <div class="flex gap-3 items-center">
-                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm  bg-[#49cc90]">POST</span> <p #apiUrl class="text-[20px] font-medium">http://localhost:3000/api/v1/customers</p>
-                    </div>
-                    <div>
-                        <i  class="fa-solid {{ copyIcon }} text-[#49cc90] text-xl font-bold"></i> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="flex flex-col gap-10">
 
-</div>
+        <div class="flex flex-col">
+            <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+              <i class="mr-2 fa-solid fa-hashtag"></i>Products Api
+            </h1>
+            <div class="px-8">
+                <div *ngFor="let api of apiList" class="flex flex-col mb-4">
+                    <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ api.label }}</p>
+                    <div [class]="{
+                      'bg-[rgba(97,175,254,.1)]': api.color === '#61affe',
+                      'bg-[rgba(73,204,144,.1)]': api.color === '#49cc90',
+                      'bg-[rgba(249,62,62,.1)]': api.color === '#f93e3e',
+                      'bg-[rgba(252,161,48,.1)]': api.color === '#fca130'
+                    }" class="flex gap-3 items-center justify-between rounded-sm border  p-2" [style.border-color]="api.color">
+                      <div class="flex gap-3 items-center">
+                        <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="api.color">{{ api.method }}</span>
+                        <p #apiUrl class="text-[20px] font-medium">{{ api.url }}</p>
+                      </div>
+                      <div class="pr-3">
+                        <i (click)="copyLink(api)" [class]="{ 'fa-check': api.isCopied, 'fa-copy': !api.isCopied }"
+                          class="fa-solid text-xl font-bold" [style.color]="api.color"></i>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+          
+          
+        <div class="flex flex-col">
+            <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+              <i class="mr-2 fa-solid fa-hashtag"></i>Orders Api
+            </h1>
+            <div class="px-8">
+              <div *ngFor="let order of ordersList" class="flex flex-col mb-4">
+                <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ order.label }}</p>
+                <div [class]="{
+                  'bg-[rgba(97,175,254,.1)]': order.color === '#61affe',
+                  'bg-[rgba(73,204,144,.1)]': order.color === '#49cc90',
+                  'bg-[rgba(249,62,62,.1)]': order.color === '#f93e3e',
+                  'bg-[rgba(252,161,48,.1)]': order.color === '#fca130'
+                }" class="flex gap-3 items-center justify-between rounded-sm border p-2" [style.border-color]="order.color" >
+                  <div class="flex gap-3 items-center">
+                    <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="order.color">{{ order.method }}</span>
+                    <p #apiUrl class="text-[20px] font-medium">{{ order.url }}</p>
+                  </div>
+                  <div class="pr-3">
+                    <i (click)="copyLink(order)" [class]="{ 'fa-check': order.isCopied, 'fa-copy': !order.isCopied }"
+                            class="fa-solid text-xl font-bold" [style.color]="order.color"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+            
+
+        
+        
+        <div class="flex flex-col">
+            <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+              <i class="mr-2 fa-solid fa-hashtag"></i>Customers Api
+            </h1>
+            <div class="px-8">
+              <div *ngFor="let customer of listCustomers" class="flex flex-col mb-4">
+                <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ customer.label }}</p>
+                <div [class]="{
+                  'bg-[rgba(97,175,254,.1)]': customer.color === '#61affe',
+                  'bg-[rgba(73,204,144,.1)]': customer.color === '#49cc90',
+                  'bg-[rgba(249,62,62,.1)]': customer.color === '#f93e3e',
+                  'bg-[rgba(252,161,48,.1)]': customer.color === '#fca130'
+                }" class="flex gap-3 items-center justify-between rounded-sm border p-2" [style.border-color]="customer.color">
+                  <div class="flex gap-3 items-center">
+                    <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="customer.color">{{ customer.method }}</span>
+                    <p #apiUrl class="text-[20px] font-medium">{{ customer.url }}</p>
+                  </div>
+                  <div class="pr-3">
+                    <i (click)="copyLink(customer)" [class]="{ 'fa-check': customer.isCopied, 'fa-copy': !customer.isCopied }"
+                      class="fa-solid text-xl font-bold" [style.color]="customer.color"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+    </div>
 </div>
 
