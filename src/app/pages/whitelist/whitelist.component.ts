@@ -8,31 +8,34 @@ import { ProductService } from 'src/app/product.service';
 })
 export class WhitelistComponent implements OnInit {
 
-  public favoriteProducts: any[] = [];
-  public setLoading:boolean = false;
+  
+  public showCategory: boolean = true;
+  public showTags: boolean = true;
+  public showPrice: boolean = true;
+  public showDate: boolean = true;
+  public products: any[] = [];
+  public isLoading: boolean = false;
 
-  constructor(private productS: ProductService) {}
+
+  constructor(private productS: ProductService){};
 
   ngOnInit(): void {
-    this.setLoading = true;
-    try {
-      this.productS.getFavorites().forEach((fav: any) => {
-        this.productS.getProductById(fav.id).subscribe((product: any) => {
-          
-          this.favoriteProducts.push(product.data);
-          this.setLoading = false;
-          console.log(this.favoriteProducts);
-          
-          
-        });
-      });
+    this.isLoading = true;
+    this.productS.getProducts().subscribe(
+      (res: any) => {
+        this.products = res.data;
 
-    } catch (error) {
-      console.error(error);
-    }
+        this.isLoading = false;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-  
-   // function that handle any typoerror on adding the price format
+
+
+
+
   public formatPrice(price:any) {
     if (typeof price === 'string') {
       // If the price is a string, check for the presence of '$' symbol.
@@ -52,7 +55,6 @@ export class WhitelistComponent implements OnInit {
     }
   }
   
-  // function that handle any typoerror on adding the date format
   public  formatReadableDate(dateString:any) {
     const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(dateString);
@@ -68,7 +70,10 @@ export class WhitelistComponent implements OnInit {
     }
   }
 
-  
+  // Function to check if a product is a favorite
+  isFavorite(product: any): boolean {
+    return this.productS.isFavorite(product);
+  }
 
   // Function to handle clicking the cart icon
   toggleCartIcon(product: any) {
@@ -85,7 +90,5 @@ export class WhitelistComponent implements OnInit {
   }
 
 }
-function fav(value: any, index: number, array: any[]): void {
-  throw new Error('Function not implemented.');
-}
+
 
