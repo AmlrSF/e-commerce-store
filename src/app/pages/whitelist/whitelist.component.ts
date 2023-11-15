@@ -8,14 +8,28 @@ import { ProductService } from 'src/app/product.service';
 })
 export class WhitelistComponent implements OnInit {
 
-  public favs : any[] = [];
+  public favoriteProducts: any[] = [];
+  public setLoading:boolean = false;
 
-  constructor(private productS:ProductService){}
+  constructor(private productS: ProductService) {}
 
   ngOnInit(): void {
-    this.favs = this.productS.getFavorites();
-    console.log(this.favs);
-    
+    this.setLoading = true;
+    try {
+      this.productS.getFavorites().forEach((fav: any) => {
+        this.productS.getProductById(fav.id).subscribe((product: any) => {
+          
+          this.favoriteProducts.push(product.data);
+          this.setLoading = false;
+          console.log(this.favoriteProducts);
+          
+          
+        });
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
   }
   
    // function that handle any typoerror on adding the price format
@@ -54,10 +68,7 @@ export class WhitelistComponent implements OnInit {
     }
   }
 
-  // Function to check if a product is a favorite
-  isFavorite(product: any): boolean {
-    return this.productS.isFavorite(product);
-  }
+  
 
   // Function to handle clicking the cart icon
   toggleCartIcon(product: any) {
@@ -74,3 +85,7 @@ export class WhitelistComponent implements OnInit {
   }
 
 }
+function fav(value: any, index: number, array: any[]): void {
+  throw new Error('Function not implemented.');
+}
+
