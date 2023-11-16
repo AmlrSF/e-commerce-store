@@ -1,1 +1,81 @@
-<p>favs works!</p>
+<div class="py-5">
+    <p class="text-xl">Home /<span class="text-muted-foreground">Orders</span></p>
+
+    <div *ngIf="favs.length > 0; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <div class="grid-container w-[100%]  mt-10 flex-1">
+            <div class="p-2 relative cursor-pointer border gap-4 flex flex-col  border-[#ff6b6b] "    
+            *ngFor="let product of favs">
+        
+            <div class="image h-[250px] w-full">
+                <img src="{{product.image}}" class="h-full  object-cover w-full" alt="">
+            </div>
+            <div>
+                <h1 class="text-2xl font-medium underline" routerLink="/products/{{ product._id }}">{{ product.name }}</h1>
+                <p class="text-slate-600 text-sm">{{ product.description.length > 25 ? product.description.slice(0, 22) + '...' : product.description }}</p>
+                <div class="flex gap-2 items-center mt-2">
+                <i class="text-yellow-500 fa-solid fa-star"></i>
+                <i class="text-yellow-500 fa-solid fa-star"></i>
+                <i class="text-yellow-500 fa-solid fa-star"></i>
+                <i class="text-yellow-500 fa-solid fa-star"></i>
+                <i class="text-yellow-500 fa-regular fa-star"></i>
+                <span class="me-3 font-medium text-slate-400">z
+                    (2561)
+                </span>
+                </div>
+                <div class="flex items-center mt-3  gap-3">
+                <span class="text-4xl mr-1 font-medium text-[#ff6b6b]">{{ formatPrice(product.price) }}</span>
+                <span class="text-xl text-slate-500 relative ">
+                    {{ formatPrice(product.discount) }} 
+                    <span class="absolute left-0 top-[50%] translate-y-[-50%] w-full bg-slate-600 h-[1px] "></span>
+                </span>
+                </div>
+                <div>
+                <p class="text-sm text-slate-600"><span class="font-medium text-xl">{{product.quantity}} </span>In stock.</p>
+                </div>
+                <div>
+                <p class="mt-4 text-sm text-slate-600">{{ formatReadableDate(product.firstDate) }}</p>
+                </div>
+                
+            </div>
+            <div class="absolute flex flex-col gap-5 bottom-[10px] right-[10px]">
+                
+                <div class="flex items-center justify-center bg-[rgba(0,0,0,0.07)] h-[35px] w-[35px] rounded-full"
+                (click)="toggleFavoriteIcon(product);"
+                >
+                <i [ngClass]="{ 'bg-red-icon': isFavorite(product) }" class="fa-solid fa-heart"></i>
+                </div>
+        
+        
+                
+                <div class="flex items-center bg-[rgba(0,0,0,0.07)] justify-center h-[35px] w-[35px] rounded-full"
+                    (click)="toggleCartIcon(product)"
+                >
+        
+                <div *ngIf="isInCart(product); then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    
+                    <i class="fa-solid fa-check text-xl text-green-500 font-bold"></i>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </ng-template>
+            </div>
+        
+            </div>
+        </div>
+        </div>
+    </ng-template>
+    <ng-template #elseBlock>
+        <div class="flex flex-col gap-4 justify-center items-center">
+            <h1>Empty Favorite items </h1>
+            <div class="flex flex-col sm:flex-row gap-3 ">
+            <a routerLink="" class="h-12 sm:w-[180px] text-center w-full rounded-md px-3 bg-[#ff6b6b] text-white flex items-center justify-center font-medium" >
+                Go Shopping 
+            </a>
+            </div>
+        </div>
+    </ng-template>
+
+
+</div>

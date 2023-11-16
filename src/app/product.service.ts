@@ -40,20 +40,20 @@ export class ProductService {
     
     const formattedDate = new Intl.DateTimeFormat('en-US', options).format(currentDate);
     
-    const item = {
-      id:product._id,
-      qte:product.quantity,
-      name: product.name,
-      image: product.image,
-      description: product.description,
-      price: product.price,
-      discount: product.discount,
-      itemDate: formattedDate, 
-    };
+    // const item = {
+    //   id:product._id,
+    //   qte:product.quantity,
+    //   name: product.name,
+    //   image: product.image,
+    //   description: product.description,
+    //   price: product.price,
+    //   discount: product.discount,
+    //   itemDate: formattedDate, 
+    // };
 
 
-    if (!favorites.some((favProduct) => favProduct.id === productId)) {
-      favorites.push(item);
+    if (!favorites.some((favProduct) => favProduct._id === productId)) {
+      favorites.push(product);
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }
   }
@@ -63,14 +63,14 @@ export class ProductService {
     const favorites = this.getFavorites();
     const productId = product._id;
 
-    const updatedFavorites = favorites.filter((favProduct) => favProduct.id !== productId);
+    const updatedFavorites = favorites.filter((favProduct) => favProduct._id !== productId);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   }
 
   // Check if a product is a favorite
   isFavorite(product: any): boolean {
     const favorites = this.getFavorites();
-    return favorites.some((favProduct) => favProduct.id === product._id);
+    return favorites.some((favProduct) => favProduct._id === product._id);
   }
 
   //cart logic
@@ -112,6 +112,7 @@ export class ProductService {
     const cartItems = this.getCartItems();
     return cartItems.some((cartProduct) => cartProduct._id === product._id);
   }
+  
   // Function to return the number of favorite items
   getFavoriteItemCount(): number {
     const favorites = this.getFavorites();

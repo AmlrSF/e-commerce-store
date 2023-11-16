@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { OrdersComponent } from './pages/orders/orders.component';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 import { DeveloperComponent } from './pages/developer/developer.component';
+import { FavsComponent } from './pages/favs/favs.component';
 
 const routes: Routes = [
   {path : ''            ,component:HomeComponent},
@@ -32,6 +33,9 @@ const routes: Routes = [
   {
     path:'orders',
     component:MangeOrdersComponent
+  },{
+    path:'Favs',
+    component:FavsComponent
   }
 ];
 
