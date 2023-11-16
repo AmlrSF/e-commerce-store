@@ -21,6 +21,7 @@ import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DeveloperComponent } from './pages/developer/developer.component';
+import { FavsComponent } from './pages/favs/favs.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DeveloperComponent } from './pages/developer/developer.component';
     ProductsComponent,
     OrdersComponent,
     MangeOrdersComponent,
-    DeveloperComponent
+    DeveloperComponent,
+    FavsComponent
   ],
   imports: [
     CarouselModule,

@@ -7,7 +7,6 @@ import { SpecialOffersComponent } from './pages/special-offers/special-offers.co
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { WhitelistComponent } from './pages/whitelist/whitelist.component';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 import { DeveloperComponent } from './pages/developer/developer.component';
 
@@ -29,10 +28,6 @@ const routes: Routes = [
   {
     path:'checkout',
     component:OrdersComponent
-  },
-  {
-    path:'whitelist',
-    component:WhitelistComponent
   },
   {
     path:'orders',

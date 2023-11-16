@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WhitelistComponent } from './whitelist.component';
+import { FavsComponent } from './favs.component';
 
-describe('WhitelistComponent', () => {
-  let component: WhitelistComponent;
-  let fixture: ComponentFixture<WhitelistComponent>;
+describe('FavsComponent', () => {
+  let component: FavsComponent;
+  let fixture: ComponentFixture<FavsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WhitelistComponent]
+      declarations: [FavsComponent]
     });
-    fixture = TestBed.createComponent(WhitelistComponent);
+    fixture = TestBed.createComponent(FavsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
