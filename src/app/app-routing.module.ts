@@ -10,6 +10,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 import { DeveloperComponent } from './pages/developer/developer.component';
 import { FavsComponent } from './pages/favs/favs.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {path : ''            ,component:HomeComponent},
@@ -36,6 +38,12 @@ const routes: Routes = [
   },{
     path:'Favs',
     component:FavsComponent
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path:'login',component : LoginComponent,
+  },{
+    path:'register',component:RegisterComponent
   }
 ];
 

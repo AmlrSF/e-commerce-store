@@ -22,6 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DeveloperComponent } from './pages/developer/developer.component';
 import { FavsComponent } from './pages/favs/favs.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,10 @@ import { FavsComponent } from './pages/favs/favs.component';
     OrdersComponent,
     MangeOrdersComponent,
     DeveloperComponent,
-    FavsComponent
+    FavsComponent,
+    LoginComponent,
+    RegisterComponent,
+    
   ],
   imports: [
     CarouselModule,
@@ -49,6 +58,10 @@ import { FavsComponent } from './pages/favs/favs.component';
     FormModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
