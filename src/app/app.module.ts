@@ -28,6 +28,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AlertModule } from '@coreui/angular';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatStepperModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,36 @@
-<p>login works!</p>
+
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <h1 class="text-center mt-5 text-2xl font-bold mb-10">Create an Account !</h1>
+    <div class="sm:w-[650px] w-full mx-auto">
+        <div class="flex flex-col mt-2 gap-2">
+            <mat-form-field class="example-full-width">
+                <mat-label>email </mat-label>
+                <input matInput placeholder="Ex. Pizza@gma" formControlName="email" >
+            </mat-form-field>   
+            <mat-form-field class="example-full-width">
+                <mat-label>password </mat-label>
+                <input matInput placeholder="Ex. pass" type="password" formControlName="password" >
+            </mat-form-field>        
+            <div class="flex flex-col gap-2">
+                <button type="submit" class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>
+                <a class="text-muted-foreground mt-2" (click)="navigateToRegister()">already have an account ?</a>
+                <!-- <button mat-button matStepperPrevious>Back</button> -->
+            </div> 
+        </div>
+    </div>
+</form>
+    
+        
+<div *ngIf="isShow">
+    <c-alert color="danger"  class="absolute top-[10px] 
+    right-[10px] flex gap-3 items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+    <div>email already used</div>
+</c-alert> 
+</div>
+<div *ngIf="isShow1">
+    <c-alert color="danger"  class="absolute top-[60px] 
+        right-[10px] flex gap-3 items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+        <div>wrong password</div>
+    </c-alert>
+</div>
+  

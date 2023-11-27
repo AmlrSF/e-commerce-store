@@ -19,4 +19,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}register`, JSON.stringify(account));
   }
 
+  public profile(token:any): Observable<any> {
+    return this.http.post(`${this.apiUrl}profile`,JSON.stringify(token));
+  }
+
 }

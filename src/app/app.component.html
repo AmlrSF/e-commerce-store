@@ -1,17 +1,10 @@
 <app-navbar></app-navbar>
 
-<div *ngIf="shouldDisplayCategories(); then thenBlock else elseBlock"></div>
-<ng-template #thenBlock>
+<div class="container relative min-h-[70vh]">
   <router-outlet></router-outlet>
-</ng-template>
-<ng-template #elseBlock>
-  <div class="container">
-    
-    <router-outlet></router-outlet>
-  </div>
-</ng-template>
-  
- <app-footer></app-footer>
+</div>
+
+<app-footer></app-footer>
 
 <div *ngIf="isHeaderFixed ===true" (click)="scrollToTop()" class="fixed animate-bounce cursor-pointer right-[15px] bottom-[15px] rounded-full bg-[#ff6b6b] h-[45px] w-[45px] flex items-center justify-center">
   <i class= "text-white font-bold text-xl fa-solid fa-arrow-up-long "></i>

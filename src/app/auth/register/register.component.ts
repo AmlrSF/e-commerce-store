@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -10,11 +12,32 @@ import { AuthService } from 'src/app/auth.service';
 export class RegisterComponent implements OnInit{
   public imageUrl: string = '';
   public accountForm!: FormGroup;
+  private apiUrl = 'http://localhost:3000/api/v1/customers/register';
+  public isShow: boolean = false;
 
-  constructor(private fb: FormBuilder, private auth : AuthService) {}
+  constructor(private fb: FormBuilder, private router: Router, private auth : AuthService,private http: HttpClient) {}
 
   ngOnInit(): void {
+    const gettoken = localStorage.getItem('token'); 
     this.initForm();
+    let token = {
+      token : gettoken
+    }
+
+    console.log(token);
+    
+
+    try {
+      this.http.post(`http://localhost:3000/api/v1/customers/profile`,JSON.stringify({token})).subscribe(
+        res=>{
+          console.log(res);
+        },err=>{
+          console.log(err);
+        }
+      )
+    } catch (error) {
+      
+    }
   }
 
   initForm(): void {
@@ -23,38 +46,51 @@ export class RegisterComponent implements OnInit{
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      phoneNumber: [''],
-      profileImage: [''],
-      image: [''],
-      bio:['']
+      phoneNumber: ['',Validators.required],
+      profileImage: ['',Validators.required],
+      bio:['',Validators.required]
     });
   }
 
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      this.accountForm.value['profileImage'] = this.imageUrl; // Check the field name ('image' or 'profileImage')
+      this.accountForm.value['profileImage'] = this.imageUrl;
+  
       try {
         console.log(this.accountForm.value);
-        console.log("amir");
-        
-        this.auth.register(this.accountForm.value).subscribe(
-          (res) => {
+  
+        this.http.post(this.apiUrl, this.accountForm.value).subscribe(
+          (res: any) => {
             console.log(res);
-            // You can handle the registration success here
+  
+            if (res.success === false && res.error === 'Email already in use') {
+              this.isShow = true;
+              setTimeout(() => {
+                this.isShow = false;
+              }, 3000);
+            }
+
+            if(res.success === true) {
+              // Navigate to the login page
+              this.navigateToLoin();
+            }
+
           },
-          (error) => {
-            console.error(error);
-            // You can handle the registration error here
+          (err) => {
+            console.log(err);
           }
         );
-  
       } catch (error) {
         console.error(error);
       }
     }
   }
-  
+
+  public navigateToLoin(){
+    this.router.navigate(['/login']);
+  }
+
 
   onImageChange(event: any) {
     const file = event.target.files[0];

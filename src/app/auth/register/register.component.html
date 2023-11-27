@@ -1,7 +1,7 @@
 
 <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
 <h1 class="text-center mt-5 text-2xl font-bold mb-10">Create an Account !</h1>
-<div class="w-[650px] mx-auto">
+<div class="sm:w-[650px] w-full mx-auto">
     <mat-stepper orientation="vertical" class="w-100">
         <mat-step>
             <ng-template matStepLabel>Step 1</ng-template>
@@ -24,7 +24,7 @@
                         <input matInput placeholder="Ex. pass" type="password" formControlName="password" >
                     </mat-form-field>         
                 </div>
-            <button mat-button matStepperNext>Next</button>
+            <!-- <button mat-button matStepperNext>Next</button> -->
             </ng-template>
         </mat-step>
         <mat-step>
@@ -37,7 +37,7 @@
                             <input
                             type="file"
                             id="image"
-                            formControlName="image"
+                            formControlName="profileImage"
                             (change)="onImageChange($event)"
                             accept="image/*"
                             class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none w-full p-3"
@@ -65,18 +65,28 @@
                     </mat-form-field> 
                 </div>
 
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <!-- <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button> -->
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Step 3</ng-template>
             <div class="flex flex-col gap-2">
                 <button type="submit" class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>
-                <button mat-button matStepperPrevious>Back</button>
+                <a class="text-muted-foreground mt-2" (click)="navigateToLoin()">already have an account ?</a>
+                <!-- <button mat-button matStepperPrevious>Back</button> -->
             </div>
         </mat-step>
     </mat-stepper>
 </div>
 
 </form>
+
+
+<div *ngIf="isShow">
+    <c-alert color="danger"  class="absolute top-[10px] 
+ right-[10px] flex gap-3 items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+    <div>there an user by this email</div>
+</c-alert>
+
+</div>
