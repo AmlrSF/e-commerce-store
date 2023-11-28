@@ -5,32 +5,31 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class ProfileComponent implements OnInit{
+  [x: string]: any;
   public imageUrl: string = '';
   public accountForm!: FormGroup;
-  private apiUrl = 'http://localhost:3000/api/v1/customers/register';
-  public isShow: boolean = false;
+  public result : any;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth : AuthService,private http: HttpClient) {}
+  constructor(private http: HttpClient,private router : Router){}
 
   ngOnInit(): void {
-    
-    this.initForm();
     const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
     }
     try {
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
-        res=>{
+        (res:any)=>{
           console.log(res);
-          this.router.navigate(['/']);
+          this.result = res.customer;
         },err=>{
           console.log(err);
+          this.router.navigate(['/login']);
         }
       )
     } catch (error) {
@@ -39,7 +38,7 @@ export class RegisterComponent implements OnInit{
   }
 
   initForm(): void {
-    this.accountForm = this.fb.group({
+    this.accountForm = this['fb'].group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -49,48 +48,6 @@ export class RegisterComponent implements OnInit{
       bio:['',Validators.required]
     });
   }
-
-
-  onSubmit(): void {
-    if (this.accountForm.valid) {
-      this.accountForm.value['profileImage'] = this.imageUrl;
-  
-      try {
-        console.log(this.accountForm.value);
-  
-        this.http.post(this.apiUrl, this.accountForm.value).subscribe(
-          (res: any) => {
-            console.log(res);
-  
-            if (res.success === false && res.error === 'Email already in use') {
-              this.isShow = true;
-              setTimeout(() => {
-                this.isShow = false;
-              }, 3000);
-            }
-
-            if(res.success === true) {
-              // Navigate to the login page
-              this.navigateToLoin();
-            }
-
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-
-  public navigateToLoin(){
-    this.router.navigate(['/login']);
-  }
-
-  
-
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -108,6 +65,13 @@ export class RegisterComponent implements OnInit{
     const inputElement = document.getElementById('image');
     if (inputElement) {
       inputElement.click();
+    }
+  }
+
+  onSubmit(): void {
+    if (this.accountForm.valid) {
+      this.accountForm.value['profileImage'] = this.imageUrl;
+      
     }
   }
 

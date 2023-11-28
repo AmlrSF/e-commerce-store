@@ -12,6 +12,7 @@ import { DeveloperComponent } from './pages/developer/developer.component';
 import { FavsComponent } from './pages/favs/favs.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path : ''            ,component:HomeComponent},
@@ -44,6 +45,8 @@ const routes: Routes = [
     path:'login',component : LoginComponent,
   },{
     path:'register',component:RegisterComponent
+  },{
+    path:'profile',component:ProfileComponent
   }
 ];
 

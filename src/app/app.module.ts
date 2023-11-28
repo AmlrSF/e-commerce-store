@@ -30,6 +30,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AlertModule } from '@coreui/angular';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { AlertModule } from '@coreui/angular';
     FavsComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
     
   ],
   imports: [
@@ -64,7 +67,8 @@ import { AlertModule } from '@coreui/angular';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    AlertModule
+    AlertModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

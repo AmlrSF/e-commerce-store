@@ -1,5 +1,5 @@
 <div  [class.fixed]="isHeaderFixed" class="top-0 shadow-lg left-0 right-0 w-full z-50 bg-white">
-    <div class="flex items-center container">
+    <div class="flex items-center  container">
         <div class="relative h-16 w-[100%] flex items-center justify-between ">
             <div class="flex gap-4 items-center">
                 <button (click)="openNavbar()"  class="sm:hidden   flex">
@@ -40,13 +40,34 @@
                     <i class="text-[25px] font-semibold text-blue-600  ri-shopping-cart-line"></i>
                     <span class="fly-item bg-blue-600">{{getCartItemCount()}}</span>
                 </a>
-                <a class="flex  flex-col" >
+                <a class="flex  flex-col border-r-2 border-[#ff6b6b] pr-4" >
                     <p class="text-xs text-gray-500 ">Total</p>
                     <span class="font-bold text-2xl  mt-[-4px]">${{calculateCartTotal()}}</span>
                 </a>
-                <div *ngIf="result; then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock>1</ng-template>
-                <ng-template #elseBlock>2</ng-template>
+                <div>
+                    <div *ngIf="result?.success; then t5henBlock else e5lseBlock"></div>
+                    <ng-template #t5henBlock>
+                    <!-- Content to display when 'success' is true -->
+                    <div mat-button [matMenuTriggerFor]="menu" class="flex gap-3 p-2 items-center">
+                        <span class="text-lg font-medium">{{ result.customer.lastName }} {{ result.customer.firstName }}</span>
+                        <div class="h-[45px] flex items-center justify-center bg-[#ff6b6b] w-[45px] rounded-full">
+                        <img [src]="result.customer.profileImage" alt="image" class="h-[40px] w-[40px] rounded-full">
+                        </div>
+                    </div>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="navigateToProfile()">Profile</button>
+                        <button mat-menu-item (click)="logout()">Logout</button>
+                    </mat-menu>
+                    </ng-template>
+                    <ng-template #e5lseBlock>
+                    <!-- Content to display when 'success' is false -->
+                    <div class="flex items-center gap-3">
+                        <a routerLink="/register" class="px-4 py-2 border border-[#ff6b6b] hover:bg-[#ff6b6b] transition hover:text-white font-medium rounded-lg text-[#ff6b6b]">Register</a>
+                        <a routerLink="/login" class="px-4 py-2 border border-[#ff6b6b] font-medium rounded-lg text-white bg-[#ff6b6b]">Login</a>
+                    </div>
+                    </ng-template>
+
+                </div>
             </div>
         </div>
     </div>

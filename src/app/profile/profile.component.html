@@ -1,0 +1,71 @@
+
+<div class="bg-slate-300 relative rounded-b-3xl h-[200px] w-full">
+    <div class="h-[130px] w-[130px] bg-white flex items-center justify-center absolute bottom-[-50px] left-[30px] rounded-full">
+        <img [src]="result.profileImage" alt="" class="rounded-full h-[120px] w-[120px]">
+    </div>
+</div>
+
+<!-- 
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <h1 class="text-center mt-5 text-2xl font-bold mb-10">Create an Account !</h1>
+    <div class="sm:w-[650px] w-full mx-auto">
+        <div class="flex flex-col gap-2">
+            <mat-form-field class="example-full-width">
+                <mat-label>first name</mat-label>
+                <input matInput placeholder="Ex. Pizza" formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder="Ex. Pizza"  formControlName="lastName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>email </mat-label>
+                <input matInput placeholder="Ex. Pizza@gma" formControlName="email" >
+            </mat-form-field>   
+            <mat-form-field class="example-full-width">
+                <mat-label>password </mat-label>
+                <input matInput placeholder="Ex. pass" type="password" formControlName="password" >
+            </mat-form-field>
+        </div>    
+        <div class="flex flex-col mt-2 gap-2">
+            <div>
+                <div>
+                    <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="image">Image</label>
+                    <input
+                    type="file"
+                    id="image"
+                    formControlName="profileImage"
+                    (change)="onImageChange($event)"
+                    accept="image/*"
+                    class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] outline-none w-full p-3"
+                    />
+              </div>
+              
+              <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb] w-full p-3 h-44 flex justify-center items-center">
+                <ng-container *ngIf="imageUrl; else noImage">
+                  <img [src]="imageUrl" [alt]="imageUrl" class="w-full h-full object-contain" />
+                </ng-container>
+                <ng-template #noImage>
+                  <img src="../../assets/download.png" alt="preview" class=" w-full h-full object-contain opacity-40" />
+                </ng-template>
+              </div>
+              
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Bio</mat-label>
+                <textarea formControlName="bio" matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Tel </mat-label>
+                <input matInput formControlName="phoneNumber" placeholder="Ex. Pizza" value="pass">
+            </mat-form-field> 
+        </div>                       
+            
+        <div class="flex flex-col gap-2">
+            <button type="submit" class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Edit profile</button>
+        </div>
+    </div>
+</form>
+
+     -->

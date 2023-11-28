@@ -98,6 +98,22 @@ export class NavbarComponent implements OnInit{
   constructor (private productS:ProductService,private router: Router,private http: HttpClient){}
   currentRouteURL = this.router.url.substring(1);
   public result:any;
+  public auth:boolean = false;
+
+  public logout(){
+     // Remove the token from local storage
+     localStorage.removeItem('token');
+
+     // Redirect to the login page
+     this.router.navigate(['/login']); // Adjust the route path based on your actual login route
+  }
+
+
+  public navigateToProfile (){
+    this.router.navigate(['/profile']);
+  }
+
+
   ngOnInit(): void {   
     const gettoken = localStorage.getItem('token'); 
     let token = {
@@ -107,9 +123,13 @@ export class NavbarComponent implements OnInit{
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
           console.log(res);
-          this.result = res.costumer;
-        },err=>{
+          
+          this.result = res;
+          this.auth = true;
+
+        },(err:any)=>{
           console.log(err);
+          this.auth = false
         }
       )
     } catch (error) {
