@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Inavs } from 'src/app/interfaces/page-interfaces';
 import { ProductService } from 'src/app/product.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -94,11 +95,26 @@ export class NavbarComponent implements OnInit{
     },
   ];
   
-  constructor (private productS:ProductService,private router: Router){}
+  constructor (private productS:ProductService,private router: Router,private http: HttpClient){}
   currentRouteURL = this.router.url.substring(1);
-
+  public result:any;
   ngOnInit(): void {   
-  
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+    try {
+      this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+        (res:any)=>{
+          console.log(res);
+          this.result = res.costumer;
+        },err=>{
+          console.log(err);
+        }
+      )
+    } catch (error) {
+      
+    }
   }
 ;
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class OrdersService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<any> {
+  public getOrders(): Observable<any> {
     return this.http.get(this.apiUrl);
     
   }

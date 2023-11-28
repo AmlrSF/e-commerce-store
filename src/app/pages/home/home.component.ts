@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -36,10 +39,11 @@ export class HomeComponent implements OnInit {
  
   public products: any[] = [];
   public featuredProduct:any[] = [];
-
-  constructor (private productS:ProductService){}
+  private token :string = "";
+  constructor (private productS:ProductService,private auth:AuthService,private http: HttpClient){}
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('token') || "";
     this.isLoading = true;
     this.productS.getProducts().subscribe(
       (res:any)=>{
@@ -53,6 +57,20 @@ export class HomeComponent implements OnInit {
       }
     )
     
+    let token = {
+      token:this.token
+    }
+
+    if(this.token){
+      console.log(token);
+      this.http.post("http://localhost:3000/api/v1/customers/profile",token).
+        subscribe((res)=>{
+          console.log(res)
+          
+        },
+        (err)=>console.log(err))   
+    }
+
   }
 
   public formatPrice(price:any) {

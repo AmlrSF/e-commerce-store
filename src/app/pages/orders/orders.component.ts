@@ -4,11 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from 'src/app/orders.service';
 import { ProductService } from 'src/app/product.service';
 import { OrderResponse } from 'src/app/interfaces/page-interfaces';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
+
 })
+
 export class OrdersComponent implements OnInit {
   public statusOrder:boolean = false;
   public addedItems:any;
@@ -22,6 +25,7 @@ export class OrdersComponent implements OnInit {
     private productS:ProductService,
     private orderS:OrdersService,
     private http: HttpClient,
+    private router: Router
     ) {
     this.productForm = this.formBuilder.group({
       Address: ['', [Validators.required]],
@@ -33,33 +37,48 @@ export class OrdersComponent implements OnInit {
   }
 
   onSubmit() {
+
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+
     if (this.productForm.valid) {
       try {      
-        var order = {
-          customer:"6547ee2d542e6d53e008cef5",
-          FullName:this.productForm.value.FullName,
-          ZipCode:this.productForm.value.ZipCode,
-          City:this.productForm.value.city,
-          Country:this.productForm.value.country,
-          emailTo:this.productForm.value.Address,
-          totalAmount:this.getProductTotal(10,7.99),
-          status: false,
-          products:this.productS.getCartItems().map((item:any)=>{return {product:item._id,quantity:item.count,allQuantity:item.quantity}})
-        }
-  
-            
-        this.http.post(this.apiUrl, order)
-          .subscribe((res) =>{
-            this.productForm.reset();
-            this.statusOrder = true;
-            
-            this.updateProductQuantities(order, true);
-            this.clearAll();
-            
-          },err=>{
-            console.log(err)
-          })
 
+  
+        this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+          (res:any)=>{
+            console.log(res.customer._id);
+
+            var order = {
+              customer:res.customer._id,
+              FullName:this.productForm.value.FullName,
+              ZipCode:this.productForm.value.ZipCode,
+              City:this.productForm.value.city,
+              Country:this.productForm.value.country,
+              emailTo:this.productForm.value.Address,
+              totalAmount:this.getProductTotal(10,7.99),
+              status: false,
+              products:this.productS.getCartItems().map((item:any)=>{return {product:item._id,quantity:item.count,allQuantity:item.quantity}})
+            }
+
+            this.http.post(this.apiUrl, order)
+            .subscribe((res) =>{
+              this.productForm.reset();
+              this.statusOrder = true;
+              
+              this.updateProductQuantities(order, true);
+              this.clearAll();
+              
+            },err=>{
+              console.log(err)
+            })
+          },err=>{
+            console.log(err);
+            this.router.navigate(['/login']);
+          }
+        )
       } catch (error) {
         console.log(error);
       }

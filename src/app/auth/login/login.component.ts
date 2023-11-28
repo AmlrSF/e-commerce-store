@@ -27,6 +27,22 @@ export class LoginComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+    try {
+      this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+        res=>{
+          console.log(res);
+          this.router.navigate(['/']);
+        },err=>{
+          console.log(err);
+        }
+      )
+    } catch (error) {
+      
+    }
   }
 
   onSubmit(): void {

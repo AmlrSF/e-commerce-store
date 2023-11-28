@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrdersService } from 'src/app/orders.service';
 
 @Component({
@@ -10,19 +11,36 @@ import { OrdersService } from 'src/app/orders.service';
 export class MangeOrdersComponent implements OnInit {
   orders: any;
   statusOrder:boolean = false;
-  constructor(private orderS:OrdersService,private http: HttpClient){};
+  constructor(private orderS:OrdersService,private router: Router,private http: HttpClient){};
 
   ngOnInit(): void {
-      this.orderS.getOrderById("6547ee2d542e6d53e008cef5").subscribe(
-      (res) => {
-        this.orders = res;
-        console.log(this.orders);
-        this.statusOrder = true;
-      },
-      (error) => {
-        console.error('Error fetching orders:', error);
-      }
-    );
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+    try {
+      this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+        (res:any)=>{
+          console.log(res);
+          this.orderS.getOrderById(res.customer._id).subscribe(
+            (res) => {
+              this.orders = res;
+              console.log(this.orders);
+              this.statusOrder = true;
+            },
+            (error) => {
+              console.error('Error fetching orders:', error);
+            }
+          );
+        },err=>{
+          console.log(err);
+          this.router.navigate(['/login']);
+        }
+      )
+    } catch (error) {
+      
+    }
+    
   }
 
   selectedOrder: any;

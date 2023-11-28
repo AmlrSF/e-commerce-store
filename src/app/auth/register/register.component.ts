@@ -18,19 +18,17 @@ export class RegisterComponent implements OnInit{
   constructor(private fb: FormBuilder, private router: Router, private auth : AuthService,private http: HttpClient) {}
 
   ngOnInit(): void {
-    const gettoken = localStorage.getItem('token'); 
+    
     this.initForm();
+    const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
     }
-
-    console.log(token);
-    
-
     try {
-      this.http.post(`http://localhost:3000/api/v1/customers/profile`,JSON.stringify({token})).subscribe(
+      this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         res=>{
           console.log(res);
+          this.router.navigate(['/']);
         },err=>{
           console.log(err);
         }

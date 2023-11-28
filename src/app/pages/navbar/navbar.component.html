@@ -44,6 +44,9 @@
                     <p class="text-xs text-gray-500 ">Total</p>
                     <span class="font-bold text-2xl  mt-[-4px]">${{calculateCartTotal()}}</span>
                 </a>
+                <div *ngIf="result; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>1</ng-template>
+                <ng-template #elseBlock>2</ng-template>
             </div>
         </div>
     </div>
