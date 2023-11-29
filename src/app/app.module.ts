@@ -33,6 +33,7 @@ import { AlertModule } from '@coreui/angular';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     AlertModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

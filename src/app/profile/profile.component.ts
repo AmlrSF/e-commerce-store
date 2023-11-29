@@ -3,6 +3,8 @@ import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { OrdersService } from '../orders.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,15 +16,47 @@ export class ProfileComponent implements OnInit{
   public imageUrl: string = '';
   public accountForm!: FormGroup;
   public result : any;
+  public orders:any;
+  public favs : any[] = [];
 
-  constructor(private http: HttpClient,private router : Router){}
+  constructor(private productS:ProductService,private http: HttpClient,private router : Router,private orderS:OrdersService){}
 
   ngOnInit(): void {
+    this.favs = this.productS.getFavorites();
     const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
     }
     try {
+      const gettoken = localStorage.getItem('token'); 
+      let token = {
+        token : gettoken
+      }
+      try {
+        this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+          (res:any)=>{
+            console.log(res);
+            if(res.success){
+              this.orderS.getOrderById(res.customer._id).subscribe(
+                (res) => {
+                  this.orders = res;
+                },
+                (error) => {
+                  console.error('Error fetching orders:', error);
+                }
+              );
+            }else{
+              this.router.navigate(['/login']);
+            }
+          },err=>{
+            console.log(err);
+            this.router.navigate(['/login']);
+          }
+        )
+      } catch (error) {
+        
+      }
+      
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
           console.log(res);

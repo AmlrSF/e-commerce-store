@@ -27,8 +27,22 @@
 
             <button class="w-full py-2 justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">Edit profile</button>
         </div>
-        <div class="flex-1 rounded-e-lg  shadow-lg p-4 rounded-lg h-full bg-[#fff]">
-            data
+        <div class="flex-1 rounded-e-lg  shadow-lg  rounded-lg h-full bg-[#fff]">
+            <mat-tab-group class="w-full">
+                <mat-tab label="Orders"> 
+                    <div class="p-10">
+                        <h1 class="text-xl flex items-center gap-3"><span class="font-medium text-2xl">[{{orders.orders.length}}]</span> <a 
+                            class="underline" routerLink="/orders">orders availble</a> </h1>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Favorties ">
+                    <div class="p-10">
+                        <h1 class="text-xl flex items-center gap-3"><span class="font-medium text-2xl">[{{favs.length}}]</span> <a 
+                            class="underline" routerLink="/Favs">Favorites Items</a> </h1>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Settings"> Settings </mat-tab>
+            </mat-tab-group>
         </div>
     </div>
 </div>
