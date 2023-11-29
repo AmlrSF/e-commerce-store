@@ -32,7 +32,7 @@ import { AlertModule } from '@coreui/angular';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
-
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +68,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatFormFieldModule,
     MatInputModule,
     AlertModule,
-    MatMenuModule
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

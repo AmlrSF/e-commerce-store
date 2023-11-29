@@ -14,9 +14,14 @@
                     <mat-label>email </mat-label>
                     <input matInput placeholder="Ex. Pizza@gma" formControlName="email" >
                 </mat-form-field>   
+
                 <mat-form-field class="example-full-width">
                     <mat-label>password </mat-label>
-                    <input matInput placeholder="Ex. pass" type="password" formControlName="password" >
+                    <input matInput placeholder="Ex. pass"
+                    [type]="hide ? 'password' : 'text'" formControlName="password" >
+                     <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </a>
                 </mat-form-field>        
                 <div class="flex flex-col gap-2">
                     <button type="submit" class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>

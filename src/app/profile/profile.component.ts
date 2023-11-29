@@ -26,7 +26,12 @@ export class ProfileComponent implements OnInit{
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
           console.log(res);
-          this.result = res.customer;
+          if(res.success){
+            this.result = res.customer;
+          }else{
+            this.router.navigate(['/login']);
+          }
+          
         },err=>{
           console.log(err);
           this.router.navigate(['/login']);
@@ -48,6 +53,15 @@ export class ProfileComponent implements OnInit{
       bio:['',Validators.required]
     });
   }
+
+  //formDate
+  public  formatReadableDate(dateString:any) {
+    const options:any = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', options);
+  }
+
+
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit{
   private apiUrl = 'http://localhost:3000/api/v1/customers/login';
   public isShow: boolean = false;
   public isShow1: boolean = false;
+  public hide:boolean = true;;
   ngOnInit(): void {
     this.initForm();
   }
