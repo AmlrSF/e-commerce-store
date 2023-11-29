@@ -33,9 +33,12 @@ export class LoginComponent implements OnInit{
     }
     try {
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
-        res=>{
+        (res : any)=>{
           console.log(res);
-          this.router.navigate(['/']);
+          if(res.success){
+            this.router.navigate(['/']);
+          }
+          
         },err=>{
           console.log(err);
         }

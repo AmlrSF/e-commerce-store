@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { Inavs } from 'src/app/interfaces/page-interfaces';
 import { ProductService } from 'src/app/product.service';
 import { ActivatedRoute,Router } from '@angular/router';
@@ -9,29 +9,20 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit,AfterViewInit {
   public isOpen:boolean = false;
   public isopencats:boolean = true;
+  
   public routes:Inavs[] = [
     {
       href:"/products",
       label:"Products",
       active:false
-    }//,{
-    //   href:"/new-arrivals",
-    //   label:"New Arrivals",
-    //   active:false
-    // },{
-    //   href:"/best-sellers",
-    //   label:"Best Sellers",
-    //   active:false
-    // },{
-    //   href:"/special-offer",
-    //   label:"Special Offers",
-    //   active:false
-    // },
+    }
     
+  
   ]
+
   public categoriesWithSubcategories: { mainCategory: string; subcategories?: string[], showSubcategories?: boolean }[] = [
     {
       mainCategory: "Food & Dining",
@@ -96,6 +87,19 @@ export class NavbarComponent implements OnInit{
   ];
   
   constructor (private productS:ProductService,private router: Router,private http: HttpClient){}
+
+  public unRoutes: string[] = ["/checkout", "/Favs", "/developer", "/orders", "/profile"];
+  public currentPath: boolean = false;
+  
+  ngAfterViewInit(): void {
+    const currentRoute = this.router.url;
+  
+    // Check if the current route is in the unRoutes array
+    this.currentPath = this.unRoutes.includes(currentRoute);
+  
+    console.log('Current Path:', this.currentPath);
+  }
+
   currentRouteURL = this.router.url.substring(1);
   public result:any;
   public auth:boolean = false;
@@ -115,6 +119,7 @@ export class NavbarComponent implements OnInit{
 
 
   ngOnInit(): void {   
+
     const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
@@ -123,13 +128,10 @@ export class NavbarComponent implements OnInit{
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
           console.log(res);
-          
           this.result = res;
-          this.auth = true;
 
         },(err:any)=>{
           console.log(err);
-          this.auth = false
         }
       )
     } catch (error) {

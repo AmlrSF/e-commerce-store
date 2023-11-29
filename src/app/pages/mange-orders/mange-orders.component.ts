@@ -22,16 +22,20 @@ export class MangeOrdersComponent implements OnInit {
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
           console.log(res);
-          this.orderS.getOrderById(res.customer._id).subscribe(
-            (res) => {
-              this.orders = res;
-              console.log(this.orders);
-              this.statusOrder = true;
-            },
-            (error) => {
-              console.error('Error fetching orders:', error);
-            }
-          );
+          if(res.success){
+            this.orderS.getOrderById(res.customer._id).subscribe(
+              (res) => {
+                this.orders = res;
+                console.log(this.orders);
+                this.statusOrder = true;
+              },
+              (error) => {
+                console.error('Error fetching orders:', error);
+              }
+            );
+          }else{
+            this.router.navigate(['/login']);
+          }
         },err=>{
           console.log(err);
           this.router.navigate(['/login']);

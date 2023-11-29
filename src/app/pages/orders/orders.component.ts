@@ -43,37 +43,51 @@ export class OrdersComponent implements OnInit {
       token : gettoken
     }
 
+
     if (this.productForm.valid) {
       try {      
-
-  
         this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
           (res:any)=>{
-            console.log(res.customer._id);
+            console.log(res);
 
-            var order = {
-              customer:res.customer._id,
-              FullName:this.productForm.value.FullName,
-              ZipCode:this.productForm.value.ZipCode,
-              City:this.productForm.value.city,
-              Country:this.productForm.value.country,
-              emailTo:this.productForm.value.Address,
-              totalAmount:this.getProductTotal(10,7.99),
-              status: false,
-              products:this.productS.getCartItems().map((item:any)=>{return {product:item._id,quantity:item.count,allQuantity:item.quantity}})
+            if(!res.success) this.router.navigate(['/login']);
+            if(res.success){
+              var order = {
+                customer:res.customer._id,
+                FullName:this.productForm.value.FullName,
+                ZipCode:this.productForm.value.ZipCode,
+                City:this.productForm.value.city,
+                Country:this.productForm.value.country,
+                emailTo:this.productForm.value.Address,
+                totalAmount:this.getProductTotal(10,7.99),
+                status: false,
+                products:this.productS.getCartItems().map(
+                  (item:any)=>{
+                    return {product:item._id,quantity:item.count,allQuantity:item.quantity
+                }})
+              }
+  
+              console.log(order);
+              
+  
+              this.http.post(this.apiUrl, order)
+              .subscribe((res) =>{
+  
+                this.productForm.reset();
+                this.statusOrder = true;
+                
+                //modify quantity 
+                this.updateProductQuantities(order, true);
+                
+                //clear all
+                this.clearAll();
+                
+              },err=>{
+                console.log(err)
+              })
             }
+           
 
-            this.http.post(this.apiUrl, order)
-            .subscribe((res) =>{
-              this.productForm.reset();
-              this.statusOrder = true;
-              
-              this.updateProductQuantities(order, true);
-              this.clearAll();
-              
-            },err=>{
-              console.log(err)
-            })
           },err=>{
             console.log(err);
             this.router.navigate(['/login']);
