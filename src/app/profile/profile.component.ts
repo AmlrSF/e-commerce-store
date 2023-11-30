@@ -12,16 +12,56 @@ import { ProductService } from '../product.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  [x: string]: any;
+  
   public imageUrl: string = '';
   public accountForm!: FormGroup;
   public result : any;
   public orders:any;
   public favs : any[] = [];
+  public showEditForm:boolean = false;
+  constructor(
+    private productS:ProductService,
+    private http: HttpClient,
+    private router : Router,
+    private orderS:OrdersService,
+    private fb:FormBuilder
+    ){
+      this.accountForm = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: [''],
+        phoneNumber: ['',Validators.required],
+        profileImage: [''],
+        bio:['',Validators.required]
+      });
+    }
 
-  constructor(private productS:ProductService,private http: HttpClient,private router : Router,private orderS:OrdersService){}
+  public openEditForm() {
+    
+    this.showEditForm = !this.showEditForm;
+  
+    if (this.showEditForm) {
+      // Scroll down
+      window.scrollTo({
+        top: 900,
+        behavior: 'smooth'
+      });
+    } else {
+      // Scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
 
   ngOnInit(): void {
+    this.fetchProfileInfo();
+  }
+
+ 
+  public fetchProfileInfo(){
     this.favs = this.productS.getFavorites();
     const gettoken = localStorage.getItem('token'); 
     let token = {
@@ -62,6 +102,19 @@ export class ProfileComponent implements OnInit{
           console.log(res);
           if(res.success){
             this.result = res.customer;
+            const userData = {
+              firstName: this.result.firstName,
+              lastName: this.result.lastName,
+              email: this.result.email,
+              password: this.result.password,
+              phoneNumber: this.result.phoneNumber,
+              bio: this.result.firstName
+            };
+            
+            this.imageUrl = this.result.profileImage
+            
+            // Set form values based on userData
+            this.accountForm.patchValue(userData);
           }else{
             this.router.navigate(['/login']);
           }
@@ -74,18 +127,6 @@ export class ProfileComponent implements OnInit{
     } catch (error) {
       
     }
-  }
-
-  initForm(): void {
-    this.accountForm = this['fb'].group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      phoneNumber: ['',Validators.required],
-      profileImage: ['',Validators.required],
-      bio:['',Validators.required]
-    });
   }
 
   //formDate
@@ -118,7 +159,26 @@ export class ProfileComponent implements OnInit{
 
   onSubmit(): void {
     if (this.accountForm.valid) {
-      this.accountForm.value['profileImage'] = this.imageUrl;
+
+      const formValues = this.accountForm.value;
+      formValues['profileImage'] = this.imageUrl;
+
+      console.log(formValues);
+      
+
+      // Example: Update the user profile using an API call
+      this.http.put(`http://localhost:3000/api/v1/customers/${this.result._id}`, formValues).subscribe(
+        (res) => {
+          console.log('Profile updated successfully:', res);
+          this.fetchProfileInfo();
+          this.openEditForm();
+          //
+        },
+        (error) => {
+          console.error('Error updating profile:', error);
+          // Handle error as needed
+        }
+      );
       
     }
   }
