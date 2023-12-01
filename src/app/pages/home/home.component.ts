@@ -12,27 +12,8 @@ import { ProductService } from 'src/app/product.service';
 export class HomeComponent implements OnInit {
   public isLoading:boolean = false;
   //all sildes 
-  public slides = [
-    {
-      src: '../../../assets/slider/slider0.jpg',
-      title: 'Spring Fashion Extravaganza',
-      subtitle: 'Get Ready for the Season\'s Hottest Styles',
-    },
-    {
-      src: '../../../assets/slider/slider1.jpg',
-      title: 'Exclusive Discounts Inside',
-      subtitle: 'Shop Now for Unbeatable Savings',
-    },
-    {
-      src: '../../../assets/slider/slider2.jpg',
-      title: 'Elevate Your Style',
-      subtitle: 'Discover Premium Fashion Choices',
-    },
-    {
-      src: '../../../assets/slider/slider3.jpg',
-      title: 'New Arrivals Every Week',
-      subtitle: 'Stay Ahead of the Fashion Curve',
-    },
+  public slides:{image:string,description:string ,header:string}[] = [
+    
   ];
   
   
@@ -42,7 +23,25 @@ export class HomeComponent implements OnInit {
   private token :string = "";
   constructor (private productS:ProductService,private auth:AuthService,private http: HttpClient){}
 
+
+  private baseUrl = 'http://localhost:3000/api/v1/billboards';
+
+
+
+
   ngOnInit(): void {
+
+   
+      this.http.get(`${this.baseUrl}`).subscribe(
+        (res: any) => {
+          this.slides = res;
+        },
+        (err: any) => {
+          console.error(err);
+        }
+      );
+    
+
     this.token = localStorage.getItem('token') || "";
     this.isLoading = true;
     this.productS.getProducts().subscribe(
@@ -71,23 +70,25 @@ export class HomeComponent implements OnInit {
         (err)=>console.log(err))   
     }
 
+
+
   }
 
   public formatPrice(price:any) {
     if (typeof price === 'string') {
-      // If the price is a string, check for the presence of '$' symbol.
+      
       if (price.includes('$')) {
-        // If '$' is on the left, move it to the right.
+        
         return price.replace('$', '') + '$';
       } else {
-        // If '$' is not present, add it to the right.
+        
         return price + '$';
       }
     } else if (typeof price === 'number') {
-      // If the price is a number, convert it to a string and add '$' on the right.
+      
       return price.toString() + '$';
     } else {
-      // Handle other cases, e.g., when the data is not a string or a number.
+     
       return 'N/A';
     }
   }

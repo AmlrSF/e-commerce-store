@@ -28,13 +28,13 @@
             </div>
 
             <div class="flex items-center gap-x-3">
-                <a class="relative cursor-pointer " routerLink="/developer">
+                <a class="relative sm:block hidden cursor-pointer " routerLink="/developer">
                     <i class="fa-solid text-[25px] text-green-700 fa-code"></i>
                     <span class="fly-item-dev bg-green-700">13</span>
                 </a>
-                <a class="relative cursor-pointer " routerLink="/Favs">
+                <a class="relative sm:block hidden cursor-pointer " routerLink="/Favs">
                     <i class="text-[25px] font-semibold text-pink-600 ri-heart-line"></i>
-                    <span class="fly-item bg-pink-600">{{getFavoriteItemCount()}}</span>
+                    <span class="fly-item  bg-pink-600">{{getFavoriteItemCount()}}</span>
                 </a>
                 <a class="relative cursor-pointer" routerLink="/checkout"> 
                     <i class="text-[25px] font-semibold text-blue-600  ri-shopping-cart-line"></i>
@@ -49,7 +49,7 @@
                     <ng-template #t5henBlock>
                     <!-- Content to display when 'success' is true -->
                     <div mat-button [matMenuTriggerFor]="menu" class="flex gap-3 p-2 items-center">
-                        <span class="text-lg font-medium">{{ result.customer.lastName }} {{ result.customer.firstName }}</span>
+                        <span class="text-lg font-medium sm:block hidden">{{ result.customer.lastName }} {{ result.customer.firstName }}</span>
                         <div class="h-[45px] flex items-center justify-center bg-[#ff6b6b] w-[45px] rounded-full">
                         <img [src]="result.customer.profileImage" alt="image" class="h-[40px] w-[40px] rounded-full">
                         </div>
@@ -123,7 +123,54 @@
                       </li>
                     </ul>
                   </div>
-
+                  <div >
+                    <div class="flex items-start gap-y-4  flex-col gap-x-3">
+                        <div>
+                            <a class="relative mr-6 cursor-pointer " routerLink="/developer">
+                                <i class="fa-solid text-[25px] text-green-700 fa-code"></i>
+                                <span class="fly-item-dev bg-green-700">13</span>
+                            </a>
+                            <a class="relative mr-6 cursor-pointer " routerLink="/Favs">
+                                <i class="text-[25px] font-semibold text-pink-600 ri-heart-line"></i>
+                                <span class="fly-item bg-pink-600">{{getFavoriteItemCount()}}</span>
+                            </a>
+                            <a class="relative mr-6 cursor-pointer" routerLink="/checkout"> 
+                                <i class="text-[25px] font-semibold text-blue-600  ri-shopping-cart-line"></i>
+                                <span class="fly-item bg-blue-600">{{getCartItemCount()}}</span>
+                            </a>
+                            <a class="flex  flex-col pr-4" >
+                                <p class="text-xs text-gray-500 ">Total</p>
+                                <span class="font-bold text-2xl  mt-[-4px]">${{calculateCartTotal()}}</span>
+                            </a>
+                        </div>
+                        <div>
+                            <div *ngIf="result.success; then t5henBlock else e5lseBlock"></div>
+                            <ng-template #t5henBlock>
+                            <!-- Content to display when 'success' is true -->
+                            <div mat-button [matMenuTriggerFor]="menu" class="flex gap-3 p-2 items-center">
+                                <span class="text-lg font-medium">{{ result.customer.lastName }} {{ result.customer.firstName }}</span>
+                                <div class="h-[45px] flex items-center justify-center bg-[#ff6b6b] w-[45px] rounded-full">
+                                <img [src]="result.customer.profileImage" alt="image" class="h-[40px] w-[40px] rounded-full">
+                                </div>
+                            </div>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="navigateToProfile()">Profile</button>
+                                <button mat-menu-item (click)="logout()">Logout</button>
+                            </mat-menu>
+                            </ng-template>
+                            <ng-template #e5lseBlock>
+                            <!-- Content to display when 'success' is false -->
+                            <div class="flex items-center gap-3">
+                                <a routerLink="/register" class="px-4 py-2 border border-[#ff6b6b] hover:bg-[#ff6b6b] transition hover:text-white 
+                                font-medium rounded-lg text-[#ff6b6b]">Sign Up</a>
+                                <a routerLink="/login" class="px-4 py-2 border border-[#ff6b6b] 
+                                font-medium rounded-lg text-white bg-[#ff6b6b]">Sign In</a>
+                            </div>
+                            </ng-template>
+        
+                        </div>
+                    </div>
+                  </div>
                 <nav class="w-full">
                     <ul class="flex justify-center flex-col items-start">
                         <li (click)="closeNavbar()" *ngFor="let route of routes" class="w-full p-3 rounded-sm text-black hover:bg-[#f6f6f6] ">
