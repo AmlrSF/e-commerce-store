@@ -96,30 +96,30 @@
                 <div>
                     <h1 class="text-2xl p-4 bg-[#f2f3f5] mb-4 text-center rounded">All department</h1>
                     <ul>
-                      <li class=" relative" *ngFor="let maincategory of categoriesWithSubcategories">
+                      <li class=" relative" *ngFor="let cat of cats">
                         <a
                           href="#"
                           class="font-medium h-[46px] flex items-center gap-1  text-xl "
-                          (click)="toggleSubcategories(maincategory.mainCategory)"
+                        
                         >
                             <i class="ri-bear-smile-line"></i>
-                            <span class="text-gray-500 text-xl font-medium ">{{ maincategory.mainCategory }}</span>
-                            <div class="ml-auto">
+                            <span class="text-gray-500 text-xl font-medium ">{{ cat.name }}</span>
+                            <!-- <div class="ml-auto">
                                 <i
                                 class="ri-arrow-right-s-line"
                                 *ngIf="maincategory.subcategories"
                                 ></i>
-                            </div>
+                            </div> -->
                         </a>
-                            <ul
+                            <!-- <ul
                                 *ngIf="maincategory.subcategories"
                                 [hidden]="maincategory.showSubcategories"
                                 class="z-99"
                             >
-                            <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
-                                <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>
-                            </li>
-                        </ul>
+                                <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
+                                    <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>
+                                </li>
+                            </ul> -->
                       </li>
                     </ul>
                   </div>
@@ -205,22 +205,22 @@
                         </div>
                         <div [ngClass]="{'h-[0px] invisible': isopencats}"  class="departments z-50 absolute top-[100%]   w-[300px] bg-[#fff] border">
                             <ul>
-                              <li class="border-t relative" *ngFor="let maincategory of categoriesWithSubcategories">
+                              <li class="border-t relative" *ngFor="let cat of cats">
                                 <a
                                   href="#"
                                   class="category font-medium h-[46px] flex items-center gap-3 text-xl px-[1.5em]"
-                                  (click)="toggleSubcategories(maincategory.mainCategory)"
+                                  
                                 >
                                   <i class="ri-bear-smile-line"></i>
-                                  <span class="text-gray-500">{{ maincategory.mainCategory }}</span>
+                                  <span class="text-gray-500">{{ cat.name }}</span>
                                   <div class="ml-auto">
-                                    <i
+                                    <!-- <i
                                       class="ri-arrow-right-s-line"
                                       *ngIf="maincategory.subcategories"
                                     ></i>
-                                    
+                                     -->
                                   </div>
-                                  <ul
+                                  <!-- <ul
                                   class="subcategories absolute border-t
                                    border-t-[#e5e8ec]  h-[100%] left-[105%] w-[200px] top-0 transition-all duration-300 ease-in-out"
                                   *ngIf="maincategory.subcategories"
@@ -232,7 +232,7 @@
                                     *ngFor="let subCategory of maincategory.subcategories">
                                     <a href="#">{{ subCategory }}</a>
                                   </li>
-                                </ul>
+                                </ul> -->
                                 </a>
                                 
                                 

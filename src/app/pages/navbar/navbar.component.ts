@@ -3,6 +3,7 @@ import { Inavs } from 'src/app/interfaces/page-interfaces';
 import { ProductService } from 'src/app/product.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class NavbarComponent implements OnInit,AfterViewInit {
   public isOpen:boolean = false;
   public isopencats:boolean = true;
-  
+  private baseUrl = 'http://localhost:3000/api/v1/categories';
   public routes:Inavs[] = [
     {
       href:"/products",
@@ -23,67 +24,12 @@ export class NavbarComponent implements OnInit,AfterViewInit {
   
   ]
 
-  public categoriesWithSubcategories: { mainCategory: string; subcategories?: string[], showSubcategories?: boolean }[] = [
-    {
-      mainCategory: "Food & Dining",
-      subcategories: ["Restaurants", "Fast Food", "Cafes", "Groceries"],
-      showSubcategories: true,
-    },
-    {
-      mainCategory: "Travel",
-      subcategories: ["Air Travel", "Hotels", "Car Rentals", "Cruises"],
-      showSubcategories: true,
-    },
-    {
-      mainCategory: "Entertainment",
-      subcategories: ["Movies", "Music", "Events", "Gaming"],
-      showSubcategories: true,
-    },
-    {
-      mainCategory: "Health & Fitness",
-      subcategories: ["Gym", "Yoga", "Nutrition", "Sports"],
-      showSubcategories: true,
-    },
-    {
-      mainCategory: "Technology",
-    },
-    {
-      mainCategory: "Fashion",
-    },
-    {
-      mainCategory: "Home & Garden",
-    },
-    {
-      mainCategory: "Education",
-    },
-    {
-      mainCategory: "Sports",
-    },
-    {
-      mainCategory: "Books & Literature",
-    },
+  public cats: any[] = [
+   
   ];
+
   public slides = [
-    {
-      src: '../../../assets/slider/slider0.jpg',
-      title: 'Spring Fashion Extravaganza',
-      subtitle: 'Get Ready for the Season\'s Hottest Styles',
-    },
-    {
-      src: '../../../assets/slider/slider1.jpg',
-      title: 'Exclusive Discounts Inside',
-      subtitle: 'Shop Now for Unbeatable Savings',
-    },
-    {
-      src: '../../../assets/slider/slider2.jpg',
-      title: 'Elevate Your Style',
-      subtitle: 'Discover Premium Fashion Choices',
-    },
-    {
-      src: '../../../assets/slider/slider3.jpg',
-      title: 'New Arrivals Every Week',
-      subtitle: 'Stay Ahead of the Fashion Curve',
-    },
+   
   ];
   
   constructor (private productS:ProductService,private router: Router,private http: HttpClient){}
@@ -119,7 +65,6 @@ export class NavbarComponent implements OnInit,AfterViewInit {
 
 
   ngOnInit(): void {   
-
     const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
@@ -137,28 +82,43 @@ export class NavbarComponent implements OnInit,AfterViewInit {
     } catch (error) {
       
     }
-  }
-;
 
-  public toggleSubcategories(category: string): void {
-    // Set all categories' showSubcategories to false
-    this.categoriesWithSubcategories.map((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
-      item.showSubcategories = true;
-    });
+    this.getAllCategories().subscribe(
+      (res:any)=>{
+        this.cats = res;
+        console.log(res);
+        
+      },(err:any)=>{
+        console.log(err);
+        
+      }
+    )
+
+  }
+
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}`);
+  }
+
+  // public toggleSubcategories(category: string): void {
+  //   // Set all categories' showSubcategories to false
+  //   this.categoriesWithSubcategories.map((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
+  //     item.showSubcategories = true;
+  //   });
     
   
-    // Find the selected category and toggle its showSubcategories
-    const foundCategory = this.categoriesWithSubcategories.find((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
-      return item.mainCategory === category;
-    });
-    console.log(foundCategory);
+  //   // Find the selected category and toggle its showSubcategories
+  //   const foundCategory = this.categoriesWithSubcategories.find((item: { mainCategory: string, subcategories?: string[], showSubcategories?: boolean }) => {
+  //     return item.mainCategory === category;
+  //   });
+  //   console.log(foundCategory);
   
-    if (foundCategory) {
-      foundCategory.showSubcategories = !foundCategory.showSubcategories;
-    }
+  //   if (foundCategory) {
+  //     foundCategory.showSubcategories = !foundCategory.showSubcategories;
+  //   }
 
-    console.log(foundCategory);
-  }
+  //   console.log(foundCategory);
+  // }
   
   public closeNavbar(){
     this.isOpen = false;
