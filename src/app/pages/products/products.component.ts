@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
   public showDate: boolean = true;
 
   public isLoading: boolean = false;
-  
+
   public tags: any[] = [];
   public cats: any[] = [];
 
@@ -79,6 +79,21 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
   
+    this.getAllTags().subscribe((res:any)=>{
+      this.tags = res;
+    },(err:any)=>{
+      console.log(err);
+      
+    })
+
+    this.getAllCategories().subscribe((res:any)=>{
+      this.cats = res;
+      
+    },(err:any)=>{
+      console.log(err);
+      
+    })
+    
     this.route.queryParams.subscribe((queryParams: any) => {
       this.searchTerm = queryParams.search || '';
   
