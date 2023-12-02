@@ -16,7 +16,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductsComponent } from './pages/products/products.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ClipboardModule } from 'ngx-clipboard';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MangeOrdersComponent } from './pages/mange-orders/mange-orders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -71,7 +71,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     AlertModule,
     MatMenuModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

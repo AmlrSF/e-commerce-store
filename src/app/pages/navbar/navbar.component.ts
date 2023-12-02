@@ -4,7 +4,7 @@ import { ProductService } from 'src/app/product.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -49,6 +49,12 @@ export class NavbarComponent implements OnInit,AfterViewInit {
   currentRouteURL = this.router.url.substring(1);
   public result:any;
   public auth:boolean = false;
+  public searchTerm: string = '';
+  
+  public  searchProducts() {
+  
+    this.router.navigate(['/products'], { queryParams: { search: this.searchTerm } });
+  }
 
   public logout(){
      // Remove the token from local storage

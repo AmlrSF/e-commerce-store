@@ -98,28 +98,13 @@
                     <ul>
                       <li class=" relative" *ngFor="let cat of cats">
                         <a
-                          href="#"
-                          class="font-medium h-[46px] flex items-center gap-1  text-xl "
-                        
+                            [routerLink]="['/products']"
+                            [queryParams]="{ category: cat.name }"
+                          class="font-medium h-[46px] flex items-center gap-1  text-xl "                        
                         >
                             <i class="ri-bear-smile-line"></i>
                             <span class="text-gray-500 text-xl font-medium ">{{ cat.name }}</span>
-                            <!-- <div class="ml-auto">
-                                <i
-                                class="ri-arrow-right-s-line"
-                                *ngIf="maincategory.subcategories"
-                                ></i>
-                            </div> -->
                         </a>
-                            <!-- <ul
-                                *ngIf="maincategory.subcategories"
-                                [hidden]="maincategory.showSubcategories"
-                                class="z-99"
-                            >
-                                <li class="py-1" *ngFor="let subCategory of maincategory.subcategories">
-                                    <a  class="text-xl font-normal leading-[20px]  pl-[1.3em]" href="#">{{ subCategory }}</a>
-                                </li>
-                            </ul> -->
                       </li>
                     </ul>
                   </div>
@@ -195,7 +180,7 @@
                     <div class="relative z-10 ">
                         <div (click)="togglecats()" class="relative w-[300px] mb-[-1.2em] px-3 text-[#fff] py-6 bg-[#ff6b6b] rounded-t-lg">
                             <div class="">All Department</div>
-                            <div class="text-xs text-[#f2f3f5]">Total 1059 products</div>
+                            <div class="text-xs text-[#f2f3f5]">Total 20 products</div>
                  
                             <div  class="absolute right-0 h-[60px] w-[60px] top-0 p-[1.3em]">
                                 <div *ngIf="isopencats; then thenBlock else elseBlock"></div>
@@ -207,52 +192,32 @@
                             <ul>
                               <li class="border-t relative" *ngFor="let cat of cats">
                                 <a
-                                  href="#"
+                                    [routerLink]="['/products']"
+                                    [queryParams]="{ category: cat.name }"
                                   class="category font-medium h-[46px] flex items-center gap-3 text-xl px-[1.5em]"
-                                  
-                                >
+                                                                >
                                   <i class="ri-bear-smile-line"></i>
                                   <span class="text-gray-500">{{ cat.name }}</span>
-                                  <div class="ml-auto">
-                                    <!-- <i
-                                      class="ri-arrow-right-s-line"
-                                      *ngIf="maincategory.subcategories"
-                                    ></i>
-                                     -->
-                                  </div>
-                                  <!-- <ul
-                                  class="subcategories absolute border-t
-                                   border-t-[#e5e8ec]  h-[100%] left-[105%] w-[200px] top-0 transition-all duration-300 ease-in-out"
-                                  *ngIf="maincategory.subcategories"
-                                  [hidden]="maincategory.showSubcategories"
-                                >
-                                  <li class="bg-white border-r border-r-[#e5e8ec] 
-                                    border-b border-b-[#e5e8ec] border-l border-l-[#e5e8ec] 
-                                    flex items-center hover:pl-10 transition h-[46px]  text-xl px-3" 
-                                    *ngFor="let subCategory of maincategory.subcategories">
-                                    <a href="#">{{ subCategory }}</a>
-                                  </li>
-                                </ul> -->
-                                </a>
-                                
-                                
+                                  <div class="ml-auto">           
+                                  </div>                      
+                                </a>                   
                               </li>
                             </ul>
                           </div>
                           
                     </div>
                 </div>
-                <div class="right flex-1 w-full  md:max-w-[400px] lg:max-w-[600px]">
-                    <div class="relative overflow-hidde">
-                        <span class=" absolute  
-                              top-[5px] text-[#ff6b6b] left-3 text-[20px]   h-full"><i class="ri-search-line"></i></span>
-                        <input class="border-0 text-2xl overflow-hidden rounded-[10px] text-[0.9em] font-light w-full outline-none pr-[7em] pl-[3em] leading-[3.25em]" type="text" placeholder="Search for products">
-                        <button  class="rounded-r-lg  absolute
-                         top-0 px-[1.5em] py-[0.55em] bg-[#ff6b6b] 
-                          text-[#f2f3f5] h-full right-0 border-0
-                           outline-none text-[1em] font-semibold">Search</button>
+                <div class="right flex-1 w-full md:max-w-[400px] lg:max-w-[600px]">
+                    <div class="relative overflow-hidden">
+                      <span class="absolute top-[5px] text-[#ff6b6b] left-3 text-[20px] h-full"><i class="ri-search-line"></i></span>
+                      
+                      <input [(ngModel)]="searchTerm" class="border-0 text-2xl overflow-hidden rounded-[10px] 
+                      text-[0.9em] font-light w-full outline-none pr-[7em] pl-[3em] leading-[3.25em]" type="text" placeholder="Search for products">
+                      
+                      <button (click)="searchProducts()" class="rounded-r-lg absolute top-0 px-[1.5em] py-[0.55em] bg-[#ff6b6b] text-[#f2f3f5] h-full right-0 border-0 outline-none text-[1em] font-semibold">Search</button>
                     </div>
-                </div>
+                  </div>
+                  
             </div>
         </div>
     </div>
