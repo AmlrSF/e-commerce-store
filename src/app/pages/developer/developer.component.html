@@ -5,7 +5,7 @@
             E-commerce Api
             <span class="absolute top-0 
             right-[-50px] bg-gray-700 text-white px-2 text-lg rounded-md">
-                1.0
+                2.1
             </span>
         </h1>
         <p class="text-muted-foreground font-thin mt-5 leading-5 text-lg mb-10">
@@ -98,5 +98,84 @@
             </div>
           </div> 
 
+        <div class="flex flex-col">
+          <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+            <i class="mr-2 fa-solid fa-hashtag"></i>Billboards Api
+          </h1>
+          <div class="px-8">
+            <div *ngFor="let billboard of listBillboard" class="flex flex-col mb-4">
+              <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ billboard.label }}</p>
+              <div [class]="{
+                'bg-[rgba(97,175,254,.1)]': billboard.color === '#61affe',
+                'bg-[rgba(73,204,144,.1)]': billboard.color === '#49cc90',
+                'bg-[rgba(249,62,62,.1)]': billboard.color === '#f93e3e',
+                'bg-[rgba(252,161,48,.1)]': billboard.color === '#fca130'
+              }" class="flex gap-3 items-center justify-between rounded-sm border p-2" [style.border-color]="billboard.color">
+                <div class="flex gap-3 items-center">
+                  <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="billboard.color">{{ billboard.method }}</span>
+                  <p #apiUrl class="text-[20px] font-medium">{{ billboard.url }}</p>
+                </div>
+                <div class="pr-3">
+                  <i (click)="copyLink(billboard)" [class]="{ 'fa-check': billboard.isCopied, 'fa-copy': !billboard.isCopied }"
+                    class="fa-solid text-xl font-bold" [style.color]="billboard.color"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+
+        <div class="flex flex-col">
+          <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+            <i class="mr-2 fa-solid fa-hashtag"></i>Category Api
+          </h1>
+          <div class="px-8">
+            <div *ngFor="let cat of listCategory" class="flex flex-col mb-4">
+              <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ cat.label }}</p>
+              <div [class]="{
+                'bg-[rgba(97,175,254,.1)]': cat.color === '#61affe',
+                'bg-[rgba(73,204,144,.1)]': cat.color === '#49cc90',
+                'bg-[rgba(249,62,62,.1)]': cat.color === '#f93e3e',
+                'bg-[rgba(252,161,48,.1)]': cat.color === '#fca130'
+              }" class="flex gap-3 items-center justify-between rounded-sm border p-2" [style.border-color]="cat.color">
+                <div class="flex gap-3 items-center">
+                  <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="cat.color">{{ cat.method }}</span>
+                  <p #apiUrl class="text-[20px] font-medium">{{ cat.url }}</p>
+                </div>
+                <div class="pr-3">
+                  <i (click)="copyLink(cat)" [class]="{ 'fa-check': cat.isCopied, 'fa-copy': !cat.isCopied }"
+                    class="fa-solid text-xl font-bold" [style.color]="cat.color"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="flex flex-col">
+          <h1 class="text-xl md:text-3xl mb-5 text-green-600 underline sm:text-2xl font-bold">
+            <i class="mr-2 fa-solid fa-hashtag"></i>Tags Api
+          </h1>
+          <div class="px-8">
+            <div *ngFor="let tag of listTags" class="flex flex-col mb-4">
+              <p class="text-lg text-black leading-5 mb-1 font-medium capitalize">{{ tag.label }}</p>
+              <div [class]="{
+                'bg-[rgba(97,175,254,.1)]': tag.color === '#61affe',
+                'bg-[rgba(73,204,144,.1)]': tag.color === '#49cc90',
+                'bg-[rgba(249,62,62,.1)]': tag.color === '#f93e3e',
+                'bg-[rgba(252,161,48,.1)]': tag.color === '#fca130'
+              }" class="flex gap-3 items-center justify-between rounded-sm border p-2" [style.border-color]="tag.color">
+                <div class="flex gap-3 items-center">
+                  <span class="text-[20px] font-bold text-white px-3 py-1 rounded-sm" [style.background-color]="tag.color">{{ tag.method }}</span>
+                  <p #apiUrl class="text-[20px] font-medium">{{ tag.url }}</p>
+                </div>
+                <div class="pr-3">
+                  <i (click)="copyLink(tag)" [class]="{ 'fa-check': tag.isCopied, 'fa-copy': !tag.isCopied }"
+                    class="fa-solid text-xl font-bold" [style.color]="tag.color"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </div>

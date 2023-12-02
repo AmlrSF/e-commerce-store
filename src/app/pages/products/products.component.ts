@@ -197,11 +197,6 @@ export class ProductsComponent implements OnInit {
   }
   
 
-
-
-
-
-
   onSubmit() {
     if (this.productForm.valid) {
       this.filteredProducts = this.productForm.valueChanges.pipe(
