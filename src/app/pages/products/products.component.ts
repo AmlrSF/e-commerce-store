@@ -6,6 +6,7 @@ import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -30,8 +31,14 @@ export class ProductsComponent implements OnInit {
   public showDate: boolean = true;
 
   public isLoading: boolean = false;
+  
+  public tags: any[] = [];
+  public cats: any[] = [];
 
-  constructor(private fb: FormBuilder, private productS: ProductService,private route: ActivatedRoute) {
+  private baseUrl = 'http://localhost:3000/api/v1/categories';
+  private baseUrl1 = 'http://localhost:3000/api/v1/tags';
+
+  constructor(private fb: FormBuilder,private http:HttpClient, private productS: ProductService,private route: ActivatedRoute) {
     this.productForm = this.fb.group({
       category: [''],
       tag: [''],
@@ -58,6 +65,15 @@ export class ProductsComponent implements OnInit {
         break;
       // Add more cases if needed
     }
+  }
+
+  
+  getAllTags(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl1}`);
+  }
+
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}`);
   }
 
   ngOnInit(): void {
