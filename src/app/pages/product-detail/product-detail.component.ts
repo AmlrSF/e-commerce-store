@@ -11,7 +11,7 @@ export class ProductDetailComponent implements OnInit{
 
   public product: any = {};
   public itemId:any;
-
+  public relatedProducts:any[]=[];
   constructor (
     private productS:ProductService,
     private route: ActivatedRoute,
@@ -52,7 +52,18 @@ export class ProductDetailComponent implements OnInit{
           (res)=>{
             this.product = res.data 
             console.log(res);
-           
+               // Fetch all products and filter by the same category
+          this.productS.getProducts().subscribe(
+            (allProductsRes: any) => {
+              const allProducts = allProductsRes.data;
+
+              if (this.product.category) {
+                this.relatedProducts = allProducts.filter((product:any) => product.category === this.product.category && this.product._id != product._id );
+                console.log(this.relatedProducts);
+              }
+            },
+            (allProductsErr) => console.log(allProductsErr)
+          );
           },
           (err)=>console.log(err)
           
@@ -61,21 +72,23 @@ export class ProductDetailComponent implements OnInit{
     })
   }
 
+  
+
   public formatPrice(price:any) {
     if (typeof price === 'string') {
-      // If the price is a string, check for the presence of '$' symbol.
+      
       if (price.includes('$')) {
-        // If '$' is on the left, move it to the right.
+       
         return price.replace('$', '') + '$';
       } else {
-        // If '$' is not present, add it to the right.
+       
         return price + '$';
       }
     } else if (typeof price === 'number') {
-      // If the price is a number, convert it to a string and add '$' on the right.
+   
       return price.toString() + '$';
     } else {
-      // Handle other cases, e.g., when the data is not a string or a number.
+     
       return 'N/A';
     }
   }
@@ -127,5 +140,34 @@ export class ProductDetailComponent implements OnInit{
     return this.productS.isInCart(this.product);
   }
     
+
+  //=================
+    // Function to handle clicking the heart icon
+    toggleFavoriteIconRP(product: any) {
+      if (this.productS.isFavorite(product)) {
+        this.productS.removeFromFavorites(product);
+      } else {
+        this.productS.addToFavorites(product);
+      }
+    }
+  
+    // Function to check if a product is a favorite
+    isFavoriteRP(product: any): boolean {
+      return this.productS.isFavorite(product);
+    }
+  
+    // Function to handle clicking the cart icon
+    toggleCartIconRP(product: any) {
+      if (this.productS.isInCart(product)) {
+        this.productS.removeFromCart(product);
+      } else {
+        this.productS.addToCart(product);
+      }
+    }
+  
+    // Function to check if a product is in the cart
+    isInCartRP(product: any): boolean {
+      return this.productS.isInCart(product);
+    }
 
 }
