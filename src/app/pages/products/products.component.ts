@@ -4,7 +4,8 @@ import { ProductService } from 'src/app/product.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -22,7 +23,7 @@ export class ProductsComponent implements OnInit {
   public products: any[] = [];
   public filteredProducts: Observable<any[]> | undefined; // Use Observable for async pipe
   public productForm: FormGroup;
-
+  public searchTerm:string="";
   public showCategory: boolean = true;
   public showTags: boolean = true;
   public showPrice: boolean = true;
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
   public isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private productS: ProductService) {
+  constructor(private fb: FormBuilder, private productS: ProductService,private route: ActivatedRoute) {
     this.productForm = this.fb.group({
       category: [''],
       tag: [''],
@@ -61,23 +62,57 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+  
+    this.route.queryParams.subscribe((queryParams: any) => {
+      this.searchTerm = queryParams.search || '';
+  
+      this.productForm.patchValue({
+        category: queryParams.category || '',
+        tag: queryParams.tag || '',
+      });
+    });
+  
     this.productS.getProducts().subscribe(
       (res: any) => {
         this.products = res.data;
   
-        
-        this.filteredProducts = this.productForm.valueChanges.pipe(
-          startWith(this.productForm.value), 
-          map(() => this.filterProducts())
-        );
+        // Apply filtering based on the search term
+        if (this.searchTerm) {
+          this.filteredProducts = of(
+            this.products.filter((product) => this.containsSearchTerm(product))
+          );
+        } else {
+          // Apply filtering based on form values
+          this.filteredProducts = this.productForm.valueChanges.pipe(
+            startWith(this.productForm.value),
+            map(() => this.filterProducts())
+          );
+        }
   
         this.isLoading = false;
       },
       (err) => {
         console.log(err);
+        this.isLoading = false; // Ensure isLoading is set to false in case of an error
       }
     );
   }
+  
+  public containsSearchTerm(product: any): boolean {
+    const lowerCasedSearchTerm = this.searchTerm.toLowerCase();
+  
+    
+    return (
+      product.name.toLowerCase().includes(lowerCasedSearchTerm) ||
+      product.description.toLowerCase().includes(lowerCasedSearchTerm) ||
+      product.discount.toLowerCase().includes(lowerCasedSearchTerm) ||
+      product.category.toLowerCase().includes(lowerCasedSearchTerm) ||
+      product.tag.toLowerCase().includes(lowerCasedSearchTerm) ||
+      product.price.toString().includes(lowerCasedSearchTerm)
+
+    );
+  }
+
   filterProducts() {
     const formData = this.productForm.value;
   
@@ -130,6 +165,12 @@ export class ProductsComponent implements OnInit {
     return productDate >= currentDate;
   }
   
+
+
+
+
+
+
   onSubmit() {
     if (this.productForm.valid) {
       this.filteredProducts = this.productForm.valueChanges.pipe(
