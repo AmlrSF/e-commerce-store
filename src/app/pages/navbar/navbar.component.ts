@@ -59,7 +59,8 @@ export class NavbarComponent implements OnInit,AfterViewInit {
   public logout(){
      // Remove the token from local storage
      localStorage.removeItem('token');
-
+      localStorage.removeItem('favorites');
+      localStorage.removeItem('cart');
      // Redirect to the login page
      this.router.navigate(['/login']); // Adjust the route path based on your actual login route
   }
