@@ -27,3 +27,17 @@ color: #fe8181;
 .scale-image:hover{
   transform: scale(1.1);
 }
+
+.categories{
+  display: flex;
+  gap:5px;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 10px 0;
+  overflow-x: auto;
+}
+
+.category{
+  border: 0;
+  
+}

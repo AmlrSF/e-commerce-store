@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { ProductService } from 'src/app/product.service';
 
@@ -13,9 +14,9 @@ export class HomeComponent implements OnInit {
   public isLoading:boolean = false;
   //all sildes 
   public slides:{image:string,description:string ,header:string}[] = [
-    
   ];
   
+  public cats:any[] = [];
   
  
   public products: any[] = [];
@@ -26,12 +27,17 @@ export class HomeComponent implements OnInit {
 
   private baseUrl = 'http://localhost:3000/api/v1/billboards';
 
+  private baseUrlcats = 'http://localhost:3000/api/v1/categories';
+
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlcats}`);
+  }
 
 
 
   ngOnInit(): void {
 
-   
+    this.isLoading = true;
       this.http.get(`${this.baseUrl}`).subscribe(
         (res: any) => {
           this.slides = res;
@@ -41,9 +47,15 @@ export class HomeComponent implements OnInit {
         }
       );
     
+      this.getAllCategories().subscribe((res:any)=>{
+        this.cats = res;
+      },(err:any)=>{
+        console.log(err);
+        
+      })
 
     this.token = localStorage.getItem('token') || "";
-    this.isLoading = true;
+    
     this.productS.getProducts().subscribe(
       (res:any)=>{
         this.products = res.data;
