@@ -56,9 +56,6 @@
     </div>
 </div>
 
-
-
-
 <div *ngIf="showEditForm" id="edit" class="container flex items-center justify-center">
     <form [formGroup]="accountForm" class="w-full sm:w-[540px]" (ngSubmit)="onSubmit()">
         <h1 class="text-center text-3xl sm:text-4xl  
@@ -122,8 +119,9 @@
                         <mat-label>Tel </mat-label>
                         <input matInput formControlName="phoneNumber" placeholder="Ex. Pizza" value="pass">
                     </mat-form-field> 
-                    <button type="submit" class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">Edit profile</button>
-
+                    <button type="submit" class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">
+                        {{isLoading ? "Editing.../" : "Edit" }}
+                    </button>
                 </div>
             </div>    
         </div>

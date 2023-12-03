@@ -74,7 +74,7 @@
                         <ng-template matStepLabel>Step 3</ng-template>
                         <div class="flex flex-col gap-2">
                             <button type="submit"
-                                class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>
+                                class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">{{isLoading ? "Please wait while Registeration..." :  "Register"}}</button>
                             <a class="text-muted-foreground mt-2" (click)="navigateToLoin()">already have an account ?</a>
                         </div>
                     </mat-step>

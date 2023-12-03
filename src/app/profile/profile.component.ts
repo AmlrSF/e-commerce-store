@@ -14,10 +14,17 @@ import { ProductService } from '../product.service';
 export class ProfileComponent implements OnInit{
   
   public imageUrl: string = '';
+
   public accountForm!: FormGroup;
+
   public result : any;
+
   public orders:any;
+
   public favs : any[] = [];
+
+  public isLoading:boolean = false;
+
   public showEditForm:boolean = false;
   constructor(
     private productS:ProductService,
@@ -26,7 +33,9 @@ export class ProfileComponent implements OnInit{
     private orderS:OrdersService,
     private fb:FormBuilder
     ){
+
       this.accountForm = this.fb.group({
+
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
@@ -164,12 +173,13 @@ export class ProfileComponent implements OnInit{
       formValues['profileImage'] = this.imageUrl;
 
       console.log(formValues);
-      
+      this.isLoading = true;
 
       // Example: Update the user profile using an API call
       this.http.put(`http://localhost:3000/api/v1/customers/${this.result._id}`, formValues).subscribe(
         (res) => {
           console.log('Profile updated successfully:', res);
+          this.isLoading = false;
           this.fetchProfileInfo();
           this.openEditForm();
           //

@@ -18,6 +18,8 @@ export class RegisterComponent implements OnInit{
 
   public isShow: boolean = false;
 
+  public isLoading:boolean = false;
+
   constructor(
     private fb: FormBuilder,
      private router: Router,
@@ -84,16 +86,16 @@ export class RegisterComponent implements OnInit{
   
       try {
         console.log(this.accountForm.value);
-  
+        this.isLoading = true;
         this.http.post(this.apiUrl, this.accountForm.value).subscribe(
           (res: any) => {
             console.log(res);
-  
+            this.isLoading = false;
             if (res.success === false && res.error === 'Email already in use') {
               this.isShow = true;
               setTimeout(() => {
                 this.isShow = false;
-              }, 3000);
+              }, 5000);
             }
 
             if(res.success === true) {
