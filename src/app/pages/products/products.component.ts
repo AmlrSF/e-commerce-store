@@ -22,23 +22,37 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit {
   public products: any[] = [];
+
   public filteredProducts: Observable<any[]> | undefined; // Use Observable for async pipe
+
   public productForm: FormGroup;
+
   public searchTerm:string="";
+
   public showCategory: boolean = true;
+
   public showTags: boolean = true;
+
   public showPrice: boolean = true;
+
   public showDate: boolean = true;
 
   public isLoading: boolean = false;
 
   public tags: any[] = [];
+
   public cats: any[] = [];
 
   private baseUrl = 'http://localhost:3000/api/v1/categories';
+
   private baseUrl1 = 'http://localhost:3000/api/v1/tags';
 
-  constructor(private fb: FormBuilder,private http:HttpClient, private productS: ProductService,private route: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private http:HttpClient, 
+    private productS: ProductService,
+    private route: ActivatedRoute
+  ) {
     this.productForm = this.fb.group({
       category: [''],
       tag: [''],
@@ -49,6 +63,7 @@ export class ProductsComponent implements OnInit {
     
   }
 
+  //toggle sections
   toggleSection(section: string) {
     switch (section) {
       case 'category':

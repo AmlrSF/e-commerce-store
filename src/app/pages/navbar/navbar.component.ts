@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit,AfterViewInit {
   public  searchProducts() {
   
     this.router.navigate(['/products'], { queryParams: { search: this.searchTerm } });
+    
   }
 
   public logout(){
