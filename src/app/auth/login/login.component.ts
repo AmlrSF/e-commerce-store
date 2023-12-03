@@ -11,23 +11,36 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class LoginComponent implements OnInit{
   public accountForm!: FormGroup;
+
   private apiUrl = 'http://localhost:3000/api/v1/customers/login';
+
   public isShow: boolean = false;
+
   public isShow1: boolean = false;
-  public hide:boolean = true;;
+
+  public hide:boolean = true;
+
   ngOnInit(): void {
     this.initForm();
   }
 
   
-  constructor(private fb: FormBuilder, private router: Router, private auth : AuthService,private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+     private router: Router,
+      private auth : AuthService,
+      private http: HttpClient
+  ) {}
 
 
   initForm(): void {
     this.accountForm = this.fb.group({
+
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+
     });
+
     const gettoken = localStorage.getItem('token'); 
     let token = {
       token : gettoken
@@ -36,6 +49,7 @@ export class LoginComponent implements OnInit{
     try {
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res : any)=>{
+          
           console.log(res);
           if(res.success){
             this.router.navigate(['/']);

@@ -11,28 +11,44 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class RegisterComponent implements OnInit{
   public imageUrl: string = '';
+
   public accountForm!: FormGroup;
+
   private apiUrl = 'http://localhost:3000/api/v1/customers/register';
+
   public isShow: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth : AuthService,private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+     private router: Router,
+      private auth : AuthService,
+      private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     
     this.initForm();
     const gettoken = localStorage.getItem('token'); 
+
     let token = {
       token : gettoken
     }
+
     try {
+
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
+
           console.log(res);
           if(res.success){
+
             this.router.navigate(['/']);
+
           }
         },err=>{
+
           console.log(err);
+
         }
       )
     } catch (error) {
@@ -42,20 +58,29 @@ export class RegisterComponent implements OnInit{
 
   initForm(): void {
     this.accountForm = this.fb.group({
+
       firstName: ['', Validators.required],
+
       lastName: ['', Validators.required],
+
       email: ['', [Validators.required, Validators.email]],
+
       password: ['', Validators.required],
+
       phoneNumber: ['',Validators.required],
+
       profileImage: ['',Validators.required],
+
       bio:['',Validators.required]
     });
   }
 
 
   onSubmit(): void {
+
     if (this.accountForm.valid) {
       this.accountForm.value['profileImage'] = this.imageUrl;
+
   
       try {
         console.log(this.accountForm.value);
@@ -87,6 +112,8 @@ export class RegisterComponent implements OnInit{
     }
   }
 
+
+  //routing
   public navigateToLoin(){
     this.router.navigate(['/login']);
   }

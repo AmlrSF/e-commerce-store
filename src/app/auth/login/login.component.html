@@ -1,50 +1,50 @@
-
-
 <div class="h-[100vh] flex items-center flex-col justify-center">
-    <a routerLink="/" class="absolute sm:top-[30px] text-bold text-lg cursor-pointer left-[10px] top-[10px] sm:left-[30px] home-link">
+    <a routerLink="/"
+        class="absolute sm:top-[30px] text-bold text-lg cursor-pointer left-[10px] top-[10px] sm:left-[30px] home-link">
         <i class="fa-solid fa-arrow-left"></i> Home
     </a>
-    
-<div>
-    <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
-        <h1 class="text-center text-3xl sm:text-4xl text-[#ff6b66] md:text-7xl font-bold text mb-10 mt-10">Sign In.</h1>
-        <div class="sm:w-[650px] w-full mx-auto">
-            <div class="flex flex-col mt-10 gap-2">
-                <mat-form-field class="example-full-width">
-                    <mat-label>email </mat-label>
-                    <input matInput placeholder="Ex. Pizza@gma" formControlName="email" >
-                </mat-form-field>   
-
-                <mat-form-field class="example-full-width">
-                    <mat-label>password </mat-label>
-                    <input matInput placeholder="Ex. pass"
-                    [type]="hide ? 'password' : 'text'" formControlName="password" >
-                     <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                      </a>
-                </mat-form-field>        
-                <div class="flex flex-col gap-2">
-                    <button type="submit" class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>
-                    <a class="text-muted-foreground mt-2" (click)="navigateToRegister()">already have an account ?</a>
-                    <!-- <button mat-button matStepperPrevious>Back</button> -->
-                </div> 
+    <div>
+        <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+            <h1 class="text-center text-3xl sm:text-4xl text-[#ff6b66] md:text-7xl font-bold text mb-10 mt-10">Sign In.
+            </h1>
+            <div class="sm:w-[650px] w-full mx-auto">
+                <div class="flex flex-col mt-10 gap-2">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>email </mat-label>
+                        <input matInput placeholder="Ex. Pizza@gma" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>password </mat-label>
+                        <input matInput placeholder="Ex. pass" [type]="hide ? 'password' : 'text'"
+                            formControlName="password">
+                        <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </a>
+                    </mat-form-field>
+                    <div class="flex flex-col gap-2">
+                        <button type="submit"
+                            class="bg-[#ff6b66] mt-5 p-3 text-xl font-medium rounded-lg text-white">Submit</button>
+                        <a class="text-muted-foreground mt-2" (click)="navigateToRegister()">already have an account
+                            ?</a>
+                        <!-- <button mat-button matStepperPrevious>Back</button> -->
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
-        
-            
-    <div *ngIf="isShow">
-        <c-alert color="danger"  class="absolute top-[10px] 
+        </form>
+        <div *ngIf="isShow">
+            <c-alert color="danger"
+                class="absolute top-[10px] 
         right-[10px] flex gap-3 items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
-        <div>email already used</div>
-    </c-alert> 
-    </div>
-    <div *ngIf="isShow1">
-        <c-alert color="danger"  class="absolute top-[60px] 
+                <div>email already used</div>
+            </c-alert>
+        </div>
+        <div *ngIf="isShow1">
+            <c-alert color="danger"
+                class="absolute top-[60px] 
             right-[10px] flex gap-3 items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
-            <div>wrong password</div>
-        </c-alert>
+                <div>wrong password</div>
+            </c-alert>
+        </div>
     </div>
-</div>
-  
 </div>
