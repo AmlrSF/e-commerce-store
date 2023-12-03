@@ -2,19 +2,22 @@
 <div class="container  h-[160vh] sm:h-[100vh]">
     <div class="bg-slate-300 border border-[#ff6b6b] flex items-center   
      relative rounded-b-3xl sm:justify-start justify-center h-[200px] w-full">
-        <div class="h-[130px] w-[130px] bg-white sm:ml-[120px] mb-[-150px] flex items-center justify-center  rounded-full">
+        <div
+            class="h-[130px] w-[130px] bg-white sm:ml-[120px] mb-[-150px] flex items-center justify-center  rounded-full">
             <img [src]="result.profileImage" alt="" class="rounded-full h-[120px] w-[120px]">
         </div>
     </div>
     <div class="sm:flex  relative   items-start mt-[50px] h-[500px] gap-5">
-        <div class="sm:w-[350px] sm:mb-0 mb-10  border border-[#ff6b6b] flex flex-col gap-5 shadow-lg  h-full bg-[#fff]  w-full  p-4 rounded-lg   text-center">
+        <div
+            class="sm:w-[350px] sm:mb-0 mb-10  border border-[#ff6b6b] flex flex-col gap-5 shadow-lg  h-full bg-[#fff]  w-full  p-4 rounded-lg   text-center">
             <h1 class="text-3xl font-bold">{{result.lastName}} {{result.firstName}}</h1>
             <p class="text-muted-foreground">{{result.bio}}</p>
 
             <ul class="mt-5 flex items-start flex-1 flex-col gap-5">
                 <li class="flex-col flex  items-start justify-between gap-1 ">
                     <span class="text-xl font-medium">first Name</span>
-                    <p class="text-foreground text-lg font-thin leading-3 flex gap-3 items-center">{{result.firstName}}</p>
+                    <p class="text-foreground text-lg font-thin leading-3 flex gap-3 items-center">{{result.firstName}}
+                    </p>
                 </li>
                 <li class="flex-col flex  items-start justify-between gap-1 ">
                     <span class="text-xl font-medium">Last Name</span>
@@ -30,27 +33,46 @@
                 </li>
                 <li class="flex-col flex  items-start justify-between gap-1 ">
                     <span class="text-xl font-medium">Register Date</span>
-                    <p class="text-foreground text-lg font-thin  flex gap-3 items-center">{{formatReadableDate(result.registrationDate)}}</p>
+                    <p class="text-foreground text-lg font-thin  flex gap-3 items-center">
+                        {{formatReadableDate(result.registrationDate)}}</p>
                 </li>
             </ul>
 
-            <a href="/profile#edit" (click)="openEditForm()" class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">Edit profile</a>
+            <a href="/profile#edit" (click)="openEditForm()"
+                class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">Edit
+                profile</a>
         </div>
         <div class="flex-1 rounded-e-lg border border-[#ff6b6b] shadow-lg  rounded-lg h-full bg-[#fff]">
-            <mat-tab-group class="w-full">
-                <mat-tab label="Orders" class="bg-[#ff6b6b]"> 
+            <mat-tab-group class="w-full ">
+                <mat-tab label="Orders" class="bg-[#ff6b6b]">
                     <div class="p-10">
-                        <h1 class="text-xl flex items-center gap-3"><span class="font-medium text-2xl">[{{orders.orders.length}}]</span> <a 
-                            class="underline" routerLink="/orders">orders availble</a> </h1>
+                        <h1 class="text-xl flex items-center gap-3"><span
+                                class="font-medium text-2xl">[{{orders.orders.length}}]</span> <a class="underline"
+                                routerLink="/orders">orders availble</a> </h1>
                     </div>
                 </mat-tab>
                 <mat-tab label="Favorties ">
                     <div class="p-10">
-                        <h1 class="text-xl flex items-center gap-3"><span class="font-medium text-2xl">[{{favs.length}}]</span> <a 
-                            class="underline" routerLink="/Favs">Favorites Items</a> </h1>
+                        <h1 class="text-xl flex items-center gap-3"><span
+                                class="font-medium text-2xl">[{{favs.length}}]</span> <a class="underline"
+                                routerLink="/Favs">Favorites Items</a> </h1>
                     </div>
                 </mat-tab>
-                <mat-tab label="Settings"> Settings </mat-tab>
+                <mat-tab label="Comments">
+                    <div class="grid grid-cols-3">
+                        <div *ngFor="let comment of comments" class="border-b pb-5">
+
+                            <div class="mt-5 pl-10 flex justify-between items-center gap-5">
+                                <div class="flex-col flex gap-2">
+                                    <p class="text-slate-600 ">{{comment.content}}</p>
+                                    <a routerLink="/products/{{ comment.productId._id }}" class="underline">
+                                        comment in [{{comment.productId.name.slice(15)}}...]
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
             </mat-tab-group>
         </div>
     </div>
@@ -70,35 +92,29 @@
                     </mat-form-field>
                     <mat-form-field class="example-full-width w-full flex-1">
                         <mat-label>Last name</mat-label>
-                        <input matInput class="w-full" placeholder="Ex. Pizza"  formControlName="lastName">
+                        <input matInput class="w-full" placeholder="Ex. Pizza" formControlName="lastName">
                     </mat-form-field>
                 </div>
                 <div class="flex  w-full sm:flex-row flex-col gap-3 items-center">
                     <mat-form-field class="example-full-width w-full flex-1">
                         <mat-label>email </mat-label>
-                        <input matInput class="w-full" placeholder="Ex. Pizza@gma" formControlName="email" >
-                    </mat-form-field>   
+                        <input matInput class="w-full" placeholder="Ex. Pizza@gma" formControlName="email">
+                    </mat-form-field>
                     <mat-form-field class="example-full-width w-full flex-1">
                         <mat-label>New Password </mat-label>
-                        <input matInput placeholder="Ex. pass" type="password" formControlName="password" >
-                    </mat-form-field>  
-                </div>       
+                        <input matInput placeholder="Ex. pass" type="password" formControlName="password">
+                    </mat-form-field>
+                </div>
             </div>
-            <div class="flex items-start w-full flex-col sm:flex-row gap-3">           
+            <div class="flex items-start w-full flex-col sm:flex-row gap-3">
                 <div class="flex-1 w-full">
                     <div>
                         <!-- <label class="text-lg text-[#000] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="image">Image</label> -->
-                        <input
-                        type="file"
-                        id="image"
-                        formControlName="profileImage"
-                        (change)="onImageChange($event)"
-                        accept="image/*"
-                        class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg
-                         focus:ring-[#141414] focus:border-[#321fdb] outline-none w-full p-3"
-                        />
+                        <input type="file" id="image" formControlName="profileImage" (change)="onImageChange($event)"
+                            accept="image/*" class="bg-gray-50 hidden border-2 border-gray-300 text-gray-900 text-sm rounded-lg
+                         focus:ring-[#141414] focus:border-[#321fdb] outline-none w-full p-3" />
                     </div>
-                    
+
                     <div (click)="openImage()" class="cursor-pointer relative bg-gray-50 border-2 border-gray-300
                      text-gray-900 text-sm rounded-lg focus:ring-[#321fdb] focus:border-[#321fdb]   p-3 h-[230px] flex
                       justify-center items-center">
@@ -106,24 +122,26 @@
                             <img [src]="imageUrl" [alt]="imageUrl" class="w-full h-full object-contain" />
                         </ng-container>
                         <ng-template #noImage>
-                            <img src="../../assets/download.png" alt="preview" class=" w-full h-full object-contain opacity-40" />
+                            <img src="../../assets/download.png" alt="preview"
+                                class=" w-full h-full object-contain opacity-40" />
                         </ng-template>
                     </div>
                 </div>
-                <div class="flex flex-1 w-full flex-col   gap-2">                      
+                <div class="flex flex-1 w-full flex-col   gap-2">
                     <mat-form-field class="example-full-width">
                         <mat-label>Bio</mat-label>
-                        <textarea formControlName="bio"  matInput placeholder="Ex. It makes me feel..."></textarea>
+                        <textarea formControlName="bio" matInput placeholder="Ex. It makes me feel..."></textarea>
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <mat-label>Tel </mat-label>
                         <input matInput formControlName="phoneNumber" placeholder="Ex. Pizza" value="pass">
-                    </mat-form-field> 
-                    <button type="submit" class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">
+                    </mat-form-field>
+                    <button type="submit"
+                        class="w-full py-2 cursor-pointer justify-end items-end text-white bg-[#ff6b6b] rounded-lg font-medium">
                         {{isLoading ? "Editing.../" : "Edit" }}
                     </button>
                 </div>
-            </div>    
+            </div>
         </div>
     </form>
 </div>

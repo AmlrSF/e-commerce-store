@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { OrdersService } from '../orders.service';
 import { ProductService } from '../product.service';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,8 @@ export class ProfileComponent implements OnInit{
 
   public favs : any[] = [];
 
+  public comments : any[] = [];
+
   public isLoading:boolean = false;
 
   public showEditForm:boolean = false;
@@ -31,7 +34,8 @@ export class ProfileComponent implements OnInit{
     private http: HttpClient,
     private router : Router,
     private orderS:OrdersService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private commentS:CommentService
     ){
 
       this.accountForm = this.fb.group({
@@ -67,10 +71,24 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchProfileInfo();
+
+    
+    
+  }
+
+    public delete(id:string){
+    this.commentS.deleteCommentById(id)
+      .subscribe((res:any)=>{
+        console.log("deletd succesfully maniga");
+        
+      },(err:any)=>{
+        console.log(err);      
+      })
   }
 
  
   public fetchProfileInfo(){
+    
     this.favs = this.productS.getFavorites();
     const gettoken = localStorage.getItem('token'); 
     let token = {
@@ -94,6 +112,16 @@ export class ProfileComponent implements OnInit{
                   console.error('Error fetching orders:', error);
                 }
               );
+              this.commentS.getCommentsByCostumer(res.customer._id).subscribe(
+                (res:any)=>{
+                  this.comments = res;
+                  console.log(res);
+                  
+                },(err:any)=>{
+                  console.log(err);
+                  
+                }
+              )
             }else{
               this.router.navigate(['/login']);
             }
