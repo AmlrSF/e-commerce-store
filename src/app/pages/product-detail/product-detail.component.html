@@ -79,6 +79,48 @@
         </div>
    
     </div>
+    <div class="comment">
+        <div class=" w-full sm:w-[650px] rounded-lg">
+            <h1 class="mt-5 mb-5 text-xl font-bold">Add a comment here</h1>
+            <form class="flex sm:flex-row flex-col sm:items-start gap-5" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+              <div class="form-group mb-3 flex-1">
+                <textarea id="description" formControlName="content" class="bg-gray-50 h-[100px]
+                 border-2 w-full border-gray-300 text-gray-900 text-sm rounded-lg 
+                            focus:ring-[#321fdb] focus:border-[#321fdb] 
+                             outline-none block  p-3 " 
+                  placeholder="Enter a Description">
+                </textarea>
+              </div>
+              <button class="bg-[#ff6b6b] px-4 rounded-lg text-white font-medium py-2" type="submit">{{isLoading ? "Commenting" : editMode ? "Edit":"Comment" }}</button>
+            </form>
+          </div>
+          <div class="flex flex-col gap-3 mt-10 w-full sm:w-[650px]">     
+            <div *ngFor="let comment of comments" class="bg-[#eee] p-4  shadow-sm rounded-lg ">                
+                    <div class="flex items-center justify-between gap-5  pb-2 border-black border-b-2 ">
+                        <div class="flex gap-2 items-center">
+                            <img [src]="comment.customerId.profileImage"
+                            alt="image" class="h-[35px] w-[35px] rounded-full">
+                        <h1 class="text-xl font-medium">{{comment.customerId.firstName}}
+                                {{comment.customerId.lastName}}</h1>
+                        </div>
+                        <div *ngIf="comment.customerId._id == profileID" class="flex items-center gap-3">
+                            <div (click)="update(comment._id)" class="text-xl cursor-pointer text-white font-medium flex gap-2 items-center bg-green-600 rounded-sm p-2">
+                                edit 
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </div>
+                            <div (click)="delete(comment._id)" class="text-xl cursor-pointer text-white font-medium flex gap-2 items-center bg-red-600 rounded-sm p-2">
+                                delete 
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 pl-10 flex justify-between items-center gap-5">
+                        <p class="text-slate-600 ">{{comment.content}}</p>
+                        <span>{{formatReadableDate(comment.createdAt)}}</span>
+                    </div>                 
+            </div>
+        </div>
+    </div>
   
     <h2 class="text-3xl mt-10 mb-3 font-bold flex items-center gap-3">
         <i class="text-yellow-500 fa-solid fa-star"></i>

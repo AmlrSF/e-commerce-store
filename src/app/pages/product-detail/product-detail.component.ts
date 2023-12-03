@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommentService } from 'src/app/comment.service';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -10,12 +13,30 @@ import { ProductService } from 'src/app/product.service';
 export class ProductDetailComponent implements OnInit{
 
   public product: any = {};
+  
   public itemId:any;
+
   public relatedProducts:any[]=[];
+
+  public myForm!: FormGroup;
+
+  public isLoading:boolean = false;
+
+  public comments:any[] = []; 
+
+  public editMode: boolean = false;
+
+  public profileID:string = "";
+
+  public editComment:any;
+  // private prodId:string | undefined;
   constructor (
     private productS:ProductService,
     private route: ActivatedRoute,
-
+    private formBuilder: FormBuilder,
+    private http: HttpClient, 
+    private commentS:CommentService,
+    private router:Router
   ){}
 
   isCopied: boolean = false;
@@ -41,9 +62,41 @@ export class ProductDetailComponent implements OnInit{
     }, 5000);
   }
 
+
+
+
   ngOnInit(): void {
+
+    this.myForm = this.formBuilder.group({
+      content: ['', Validators.required],
+    });
+
+
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+
+    this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+      (res:any)=>{
+        // console.log(res);
+        
+        this.profileID=res.customer._id;
+        
+        
+      },err=>{
+        console.log(err);
+        this.router.navigate(['/login']);
+      }
+    )
+
+    
+
+    
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
+      // this.prodId = productId;
+
       this.itemId = productId;
       console.log(productId);
       
@@ -51,28 +104,138 @@ export class ProductDetailComponent implements OnInit{
         this.productS.getProductById(productId).subscribe(
           (res)=>{
             this.product = res.data 
-            console.log(res);
+            console.log(this.product);
                // Fetch all products and filter by the same category
-          this.productS.getProducts().subscribe(
-            (allProductsRes: any) => {
-              const allProducts = allProductsRes.data;
+              this.getAllComments();
+              this.productS.getProducts().subscribe(
+                (allProductsRes: any) => {
+                  const allProducts = allProductsRes.data;
 
-              if (this.product.category) {
-                this.relatedProducts = allProducts.filter((product:any) => product.category === this.product.category && this.product._id != product._id );
-                console.log(this.relatedProducts);
-              }
-            },
-            (allProductsErr) => console.log(allProductsErr)
-          );
+                  if (this.product.category) {
+                    this.relatedProducts = allProducts.filter((product:any) => product.category === this.product.category && this.product._id != product._id );
+                    //console.log(this.relatedProducts);
+                  }
+                },
+                (allProductsErr) => console.log(allProductsErr)
+              );
           },
           (err)=>console.log(err)
           
         )
       }
     })
+    
+
   }
 
+  public getAllComments(){
+    console.log(this.product._id);
+    
+    this.commentS.getCommentsByProducts(this.product._id).subscribe((res:any)=>{
+      console.log(res);
+      
+      this.comments = res;
+    },(err:any)=>{
+      console.log(err);
+      
+    })
+  }
+
+  public delete(id:string){
+    this.commentS.deleteCommentById(id)
+      .subscribe((res:any)=>{
+        console.log("deletd succesfully maniga");
+        this.getAllComments();
+      },(err:any)=>{
+        console.log(err);      
+      })
+  }
+
+  public update(id:string){
+    this.editMode = true;
+    this.commentS.getCommentsById(id).subscribe(
+      (data: any) => {
+
+        this.editComment = data;
+        console.log(data);
+        
+        this.myForm.patchValue({
+          content: this.editComment[0].content,
+        });
+
+      },
+      (error) => {
+        console.error(error);
+
+      }
+    );
+  }
+
+  onSubmit(){
+    const gettoken = localStorage.getItem('token'); 
+    let token = {
+      token : gettoken
+    }
+    if(this.myForm.valid){
+      if (this.editMode) {
+
+        const updatedData = {
+          content: this.myForm.value.content,
+        };
+
+        
+
+        this.commentS.updateCommentById(this.editComment[0]._id, updatedData).subscribe(
+          (data) => {
+            console.log(data);
+            this.editMode = false;
+            this.getAllComments();
+            this.myForm.reset();
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+      }else{
+        try {
+          this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
+            (res:any)=>{
+              console.log(res);
+              if(res.success){
+                this.isLoading = true;
   
+                let comment = {
+                  customerId:res.customer._id,
+                  productId:this.product._id,
+                  content : this.myForm.value.content
+                }
+          
+                this.commentS.addComment(comment).subscribe(
+                  (res:any)=>{
+                    this.isLoading = false;
+                    this.myForm.reset();
+                   this.getAllComments();
+                  },(err:any)=>{
+                    console.log(err);
+                    
+                })
+              }else{
+                this.router.navigate(['/login']);
+              }
+            },err=>{
+              console.log(err);
+              this.router.navigate(['/login']);
+            }
+          )
+        } catch (error) {
+          
+        }
+      }
+     
+  
+    }
+  }
 
   public formatPrice(price:any) {
     if (typeof price === 'string') {

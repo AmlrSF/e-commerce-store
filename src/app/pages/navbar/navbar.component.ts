@@ -80,7 +80,7 @@ export class NavbarComponent implements OnInit,AfterViewInit {
     try {
       this.http.post(`http://localhost:3000/api/v1/customers/profile`,token).subscribe(
         (res:any)=>{
-          console.log(res);
+          //console.log(res);
           this.result = res;
 
         },(err:any)=>{
@@ -94,7 +94,7 @@ export class NavbarComponent implements OnInit,AfterViewInit {
     this.getAllCategories().subscribe(
       (res:any)=>{
         this.cats = res;
-        console.log(res);
+        //console.log(res);
         
       },(err:any)=>{
         console.log(err);
