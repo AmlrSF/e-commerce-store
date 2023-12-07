@@ -56,10 +56,8 @@ This is an e-commerce store app. PickMe provides a seamless shopping experience 
   ![image](https://github.com/AmirSouaF/store-app/assets/111384104/a5063f5e-a593-4e76-87e9-18f9ad66b287)
 
   # product detail 
-  ![image](https://github.com/AmirSouaF/store-app/assets/111384104/0cd6ae81-88b1-4169-9b73-37035166157e)
+  ![image](https://github.com/AmirSouaF/store-app/assets/111384104/8deacbb8-f4b9-4a57-b6c6-3a1dcf1cb760)
 
-
-  
 
   
 
